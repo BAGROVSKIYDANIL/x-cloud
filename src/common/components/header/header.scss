@@ -1,0 +1,13 @@
+.header 
+{
+    display: flex;
+    &__menu 
+    {
+        display: flex;
+    }
+    &__main-information 
+    {
+        display: flex;
+        column-gap: 32px;
+    }
+}
