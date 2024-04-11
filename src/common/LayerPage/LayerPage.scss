@@ -1,0 +1,125 @@
+.container 
+{
+    width: 1440px;
+    margin: 0 auto; 
+}
+.LayerPage 
+{
+    height: 100vh;
+}
+.LayerPage::after
+{
+    content: '';
+    width: 808.473px;
+    height: 826.156px;
+    top: 150px;
+    z-index: -1;
+    border-radius: 610px;
+    background: radial-gradient(circle, rgba(107, 78, 255, 0.35) 0%, 
+                                        rgba(107, 78, 255, 0) 100%);
+    transform: rotate(75.545deg);
+    flex-shrink: 0;
+    // opacity: 0.16;
+    filter: blur(150px);
+    position: absolute;
+    
+}
+.LayerPage::before
+{
+    content: '';
+    position: absolute;
+    width: 886.731px;
+    height: 864px;
+    right: 0;
+    top: 100px;
+    background: radial-gradient(circle, rgba(255, 0, 123, 0.25) 0%, 
+                                        rgba(255, 0, 123, 0) 100%);
+    transform: rotate(-47.55deg);
+    flex-shrink: 0;
+    border-radius: 610px;
+    // opacity: 0.16;    
+    filter: blur(150px);
+}
+.group-message
+{
+    content: '';
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    left: 48px;
+    bottom: 44px;
+    border-radius: 100%;
+    filter: drop-shadow(20px 15px 38px rgba(129, 79, 193, 0.40));
+    background: radial-gradient(70.22% 70.22% at 41.44% 33.23%, #D8AEF9 0%,
+            #D1A5F5 5%,
+            #925BD4 47%,
+            #7A3EC8 66%,
+            #7D41CA 77%,
+            #874CD0 86%,
+            #975EDA 95%,
+            #A66EE4 100%);
+}
+.group-message::before 
+{
+    content: '';
+    position: absolute;
+    width: 85px;
+    height: 66px;
+    top: 31px;
+    left: 22px;
+    background-image: url(../../assets/icons/message.svg);
+    background-size: cover;
+}
+.group-message:hover,
+.group-phone:hover
+{
+    width: 142px;
+    height: 142px;
+    transition-duration: 0.4s;
+}
+.group-message:hover::before 
+{
+    width: 94px;
+    height: 73px;
+    top: 34.39px;
+    left: 24.41px;
+    transition-duration: 0.4s;
+}
+.group-phone
+{
+    content: '';
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    right: 48px;
+    bottom: 44px;
+    border-radius: 100%;
+    filter: drop-shadow(20px 15px 38px rgba(129, 79, 193, 0.40));
+    background: radial-gradient(70.22% 70.22% at 41.44% 33.23%, #D8AEF9 0%,
+            #D1A5F5 5%,
+            #925BD4 47%,
+            #7A3EC8 66%,
+            #7D41CA 77%,
+            #874CD0 86%,
+            #975EDA 95%,
+            #A66EE4 100%);
+}
+.group-phone::after
+{
+    content: '';
+    position: absolute;
+    width: 84px;
+    height: 88px;
+    top: 19.5px;
+    left: 22.03px;
+    background-image: url(../../assets/icons/phone.svg);
+    background-size: cover;
+}
+.group-phone:hover:after 
+{
+    width: 93px;
+    height: 98px;
+    top: 21.63px;
+    left: 24.44px;
+    transition-duration: 0.4s;
+}

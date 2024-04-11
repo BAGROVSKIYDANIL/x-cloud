@@ -1,13 +1,63 @@
+@import '../../variables/mixins';
+@import '../../variables/_colors.scss';
+
 .header 
 {
     display: flex;
+    margin-top: 17px;
+    padding: 0 48px 0 60px;
     &__menu 
     {
         display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    &__logo 
+    {
+        height: 81px;
+        svg 
+        {
+            color: $color-light-violet;
+        }
     }
     &__main-information 
     {
         display: flex;
+        justify-content: space-between;
+        width: 513px;
         column-gap: 32px;
+        font-size: 16px;
+        margin-left: 23.68%;
+        margin-right: 20.48%;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+    &__group
+    {
+        @include flex-center;
+        width: 305px;
+        height: 62px;
+        border-radius: 50px;
+        border: 1px solid $color-violet;
+        white-space: nowrap;
+    }
+    &__wrapper-text 
+    {
+        @include flex-center;
+        font-size: 28px;
+        font-weight: 500;
+    }
+    &__static-text 
+    {
+        color: $color-dark;
+    }
+    &__active-text 
+    {
+        background: $color-blue-violet;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        overflow: hidden;
+        white-space: nowrap;
     }
 }

@@ -1,10 +1,9 @@
-import LayerPage from './common/LayerPage';
-import './App.css';
-
+import WelcomePage from './pages/WelcomePage';
+import './App.scss';
 function App() {
   return (
     <div className="App">
-      <LayerPage/>
+      <WelcomePage/>
     </div>
   );
 }

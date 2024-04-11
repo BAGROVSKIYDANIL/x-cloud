@@ -1,0 +1,40 @@
+@import '../../../../common/variables/colors';
+.welcome
+{
+    &__wrapper
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__title
+    {
+        margin: 0;
+        text-align: center;
+        font-size: 72px;
+        font-weight: 600;
+        line-height: 102.023%;
+        font-family: Inter;
+        .title 
+        {
+            background: $color-blue-violet;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .symbol
+        {
+            font-size: 50px;
+        }
+    }
+    &__subtitle 
+    {
+        margin-top: 12px;
+        font-size: 24px;
+        font-family: 'Poppins';
+        span 
+        {
+            font-size: 18px;
+        }
+    }
+}
