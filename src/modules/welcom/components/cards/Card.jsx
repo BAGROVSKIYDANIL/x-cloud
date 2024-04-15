@@ -5,7 +5,7 @@ const Card = () => {
         <div className='card'>
              <div className="card__voip">
                 <div className="card__wrapper-svg">
-                    <div className="card_layer">
+                    <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="271" height="289" viewBox="0 0 271 289" fill="none">
                         <path d="M43.9547 15.1539L0.992149 145.507C0.466319 147.102 0.389663 148.771 0.746587 150.333C1.0587 151.918 1.79699 153.42 2.93096 154.665L92.1189 253.253C93.9063 255.237 95.91 257.018 98.0849 258.545C100.957 260.563 104.12 262.153 107.491 263.264L114.007 265.412L114.771 265.664L181.337 287.615C192.73 291.37 205.009 285.179 208.779 273.778L269.508 89.4811C273.263 78.0884 267.072 65.809 255.679 62.0542L71.3965 1.31704C59.9889 -2.4303 47.7096 3.76127 43.9547 15.1539Z" fill="url(#paint0_linear_1624_11505)"/>
                         <defs>
@@ -226,33 +226,35 @@ const Card = () => {
                         </defs>
                     </svg>
                 </div>
-                {/* <span className="name-card">VoIP</span> */}
              </div>
              <div className="card__apps">
                 <div className="card__wrapper-svg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="284" height="253" viewBox="0 0 284 253" fill="none">
-                <path d="M1.49002 81.0167L38.9759 213.049C39.4347 214.665 40.3065 216.089 41.4779 217.183C42.6249 218.321 44.0779 219.151 45.7152 219.547L174.835 251.2C177.428 251.841 180.086 252.193 182.742 252.238C186.252 252.299 189.763 251.844 193.177 250.874L199.777 249L200.551 248.781L267.981 229.648C279.521 226.372 286.219 214.362 282.951 202.808L229.942 16.1433C226.666 4.60394 214.656 -2.09464 203.116 1.18157L16.4599 54.1761C4.91237 57.467 -1.78619 69.4773 1.49002 81.0167Z" fill="url(#paint0_linear_1503_12143)"/>
-                <defs>
-                    <linearGradient id="paint0_linear_1503_12143" x1="184.593" y1="-12.3868" x2="115.837" y2="238.006" gradientUnits="userSpaceOnUse">
-                    <stop offset="0.105" stopColor="#F9D6F6"/>
-                    <stop offset="0.175" stopColor="#F9D6F6"/>
-                    <stop offset="0.47" stopColor="#F6C7F2"/>
-                    <stop offset="1" stopColor="#F2A8ED"/>
-                    </linearGradient>
-                </defs>
-                </svg>
-                <svg className='card__wrapped-apps' xmlns="http://www.w3.org/2000/svg" width="162" height="79" viewBox="0 0 162 79" fill="none">
-                <path d="M0.0841874 35.9078C1.92584 42.3944 5.96368 40.5471 10.1716 36.0935L37.7535 6.93892C45.9886 -1.78153 59.7413 -2.15676 68.4536 6.09304L132.805 66.9444C132.805 66.9444 132.87 66.9997 132.905 67.0388C145.263 78.6437 156.606 76.4071 161.777 75.0004L155.177 76.8743C151.763 77.8436 148.252 78.2993 144.742 78.2382C142.086 78.1932 139.428 77.841 136.835 77.1997L7.7152 45.5467C6.0779 45.1508 4.62495 44.3213 3.47799 43.1835C2.30658 42.0896 1.43472 40.6646 0.975922 39.0487L0.0841874 35.9078Z" fill="url(#paint0_linear_1503_12144)"/>
-                <defs>
-                    <linearGradient id="paint0_linear_1503_12144" x1="91.4593" y1="11.2808" x2="80.8882" y2="55.6506" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#E4E1ED"/>
-                    <stop offset="0.305" stopColor="#ECEBF4"/>
-                    <stop offset="0.545" stopColor="#ECEBF4"/>
-                    <stop offset="1" stopColor="#C8C0D9"/>
-                    </linearGradient>
-                </defs>
-                </svg>
-                <svg className='button' xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
+                    <div className="card__wrapper-rotate">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="284" height="253" viewBox="0 0 284 253" fill="none">
+                    <path d="M1.49002 81.0167L38.9759 213.049C39.4347 214.665 40.3065 216.089 41.4779 217.183C42.6249 218.321 44.0779 219.151 45.7152 219.547L174.835 251.2C177.428 251.841 180.086 252.193 182.742 252.238C186.252 252.299 189.763 251.844 193.177 250.874L199.777 249L200.551 248.781L267.981 229.648C279.521 226.372 286.219 214.362 282.951 202.808L229.942 16.1433C226.666 4.60394 214.656 -2.09464 203.116 1.18157L16.4599 54.1761C4.91237 57.467 -1.78619 69.4773 1.49002 81.0167Z" fill="url(#paint0_linear_1503_12143)"/>
+                    <defs>
+                        <linearGradient id="paint0_linear_1503_12143" x1="184.593" y1="-12.3868" x2="115.837" y2="238.006" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.105" stopColor="#F9D6F6"/>
+                        <stop offset="0.175" stopColor="#F9D6F6"/>
+                        <stop offset="0.47" stopColor="#F6C7F2"/>
+                        <stop offset="1" stopColor="#F2A8ED"/>
+                        </linearGradient>
+                    </defs>
+                        </svg>
+                        <svg className='card__wrapped-apps' xmlns="http://www.w3.org/2000/svg" width="162" height="79" viewBox="0 0 162 79" fill="none">
+                        <path d="M0.0841874 35.9078C1.92584 42.3944 5.96368 40.5471 10.1716 36.0935L37.7535 6.93892C45.9886 -1.78153 59.7413 -2.15676 68.4536 6.09304L132.805 66.9444C132.805 66.9444 132.87 66.9997 132.905 67.0388C145.263 78.6437 156.606 76.4071 161.777 75.0004L155.177 76.8743C151.763 77.8436 148.252 78.2993 144.742 78.2382C142.086 78.1932 139.428 77.841 136.835 77.1997L7.7152 45.5467C6.0779 45.1508 4.62495 44.3213 3.47799 43.1835C2.30658 42.0896 1.43472 40.6646 0.975922 39.0487L0.0841874 35.9078Z" fill="url(#paint0_linear_1503_12144)"/>
+                        <defs>
+                            <linearGradient id="paint0_linear_1503_12144" x1="91.4593" y1="11.2808" x2="80.8882" y2="55.6506" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#E4E1ED"/>
+                            <stop offset="0.305" stopColor="#ECEBF4"/>
+                            <stop offset="0.545" stopColor="#ECEBF4"/>
+                            <stop offset="1" stopColor="#C8C0D9"/>
+                            </linearGradient>
+                        </defs>
+                        </svg>
+                        <span className="name-card">Apps</span>
+                    </div>
+                    <svg className='button' xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
                     <g style={{mixBlendMode:'multiply'}} opacity="0.81">
                         <path opacity="0.06" d="M47.3515 36.3121C41.6724 47.581 27.9887 52.1422 16.7198 46.5078C5.49561 40.8733 0.934387 27.1449 6.61355 15.8313C12.2927 4.56241 25.9764 0.00118613 37.2453 5.63564C48.4695 11.3148 52.986 24.9985 47.3515 36.3121Z" fill="#F6F6F6"/>
                         <path opacity="0.12" d="M46.6713 35.8101C41.1263 46.8107 27.7557 51.2824 16.7551 45.7374C5.75449 40.2371 1.37214 26.8218 6.91715 15.7765C12.4622 4.77587 25.8328 0.304088 36.8334 5.8491C47.834 11.3941 52.2163 24.7648 46.6713 35.8101Z" fill="#EDEDED"/>
@@ -452,33 +454,35 @@ const Card = () => {
                     </defs>
                 </svg>
                 </div>
-                <span className="name-card">Apps</span>
              </div>
              <div className="card__cloud">
                 <div className="card__wrapper-svg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="255" height="265" viewBox="0 0 255 265" fill="none">
-                    <path d="M19.666 19.5199L0.093192 155.367C-0.14637 157.03 0.0691529 158.686 0.693089 160.163C1.27684 161.669 2.26563 163.019 3.59945 164.048L108.613 245.571C110.719 247.213 113.003 248.618 115.41 249.742C118.591 251.228 121.982 252.243 125.495 252.749L132.286 253.727L133.082 253.842L202.456 263.849C214.329 265.56 225.341 257.322 227.065 245.439L254.725 53.3752C256.436 41.5023 248.198 30.4908 236.325 28.7801L44.2745 1.10956C32.3882 -0.591049 21.3767 7.64697 19.666 19.5199Z" fill="url(#paint0_linear_1503_12148)"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_1503_12148" x1="224.939" y1="8.84108" x2="60.1124" y2="209.48" gradientUnits="userSpaceOnUse">
-                        <stop offset="0.18" stopColor="#F7D29E"/>
-                        <stop offset="0.435" stopColor="#FFD28D"/>
-                        <stop offset="0.52" stopColor="#FFCA7B"/>
-                        <stop offset="1" stopColor="#FFB04A"/>
-                        </linearGradient>
-                    </defs>
-                    </svg>
-                    <svg className='card__wrapped-cloud' xmlns="http://www.w3.org/2000/svg" width="133" height="115" viewBox="0 0 133 115" fill="none">
-                    <path d="M0.558738 13.1355C-0.402867 19.8096 4.03731 19.768 9.69485 17.4159L46.7635 2.03191C57.8376 -2.57564 70.5494 2.6861 75.1435 13.7702L109.111 95.5636C109.111 95.5636 109.148 95.6406 109.165 95.6908C115.721 111.324 126.99 113.904 132.286 114.727L125.495 113.749C121.982 113.242 118.59 112.228 115.41 110.742C113.002 109.618 110.719 108.213 108.613 106.571L3.59936 25.0475C2.26554 24.0187 1.27675 22.6691 0.692997 21.1627C0.0690611 19.6863 -0.146452 18.0298 0.0931092 16.3671L0.558738 13.1355Z" fill="url(#paint0_linear_1503_12149)"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_1503_12149" x1="94.0382" y1="27.8828" x2="66.3034" y2="64.0934" gradientUnits="userSpaceOnUse">
-                        <stop stopColor="#E4E1ED"/>
-                        <stop offset="0.305" stopColor="#ECEBF4"/>
-                        <stop offset="0.545" stopColor="#ECEBF4"/>
-                        <stop offset="1" stopColor="#C8C0D9"/>
-                        </linearGradient>
-                    </defs>
-                    </svg>
-                    <svg className='button' xmlns="http://www.w3.org/2000/svg" width="47" height="49" viewBox="0 0 47 49" fill="none">
+                        <div className="card__wrapper-rotate">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="255" height="265" viewBox="0 0 255 265" fill="none">
+                            <path d="M19.666 19.5199L0.093192 155.367C-0.14637 157.03 0.0691529 158.686 0.693089 160.163C1.27684 161.669 2.26563 163.019 3.59945 164.048L108.613 245.571C110.719 247.213 113.003 248.618 115.41 249.742C118.591 251.228 121.982 252.243 125.495 252.749L132.286 253.727L133.082 253.842L202.456 263.849C214.329 265.56 225.341 257.322 227.065 245.439L254.725 53.3752C256.436 41.5023 248.198 30.4908 236.325 28.7801L44.2745 1.10956C32.3882 -0.591049 21.3767 7.64697 19.666 19.5199Z" fill="url(#paint0_linear_1503_12148)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1503_12148" x1="224.939" y1="8.84108" x2="60.1124" y2="209.48" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.18" stopColor="#F7D29E"/>
+                                <stop offset="0.435" stopColor="#FFD28D"/>
+                                <stop offset="0.52" stopColor="#FFCA7B"/>
+                                <stop offset="1" stopColor="#FFB04A"/>
+                                </linearGradient>
+                            </defs>
+                            </svg>
+                            <svg className='card__wrapped-cloud' xmlns="http://www.w3.org/2000/svg" width="133" height="115" viewBox="0 0 133 115" fill="none">
+                            <path d="M0.558738 13.1355C-0.402867 19.8096 4.03731 19.768 9.69485 17.4159L46.7635 2.03191C57.8376 -2.57564 70.5494 2.6861 75.1435 13.7702L109.111 95.5636C109.111 95.5636 109.148 95.6406 109.165 95.6908C115.721 111.324 126.99 113.904 132.286 114.727L125.495 113.749C121.982 113.242 118.59 112.228 115.41 110.742C113.002 109.618 110.719 108.213 108.613 106.571L3.59936 25.0475C2.26554 24.0187 1.27675 22.6691 0.692997 21.1627C0.0690611 19.6863 -0.146452 18.0298 0.0931092 16.3671L0.558738 13.1355Z" fill="url(#paint0_linear_1503_12149)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1503_12149" x1="94.0382" y1="27.8828" x2="66.3034" y2="64.0934" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#E4E1ED"/>
+                                <stop offset="0.305" stopColor="#ECEBF4"/>
+                                <stop offset="0.545" stopColor="#ECEBF4"/>
+                                <stop offset="1" stopColor="#C8C0D9"/>
+                                </linearGradient>
+                            </defs>
+                            </svg>
+                            <span className="name-card">Cloud</span>
+                        </div>
+                        <svg className='button' xmlns="http://www.w3.org/2000/svg" width="47" height="49" viewBox="0 0 47 49" fill="none">
                         <g style={{mixBlendMode:'multiply'}} opacity="0.81">
                         <path opacity="0.06" d="M3.22952 35.3099C8.90869 46.5788 22.5924 51.14 33.8613 45.5056C45.0854 39.8711 49.6467 26.1427 43.9675 14.8291C38.2883 3.56021 24.6047 -1.00101 13.3358 4.63344C2.11158 10.3126 -2.40493 23.9963 3.22952 35.3099Z" fill="#F6F6F6"/>
                         <path opacity="0.12" d="M3.90973 34.8079C9.45475 45.8085 22.8254 50.2802 33.826 44.7352C44.8266 39.2349 49.2089 25.8196 43.6639 14.7743C38.1189 3.77367 24.7483 -0.69811 13.7477 4.8469C2.74707 10.3919 -1.63528 23.7626 3.90973 34.8079Z" fill="#EDEDED"/>
@@ -675,32 +679,34 @@ const Card = () => {
                         </defs>
                     </svg>
                 </div>
-                <span className="name-card">Cloud</span>
              </div>
              <div className="card__service">
                 <div className="card__wrapper-svg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="255" viewBox="0 0 300 255" fill="none">
-                    <path d="M2.68824 108.97L57.7372 234.697C58.411 236.236 59.4681 237.529 60.7771 238.454C62.0678 239.426 63.6198 240.051 65.2957 240.221L197.516 254.067C200.172 254.35 202.853 254.339 205.491 254.023C208.977 253.607 212.393 252.68 215.644 251.256L221.929 248.504L222.666 248.182L286.878 220.08C297.866 215.268 302.874 202.46 298.069 191.457L220.229 13.7078C215.418 2.7195 202.61 -2.28801 191.622 2.5232L13.879 80.3472C2.88453 85.174 -2.12297 97.9819 2.68824 108.97Z" fill="url(#paint0_linear_1503_12153)"/>
-                        <defs>
-                            <linearGradient id="paint0_linear_1503_12153" x1="171.429" y1="-8.40719" x2="137.274" y2="248.998" gradientUnits="userSpaceOnUse">
-                            <stop offset="0.18" stopColor="#9EC2F7"/>
-                            <stop offset="0.435" stopColor="#8DBBFF"/>
-                            <stop offset="0.52" stopColor="#7BB0FF"/>
-                            <stop offset="1" stopColor="#80B7FF"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <svg className='card__wrapped-service' xmlns="http://www.w3.org/2000/svg" width="166" height="67" viewBox="0 0 166 67" fill="none">
-                    <path d="M0.428025 43.7061C3.13255 49.883 6.88248 47.505 10.4474 42.5218L33.8196 9.89529C40.7958 0.138362 54.3704 -2.09889 64.1213 4.89286L136.132 56.4528C136.132 56.4528 136.204 56.4988 136.244 56.5327C150.062 66.354 160.997 62.5995 165.929 60.5043L159.644 63.2563C156.393 64.6797 152.977 65.6073 149.491 66.0229C146.853 66.3387 144.172 66.3503 141.516 66.0666L9.296 52.2208C7.62012 52.0506 6.06808 51.4259 4.77739 50.4542C3.46842 49.5293 2.41132 48.2358 1.73757 46.697L0.428025 43.7061Z" fill="url(#paint0_linear_1503_12154)"/>
-                        <defs>
-                            <linearGradient id="paint0_linear_1503_12154" x1="87.618" y1="6.91206" x2="83.1632" y2="52.3057" gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#E4E1ED"/>
-                            <stop offset="0.305" stopColor="#ECEBF4"/>
-                            <stop offset="0.545" stopColor="#ECEBF4"/>
-                            <stop offset="1" stopColor="#C8C0D9"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <div className="card__wrapper-rotate">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="300" height="255" viewBox="0 0 300 255" fill="none">
+                        <path d="M2.68824 108.97L57.7372 234.697C58.411 236.236 59.4681 237.529 60.7771 238.454C62.0678 239.426 63.6198 240.051 65.2957 240.221L197.516 254.067C200.172 254.35 202.853 254.339 205.491 254.023C208.977 253.607 212.393 252.68 215.644 251.256L221.929 248.504L222.666 248.182L286.878 220.08C297.866 215.268 302.874 202.46 298.069 191.457L220.229 13.7078C215.418 2.7195 202.61 -2.28801 191.622 2.5232L13.879 80.3472C2.88453 85.174 -2.12297 97.9819 2.68824 108.97Z" fill="url(#paint0_linear_1503_12153)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1503_12153" x1="171.429" y1="-8.40719" x2="137.274" y2="248.998" gradientUnits="userSpaceOnUse">
+                                <stop offset="0.18" stopColor="#9EC2F7"/>
+                                <stop offset="0.435" stopColor="#8DBBFF"/>
+                                <stop offset="0.52" stopColor="#7BB0FF"/>
+                                <stop offset="1" stopColor="#80B7FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <svg className='card__wrapped-service' xmlns="http://www.w3.org/2000/svg" width="166" height="67" viewBox="0 0 166 67" fill="none">
+                        <path d="M0.428025 43.7061C3.13255 49.883 6.88248 47.505 10.4474 42.5218L33.8196 9.89529C40.7958 0.138362 54.3704 -2.09889 64.1213 4.89286L136.132 56.4528C136.132 56.4528 136.204 56.4988 136.244 56.5327C150.062 66.354 160.997 62.5995 165.929 60.5043L159.644 63.2563C156.393 64.6797 152.977 65.6073 149.491 66.0229C146.853 66.3387 144.172 66.3503 141.516 66.0666L9.296 52.2208C7.62012 52.0506 6.06808 51.4259 4.77739 50.4542C3.46842 49.5293 2.41132 48.2358 1.73757 46.697L0.428025 43.7061Z" fill="url(#paint0_linear_1503_12154)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear_1503_12154" x1="87.618" y1="6.91206" x2="83.1632" y2="52.3057" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#E4E1ED"/>
+                                <stop offset="0.305" stopColor="#ECEBF4"/>
+                                <stop offset="0.545" stopColor="#ECEBF4"/>
+                                <stop offset="1" stopColor="#C8C0D9"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span className="name-card">IM Service</span>
+                    </div>
                     <svg className='button' xmlns="http://www.w3.org/2000/svg" width="48" height="50" viewBox="0 0 48 50" fill="none">
                         <g style={{mixBlendMode:'multiply'}} opacity="0.81">
                             <path opacity="0.06" d="M3.58792 36.3104C9.26709 47.5793 22.9508 52.1405 34.2197 46.506C45.4438 40.8716 50.0051 27.1432 44.3259 15.8296C38.6467 4.5607 24.9631 -0.000522852 13.6942 5.63393C2.46998 11.3131 -2.04653 24.9968 3.58792 36.3104Z" fill="#F6F6F6"/>
@@ -896,7 +902,7 @@ const Card = () => {
                         </defs>
                     </svg>
                 </div>
-                <span className="name-card">IM Service</span>
+
              </div>
         </div>
 

@@ -12,6 +12,11 @@
     {
         filter: drop-shadow(6px 7px 12px rgba(0, 0, 0, 0.15));
     }
+    &__wrapper-rotate
+    {
+        position: relative;
+        transition-duration: 0.4s;
+    }
     .name-card
     {
         font-size: 36px;
@@ -19,10 +24,6 @@
         line-height: 60px;
         color: $color-white;
         position: absolute;
-    }
-    &__wrapper-svg 
-    {
-
     }
     &__voip 
     {
@@ -38,16 +39,12 @@
         {
             transform: rotate(19deg);
             top: 102px;
-            left: 92px;
-        }
-        .card_layer
-        {
-            transition-duration: 0.4s;
+            left: 96px;
         }
     }
     &__voip:hover 
     {
-        .card_layer 
+        .card__wrapper-rotate
         {
                 transform: rotate(25deg) translateX(-40px) translateY(30px);
                 transition-duration: 0.4s;
@@ -71,15 +68,27 @@
         .name-card
         {
             top: 100px;
-            left: 90px;
-            transform: rotate(-18.09deg);
+            left: 96px;
+            transform: rotate(-17deg);
         }
+        &__wrapper-rotate
+        {
+            transition-duration: 0.4s;
+        }
+    }
+    &__apps:hover
+    {
+         .card__wrapper-rotate
+         {
+            transform: rotate(16deg) translateX(-20px) translateY(10px);
+            transition-duration: 0.4s;
+         }
     }
     &__wrapped-apps
     {
         position: absolute;
         left: 38px;
-        bottom: 42px;
+        bottom: 6px;
     }
     &__cloud 
     {
@@ -97,11 +106,18 @@
             transform: rotate(9.44deg);
         }
     }
+    &__cloud:hover 
+    {
+        .card__wrapper-rotate
+        {
+            transform: rotate(-8deg) translateX(10px) translateY(0);
+        }
+    }
     &__wrapped-cloud
     {
         position: absolute;
         left: 0;
-        bottom: 41px;
+        bottom: 17px;
     }
     &__service
     {
@@ -119,10 +135,17 @@
             transform: rotate(-27.14deg);
         }
     }
+    &__service:hover
+    {
+        .card__wrapper-rotate
+        {
+            transform: rotate(-21deg) translateX(31px) translateY(21px);
+        }
+    }
     &__wrapped-service
     {
         position: absolute;
         left: 56px;
-        bottom: 40px;
+        bottom: 6px;
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../cards/Card';
+import ActiveButtons from '../activeButtons/ActiveButtons';
 import './MainPage.scss';
 const MainPage = () => {
     return (
@@ -9,6 +10,7 @@ const MainPage = () => {
             <span className="welcome__subtitle">The digital product design <span>&</span> development company and your guide on the digital transformation journey.</span>
            </div>
            <Card/>
+           <ActiveButtons/>
         </section>
     );
 };

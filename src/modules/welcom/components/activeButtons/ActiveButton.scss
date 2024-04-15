@@ -1,0 +1,20 @@
+.buttons 
+{
+    button 
+    {
+        border:none;
+        padding: 0;
+        // background: transparent;
+        font-size: 28px;
+        
+        cursor: pointer;
+        border-radius: 50px;
+    }
+    &__warranties 
+    {
+        width: 239.603px;
+        height: 60px;
+        padding: 13px 56px;
+        background: linear-gradient(173deg, #FFE3D3 10.64%, #FFC3A1 94.49%);
+    }
+}
