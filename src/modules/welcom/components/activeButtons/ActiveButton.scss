@@ -17,4 +17,33 @@
         padding: 13px 56px;
         background: linear-gradient(173deg, #FFE3D3 10.64%, #FFC3A1 94.49%);
     }
+    &__sla 
+    {
+        width: 239.603px;
+        height: 60px;
+        padding: 13px 56px;
+        background: linear-gradient(173deg, #D3D5FF 10.64%, #BAA1FF 94.49%);
+    }
+    &__contacts 
+    {
+        width: 191.438px;
+        height: 60px;
+        padding: 13px 56px;
+        background: linear-gradient(173deg, #D9FFD3 10.64%, #AEFFA1 94.49%);
+    }
+    &__terms-condtions
+    {
+        width: 372px;
+        height: 60px;
+        padding: 13px 56px;
+        background: linear-gradient(173deg, #FFD3EB 10.64%, #FFA1B8 94.49%);
+    }
+    &__agreements 
+    {
+        width: 269.616px;
+        height: 60px;
+        padding: 13px 56px;
+        border-radius: 50px;
+        background: linear-gradient(173deg, #FFF5D3 10.64%, #FCB370 94.49%);
+    }
 }
