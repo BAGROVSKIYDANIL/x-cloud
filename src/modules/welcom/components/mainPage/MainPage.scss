@@ -1,6 +1,9 @@
 @import '../../../../common/variables/colors';
 .welcome
-{
+{   
+    height: 800px;
+    margin-top: 60px;
+    position: relative;
     &__wrapper
     {
         display: flex;

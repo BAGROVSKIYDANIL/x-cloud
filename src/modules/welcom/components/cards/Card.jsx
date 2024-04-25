@@ -1,9 +1,67 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Cards.scss';
 const Card = () => {
+    const [voipLoaded, setVoipLoaded] = useState(false);
+    const [voipButton, setVoipButton] = useState(false);
+    const [appsButton, setAppsButton] = useState(false);
+    const [cloudButton, setCloudButton] = useState(false);
+    const [serviceButton, setServiceButton] = useState(false);
+    const [appsLoaded, setAppsLoaded] = useState(false);
+    const [cloudLoaded, setCloudLoaded] = useState(false);
+    const [serviceLoaded, setServiceLoaded] = useState(false);  
+        useEffect(() => {
+        const voipTimer = setTimeout(() => {
+            setVoipLoaded(true);
+        }, 1000); // Появление первой карточки через 1 секунду
+
+        const appsTimer = setTimeout(() => {
+            setAppsLoaded(true);
+        }, 3500); // Появление второй карточки через 2 секунды
+
+        const cloudTimer = setTimeout(() => {
+            setCloudLoaded(true);
+        }, 5500); // Появление третьей карточки через 3 секунды
+
+        const serviceTimer = setTimeout(() => {
+            setServiceLoaded(true);
+        }, 7500); // Появление четвертой карточки через 4 секунды
+
+        return () => {
+            clearTimeout(voipTimer);
+            clearTimeout(appsTimer);
+            clearTimeout(cloudTimer);
+            clearTimeout(serviceTimer);
+        };
+    }, []);
+    useEffect(() =>
+    {
+        const voipButtonTimer = setTimeout(() =>
+        {
+            setVoipButton(true)
+        }, 2500)
+        const appsButtonTimer = setTimeout(() =>
+        {
+            setAppsButton(true);
+        }, 4500)
+        const cloudButtonTimer = setTimeout(() =>
+        {
+            setCloudButton(true);
+        }, 6500)
+        const serviceButtonTimer = setTimeout(() =>
+        {
+            setServiceButton(true);
+        }, 8500)
+        return () => {
+            clearTimeout(voipButtonTimer); 
+            clearTimeout(appsButtonTimer); 
+            clearTimeout(cloudButtonTimer);
+            clearTimeout(serviceButtonTimer); 
+        }
+    },[])
+    console.log(voipButton)
     return (
         <div className='card'>
-             <div className="card__voip">
+            {voipLoaded  ? <div className="card__voip">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="271" height="289" viewBox="0 0 271 289" fill="none">
@@ -30,8 +88,8 @@ const Card = () => {
                         </svg>
                         <span className="name-card">VoIP</span>
                     </div>
-                    <svg className='button' xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
-                        <g style={{mixBlendMode:'multiply'}} opacity="0.81">
+                    {voipButton  ? <svg className='button' xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
+                        <g style={{mixBlendMode:'multiply'}} opacity="0">
                             <path opacity="0.06" d="M44.0918 35.3096C38.4126 46.5785 24.7289 51.1398 13.46 45.5053C2.23584 39.8709 -2.32538 26.1425 3.35379 14.8289C9.03296 3.55997 22.7166 -1.00126 33.9855 4.63319C45.2097 10.3124 49.7262 23.996 44.0918 35.3096Z" fill="#F6F6F6"/>
                             <path opacity="0.12" d="M43.4116 34.8076C37.8665 45.8082 24.4959 50.28 13.4953 44.735C2.49473 39.2347 -1.88763 25.8193 3.65739 14.774C9.2024 3.77343 22.573 -0.698354 33.5736 4.84666C44.5742 10.3917 48.9566 23.7623 43.4116 34.8076Z" fill="#EDEDED"/>
                             <path opacity="0.19" d="M42.747 34.2729C37.3361 45.0499 24.2785 49.3875 13.5462 43.9767C2.81391 38.5658 -1.479 25.5082 3.93186 14.7312C9.34272 3.99891 22.4003 -0.383438 33.1326 5.02742C43.8649 10.4383 48.1578 23.4959 42.747 34.2729Z" fill="#E3E4E4"/>
@@ -224,10 +282,10 @@ const Card = () => {
                         <stop offset="1" stopColor="#A9A9A9"/>
                         </linearGradient>
                         </defs>
-                    </svg>
+                    </svg>: false}
                 </div>
-             </div>
-             <div className="card__apps">
+             </div> : false}
+            {appsLoaded  ?  <div className="card__apps">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="284" height="253" viewBox="0 0 284 253" fill="none">
@@ -254,8 +312,8 @@ const Card = () => {
                         </svg>
                         <span className="name-card">Apps</span>
                     </div>
-                    <svg className='button' xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
-                    <g style={{mixBlendMode:'multiply'}} opacity="0.81">
+                   {appsButton ? <svg className='button' xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50" fill="none">
+                    <g style={{mixBlendMode:'multiply'}} opacity="0">
                         <path opacity="0.06" d="M47.3515 36.3121C41.6724 47.581 27.9887 52.1422 16.7198 46.5078C5.49561 40.8733 0.934387 27.1449 6.61355 15.8313C12.2927 4.56241 25.9764 0.00118613 37.2453 5.63564C48.4695 11.3148 52.986 24.9985 47.3515 36.3121Z" fill="#F6F6F6"/>
                         <path opacity="0.12" d="M46.6713 35.8101C41.1263 46.8107 27.7557 51.2824 16.7551 45.7374C5.75449 40.2371 1.37214 26.8218 6.91715 15.7765C12.4622 4.77587 25.8328 0.304088 36.8334 5.8491C47.834 11.3941 52.2163 24.7648 46.6713 35.8101Z" fill="#EDEDED"/>
                         <path opacity="0.19" d="M46.0067 35.2753C40.5959 46.0523 27.5382 50.39 16.806 44.9791C6.07367 39.5683 1.78076 26.5106 7.19162 15.7336C12.6025 5.00135 25.6601 0.619003 36.3924 6.02986C47.1247 11.4407 51.4176 24.4983 46.0067 35.2753Z" fill="#E3E4E4"/>
@@ -452,10 +510,10 @@ const Card = () => {
                         <stop offset="1" stopColor="#A9A9A9"/>
                         </linearGradient>
                     </defs>
-                </svg>
+                </svg> : false}
                 </div>
-             </div>
-             <div className="card__cloud">
+             </div>  : false}
+            {cloudLoaded  ?  <div className="card__cloud">
                 <div className="card__wrapper-svg">
                         <div className="card__wrapper-rotate">
                             <svg xmlns="http://www.w3.org/2000/svg" width="255" height="265" viewBox="0 0 255 265" fill="none">
@@ -482,8 +540,8 @@ const Card = () => {
                             </svg>
                             <span className="name-card">Cloud</span>
                         </div>
-                        <svg className='button' xmlns="http://www.w3.org/2000/svg" width="47" height="49" viewBox="0 0 47 49" fill="none">
-                        <g style={{mixBlendMode:'multiply'}} opacity="0.81">
+                       {cloudButton ? <svg className='button' xmlns="http://www.w3.org/2000/svg" width="47" height="49" viewBox="0 0 47 49" fill="none">
+                        <g style={{mixBlendMode:'multiply'}} opacity="0">
                         <path opacity="0.06" d="M3.22952 35.3099C8.90869 46.5788 22.5924 51.14 33.8613 45.5056C45.0854 39.8711 49.6467 26.1427 43.9675 14.8291C38.2883 3.56021 24.6047 -1.00101 13.3358 4.63344C2.11158 10.3126 -2.40493 23.9963 3.22952 35.3099Z" fill="#F6F6F6"/>
                         <path opacity="0.12" d="M3.90973 34.8079C9.45475 45.8085 22.8254 50.2802 33.826 44.7352C44.8266 39.2349 49.2089 25.8196 43.6639 14.7743C38.1189 3.77367 24.7483 -0.69811 13.7477 4.8469C2.74707 10.3919 -1.63528 23.7626 3.90973 34.8079Z" fill="#EDEDED"/>
                         <path opacity="0.19" d="M4.57434 34.2731C9.9852 45.0501 23.0428 49.3878 33.7751 43.9769C44.5074 38.5661 48.8003 25.5084 43.3894 14.7314C37.9786 3.99916 24.921 -0.383194 14.1887 5.02767C3.45638 10.4385 -0.836525 23.4961 4.57434 34.2731Z" fill="#E3E4E4"/>
@@ -677,10 +735,10 @@ const Card = () => {
                             <stop offset="1" stopColor="#A9A9A9"/>
                             </linearGradient>
                         </defs>
-                    </svg>
+                    </svg> : false}
                 </div>
-             </div>
-             <div className="card__service">
+             </div>  : false}
+            {serviceLoaded  ?  <div className="card__service">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="300" height="255" viewBox="0 0 300 255" fill="none">
@@ -707,8 +765,8 @@ const Card = () => {
                         </svg>
                         <span className="name-card">IM Service</span>
                     </div>
-                    <svg className='button' xmlns="http://www.w3.org/2000/svg" width="48" height="50" viewBox="0 0 48 50" fill="none">
-                        <g style={{mixBlendMode:'multiply'}} opacity="0.81">
+                   {serviceButton ? <svg className='button' xmlns="http://www.w3.org/2000/svg" width="48" height="50" viewBox="0 0 48 50" fill="none">
+                        <g style={{mixBlendMode:'multiply'}} opacity="0">
                             <path opacity="0.06" d="M3.58792 36.3104C9.26709 47.5793 22.9508 52.1405 34.2197 46.506C45.4438 40.8716 50.0051 27.1432 44.3259 15.8296C38.6467 4.5607 24.9631 -0.000522852 13.6942 5.63393C2.46998 11.3131 -2.04653 24.9968 3.58792 36.3104Z" fill="#F6F6F6"/>
                             <path opacity="0.12" d="M4.26813 35.8084C9.81314 46.8089 23.1838 51.2807 34.1844 45.7357C45.185 40.2354 49.5673 26.8201 44.0223 15.7748C38.4773 4.77416 25.1067 0.302379 14.1061 5.84739C3.10547 11.3924 -1.27688 24.763 4.26813 35.8084Z" fill="#EDEDED"/>
                             <path opacity="0.19" d="M4.93274 35.2736C10.3436 46.0506 23.4012 50.3883 34.1335 44.9774C44.8658 39.5665 49.1587 26.5089 43.7478 15.7319C38.337 4.99964 25.2794 0.617294 14.5471 6.02815C3.81478 11.439 -0.478127 24.4966 4.93274 35.2736Z" fill="#E3E4E4"/>
@@ -766,144 +824,144 @@ const Card = () => {
                         </g>
                         <defs>
                             <radialGradient id="paint0_radial_1503_11693" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(4.53838 32.3047) rotate(-153.41) scale(49.9033 52.6155)">
-                            <stop offset="0.32" stop-color="#008013"/>
-                            <stop offset="0.33" stop-color="#008012"/>
-                            <stop offset="0.75" stop-color="#008000"/>
-                            <stop offset="1" stop-color="#008000"/>
+                            <stop offset="0.32" stopColor="#008013"/>
+                            <stop offset="0.33" stopColor="#008012"/>
+                            <stop offset="0.75" stopColor="#008000"/>
+                            <stop offset="1" stopColor="#008000"/>
                             </radialGradient>
                             <radialGradient id="paint1_radial_1503_11693" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(19.4781 -1.0851) rotate(170.31) scale(13.7284 13.7284)">
-                            <stop offset="0.1" stop-color="#A9A9A9"/>
-                            <stop offset="0.48" stop-color="#A9A9A9"/>
-                            <stop offset="0.52" stop-color="#99A599"/>
-                            <stop offset="0.69" stop-color="#589558"/>
-                            <stop offset="0.83" stop-color="#288928"/>
-                            <stop offset="0.94" stop-color="#0A820A"/>
-                            <stop offset="1" stop-color="#008000"/>
+                            <stop offset="0.1" stopColor="#A9A9A9"/>
+                            <stop offset="0.48" stopColor="#A9A9A9"/>
+                            <stop offset="0.52" stopColor="#99A599"/>
+                            <stop offset="0.69" stopColor="#589558"/>
+                            <stop offset="0.83" stopColor="#288928"/>
+                            <stop offset="0.94" stopColor="#0A820A"/>
+                            <stop offset="1" stopColor="#008000"/>
                             </radialGradient>
                             <radialGradient id="paint2_radial_1503_11693" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(7.8158 35.291) rotate(170.31) scale(34.1197 34.1197)">
-                            <stop offset="0.08" stop-color="#2C2C2C"/>
-                            <stop offset="0.12" stop-color="#434343"/>
-                            <stop offset="0.23" stop-color="#787878"/>
-                            <stop offset="0.34" stop-color="#A2A2A2"/>
-                            <stop offset="0.43" stop-color="#C0C0C0"/>
-                            <stop offset="0.51" stop-color="#D2D2D2"/>
-                            <stop offset="0.57" stop-color="#D9D9D9"/>
-                            <stop offset="0.66" stop-color="#D6D6D6"/>
-                            <stop offset="0.73" stop-color="#CDCDCD"/>
-                            <stop offset="0.79" stop-color="#BDBDBD"/>
-                            <stop offset="0.84" stop-color="#A8A8A8"/>
-                            <stop offset="0.89" stop-color="#8C8C8C"/>
-                            <stop offset="0.93" stop-color="#696969"/>
-                            <stop offset="0.97" stop-color="#414141"/>
-                            <stop offset="0.99" stop-color="#2C2C2C"/>
+                            <stop offset="0.08" stopColor="#2C2C2C"/>
+                            <stop offset="0.12" stopColor="#434343"/>
+                            <stop offset="0.23" stopColor="#787878"/>
+                            <stop offset="0.34" stopColor="#A2A2A2"/>
+                            <stop offset="0.43" stopColor="#C0C0C0"/>
+                            <stop offset="0.51" stopColor="#D2D2D2"/>
+                            <stop offset="0.57" stopColor="#D9D9D9"/>
+                            <stop offset="0.66" stopColor="#D6D6D6"/>
+                            <stop offset="0.73" stopColor="#CDCDCD"/>
+                            <stop offset="0.79" stopColor="#BDBDBD"/>
+                            <stop offset="0.84" stopColor="#A8A8A8"/>
+                            <stop offset="0.89" stopColor="#8C8C8C"/>
+                            <stop offset="0.93" stopColor="#696969"/>
+                            <stop offset="0.97" stopColor="#414141"/>
+                            <stop offset="0.99" stopColor="#2C2C2C"/>
                             </radialGradient>
                             <linearGradient id="paint3_linear_1503_11693" x1="14.3882" y1="38.253" x2="29.6189" y2="-1.24956" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008004"/>
-                            <stop offset="0.58" stop-color="#028102"/>
-                            <stop offset="0.73" stop-color="#038904"/>
-                            <stop offset="1" stop-color="#059407"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008004"/>
+                            <stop offset="0.58" stopColor="#028102"/>
+                            <stop offset="0.73" stopColor="#038904"/>
+                            <stop offset="1" stopColor="#059407"/>
                             </linearGradient>
                             <linearGradient id="paint4_linear_1503_11693" x1="13.7307" y1="39.8512" x2="28.9006" y2="0.544868" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008003"/>
-                            <stop offset="0.58" stop-color="#038204"/>
-                            <stop offset="0.73" stop-color="#068A08"/>
-                            <stop offset="1" stop-color="#0B950E"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008003"/>
+                            <stop offset="0.58" stopColor="#038204"/>
+                            <stop offset="0.73" stopColor="#068A08"/>
+                            <stop offset="1" stopColor="#0B950E"/>
                             </linearGradient>
                             <linearGradient id="paint5_linear_1503_11693" x1="12.7329" y1="41.3999" x2="27.7093" y2="2.77049" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008003"/>
-                            <stop offset="0.58" stop-color="#058307"/>
-                            <stop offset="0.73" stop-color="#098B0D"/>
-                            <stop offset="1" stop-color="#109616"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008003"/>
+                            <stop offset="0.58" stopColor="#058307"/>
+                            <stop offset="0.73" stopColor="#098B0D"/>
+                            <stop offset="1" stopColor="#109616"/>
                             </linearGradient>
                             <linearGradient id="paint6_linear_1503_11693" x1="12.1325" y1="42.8385" x2="27.0593" y2="4.48991" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008002"/>
-                            <stop offset="0.58" stop-color="#078409"/>
-                            <stop offset="0.74" stop-color="#0D8C12"/>
-                            <stop offset="1" stop-color="#15971D"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008002"/>
+                            <stop offset="0.58" stopColor="#078409"/>
+                            <stop offset="0.74" stopColor="#0D8C12"/>
+                            <stop offset="1" stopColor="#15971D"/>
                             </linearGradient>
                             <linearGradient id="paint7_linear_1503_11693" x1="11.6919" y1="44.2781" x2="26.5243" y2="6.17482" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008002"/>
-                            <stop offset="0.58" stop-color="#08850B"/>
-                            <stop offset="0.78" stop-color="#128F19"/>
-                            <stop offset="1" stop-color="#1B9824"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008002"/>
+                            <stop offset="0.58" stopColor="#08850B"/>
+                            <stop offset="0.78" stopColor="#128F19"/>
+                            <stop offset="1" stopColor="#1B9824"/>
                             </linearGradient>
                             <linearGradient id="paint8_linear_1503_11693" x1="10.9357" y1="45.7196" x2="25.5731" y2="8.28064" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008001"/>
-                            <stop offset="0.45" stop-color="#008002"/>
-                            <stop offset="0.58" stop-color="#0A860D"/>
-                            <stop offset="0.81" stop-color="#179220"/>
-                            <stop offset="1" stop-color="#20992B"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008001"/>
+                            <stop offset="0.45" stopColor="#008002"/>
+                            <stop offset="0.58" stopColor="#0A860D"/>
+                            <stop offset="0.81" stopColor="#179220"/>
+                            <stop offset="1" stopColor="#20992B"/>
                             </linearGradient>
                             <linearGradient id="paint9_linear_1503_11693" x1="10.4916" y1="46.9536" x2="25.0759" y2="9.79109" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008013"/>
-                            <stop offset="0.44" stop-color="#008001"/>
-                            <stop offset="0.47" stop-color="#038105"/>
-                            <stop offset="0.58" stop-color="#0C8710"/>
-                            <stop offset="0.83" stop-color="#1D9428"/>
-                            <stop offset="1" stop-color="#259A33"/>
+                            <stop stopColor="#008013"/>
+                            <stop offset="0.44" stopColor="#008001"/>
+                            <stop offset="0.47" stopColor="#038105"/>
+                            <stop offset="0.58" stopColor="#0C8710"/>
+                            <stop offset="0.83" stopColor="#1D9428"/>
+                            <stop offset="1" stopColor="#259A33"/>
                             </linearGradient>
                             <linearGradient id="paint10_linear_1503_11693" x1="10.1575" y1="48.1963" x2="24.6882" y2="11.2688" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008012"/>
-                            <stop offset="0.44" stop-color="#008000"/>
-                            <stop offset="0.49" stop-color="#058307"/>
-                            <stop offset="0.58" stop-color="#0D8812"/>
-                            <stop offset="0.85" stop-color="#22952F"/>
-                            <stop offset="1" stop-color="#2B9B3A"/>
+                            <stop stopColor="#008012"/>
+                            <stop offset="0.44" stopColor="#008000"/>
+                            <stop offset="0.49" stopColor="#058307"/>
+                            <stop offset="0.58" stopColor="#0D8812"/>
+                            <stop offset="0.85" stopColor="#22952F"/>
+                            <stop offset="1" stopColor="#2B9B3A"/>
                             </linearGradient>
                             <linearGradient id="paint11_linear_1503_11693" x1="9.94934" y1="49.3218" x2="24.344" y2="12.6835" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#008012"/>
-                            <stop offset="0.44" stop-color="#008000"/>
-                            <stop offset="0.62" stop-color="#128A18"/>
-                            <stop offset="0.86" stop-color="#279736"/>
-                            <stop offset="1" stop-color="#309C41"/>
+                            <stop stopColor="#008012"/>
+                            <stop offset="0.44" stopColor="#008000"/>
+                            <stop offset="0.62" stopColor="#128A18"/>
+                            <stop offset="0.86" stopColor="#279736"/>
+                            <stop offset="1" stopColor="#309C41"/>
                             </linearGradient>
                             <linearGradient id="paint12_linear_1503_11693" x1="28.2385" y1="-3.61022" x2="12.7476" y2="38.0826" gradientUnits="userSpaceOnUse">
-                            <stop offset="0.1" stop-color="white"/>
-                            <stop offset="0.15" stop-color="#BCBCBC"/>
-                            <stop offset="0.2" stop-color="#7A7A7A"/>
-                            <stop offset="0.24" stop-color="#454545"/>
-                            <stop offset="0.28" stop-color="#1F1F1F"/>
-                            <stop offset="0.31" stop-color="#080808"/>
+                            <stop offset="0.1" stopColor="white"/>
+                            <stop offset="0.15" stopColor="#BCBCBC"/>
+                            <stop offset="0.2" stopColor="#7A7A7A"/>
+                            <stop offset="0.24" stopColor="#454545"/>
+                            <stop offset="0.28" stopColor="#1F1F1F"/>
+                            <stop offset="0.31" stopColor="#080808"/>
                             <stop offset="0.33"/>
-                            <stop offset="0.48" stop-color="#020202"/>
-                            <stop offset="0.57" stop-color="#0A0A0A"/>
-                            <stop offset="0.64" stop-color="#181818"/>
-                            <stop offset="0.71" stop-color="#2D2D2D"/>
-                            <stop offset="0.76" stop-color="#474747"/>
-                            <stop offset="0.82" stop-color="#676767"/>
-                            <stop offset="0.87" stop-color="#8D8D8D"/>
-                            <stop offset="0.92" stop-color="#B9B9B9"/>
-                            <stop offset="0.96" stop-color="#EAEAEA"/>
-                            <stop offset="0.98" stop-color="white"/>
+                            <stop offset="0.48" stopColor="#020202"/>
+                            <stop offset="0.57" stopColor="#0A0A0A"/>
+                            <stop offset="0.64" stopColor="#181818"/>
+                            <stop offset="0.71" stopColor="#2D2D2D"/>
+                            <stop offset="0.76" stopColor="#474747"/>
+                            <stop offset="0.82" stopColor="#676767"/>
+                            <stop offset="0.87" stopColor="#8D8D8D"/>
+                            <stop offset="0.92" stopColor="#B9B9B9"/>
+                            <stop offset="0.96" stopColor="#EAEAEA"/>
+                            <stop offset="0.98" stopColor="white"/>
                             </linearGradient>
                             <linearGradient id="paint13_linear_1503_11693" x1="5.21204" y1="43.8808" x2="18.7481" y2="20.281" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#A9A9A9"/>
-                            <stop offset="0.06" stop-color="#8E8E8E"/>
-                            <stop offset="0.19" stop-color="#5C5C5C"/>
-                            <stop offset="0.31" stop-color="#343434"/>
-                            <stop offset="0.42" stop-color="#171717"/>
-                            <stop offset="0.51" stop-color="#060606"/>
+                            <stop stopColor="#A9A9A9"/>
+                            <stop offset="0.06" stopColor="#8E8E8E"/>
+                            <stop offset="0.19" stopColor="#5C5C5C"/>
+                            <stop offset="0.31" stopColor="#343434"/>
+                            <stop offset="0.42" stopColor="#171717"/>
+                            <stop offset="0.51" stopColor="#060606"/>
                             <stop offset="0.58"/>
-                            <stop offset="0.69" stop-color="#020202"/>
-                            <stop offset="0.76" stop-color="#0A0A0A"/>
-                            <stop offset="0.81" stop-color="#181818"/>
-                            <stop offset="0.86" stop-color="#2D2D2D"/>
-                            <stop offset="0.9" stop-color="#474747"/>
-                            <stop offset="0.94" stop-color="#676767"/>
-                            <stop offset="0.98" stop-color="#8C8C8C"/>
-                            <stop offset="1" stop-color="#A9A9A9"/>
+                            <stop offset="0.69" stopColor="#020202"/>
+                            <stop offset="0.76" stopColor="#0A0A0A"/>
+                            <stop offset="0.81" stopColor="#181818"/>
+                            <stop offset="0.86" stopColor="#2D2D2D"/>
+                            <stop offset="0.9" stopColor="#474747"/>
+                            <stop offset="0.94" stopColor="#676767"/>
+                            <stop offset="0.98" stopColor="#8C8C8C"/>
+                            <stop offset="1" stopColor="#A9A9A9"/>
                             </linearGradient>
                         </defs>
-                    </svg>
+                    </svg> : false}
                 </div>
 
-             </div>
+             </div>  : false}
         </div>
 
         

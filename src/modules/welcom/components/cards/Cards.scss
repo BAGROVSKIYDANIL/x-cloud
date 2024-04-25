@@ -1,4 +1,21 @@
 @import '../../../../common/variables/colors';
+@keyframes slideIn {
+    from {
+        transform: translateZ(1000px) scale(7);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+.button
+{
+    animation: slideIn 0.8s ease-out forwards;
+    transform: perspective(1000px);
+    filter: drop-shadow(3px 2px 3px rgba(0, 0, 0, 0.30));
+}
 .card
 {
     display: flex;
@@ -11,6 +28,7 @@
     &__voip, &__apps, &__cloud, &__service
     {
         filter: drop-shadow(6px 7px 12px rgba(0, 0, 0, 0.15));
+        cursor: pointer;
     }
     &__wrapper-rotate
     {
@@ -29,6 +47,8 @@
     {
         width: 271px;
         margin-left: 35px;
+        animation: slideIn 0.5s ease-out forwards;
+        transform: perspective(1000px);
         .button
         {
             position: absolute;
@@ -59,6 +79,7 @@
     &__apps
     {
         position: relative;
+        animation: slideIn 0.5s ease-out forwards;
         .button
         {
             position: absolute;
@@ -93,6 +114,7 @@
     &__cloud 
     {
         position: relative;
+        animation: slideIn 0.5s ease-out forwards;
         .button
         {
             position: absolute;
@@ -122,6 +144,7 @@
     &__service
     {
         position: relative;
+        animation: slideIn 0.5s ease-out forwards;
         .button 
         {
             position: absolute;

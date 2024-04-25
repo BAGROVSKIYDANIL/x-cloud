@@ -3,10 +3,11 @@
     width: 1440px;
     margin: 0 auto; 
 }
-.LayerPage 
+.wrap_e104._orientationLeft_e611._hoverMenu_e0d4.__jivoDesktopButton
 {
-    height: 100vh;
+    display: none;
 }
+
 .LayerPage::after
 {
     content: '';
@@ -34,7 +35,7 @@
     top: 100px;
     background: radial-gradient(circle, rgba(255, 0, 123, 0.25) 0%, 
                                         rgba(255, 0, 123, 0) 100%);
-    transform: rotate(-47.55deg);
+    // transform: rotate(-47.55deg);
     flex-shrink: 0;
     border-radius: 610px;
     // opacity: 0.16;    
@@ -44,6 +45,7 @@
 {
     content: '';
     position: absolute;
+    cursor: pointer;
     width: 128px;
     height: 128px;
     left: 48px;
@@ -89,6 +91,7 @@
 {
     content: '';
     position: absolute;
+    cursor: pointer;
     width: 128px;
     height: 128px;
     right: 48px;

@@ -4,7 +4,7 @@
     src: url('../../assets/fonts/Montserrat/Montserrat-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
-    font-display: swap;
+    // font-display: swap;
 }
 
 @font-face {
@@ -12,12 +12,30 @@
     src: url(../../assets/fonts/Inter/Inter-SemiBold.woff2) format('woff2');
     font-weight: 600;
     font-style: normal;
-    font-display: swap;
+    // font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url(../../assets/fonts/Inter/Inter-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
 }
 @font-face {
     font-family: 'Poppins';
     src: url(../../assets/fonts/Poppins/Poppins-Regular.woff2) format('woff2');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    // font-display: swap;
+}
+@font-face {
+    font-family: "MvBoli";
+    src: url(../../assets/fonts/MvBoli/MVBoli.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face{
+    font-family: 'MergeOne';
+    src: url(../../assets/fonts/MergeOne/MergeOne-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
 }

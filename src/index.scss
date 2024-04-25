@@ -1,15 +1,14 @@
 @import url(./common/variables/fonts.scss);
 
-:root 
+body
 {
   font-family: 'Montserrat', 'sans-serif';
 }
-
 *,
 *::before,
 *::after
 {
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 :where(ul, ol):where([class]) 

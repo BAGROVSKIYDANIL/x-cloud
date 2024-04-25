@@ -1,64 +1,66 @@
+
 .buttons 
-{
+{   margin-top: 155px;
+    position: absolute;
+    bottom: 110px;
+    transition-duration: 0.8s ;
+    
     button 
     {
         border:none;
         padding: 0;
         font-size: 28px;
-        
         cursor: pointer;
         border-radius: 50px;
     }
-    &__loaded
-    {
-        opacity: 0;
-        transform: translateY(-750px);
-    }
     &__warranties 
     {
+        position: absolute;
+        bottom: -70px;
         width: 239.603px;
+        left: 160px;
         height: 60px;
-        padding: 13px 56px;
+        transform: rotate(-1deg);
         background: linear-gradient(173deg, #FFE3D3 10.64%, #FFC3A1 94.49%);
-        opacity: 1;
-        transform: rotate(-1deg) translateY(0);
-        transition: opacity 1s ease, transform 1s ease;
     }
     &__sla 
     {
+        position: absolute;
         width: 239.603px;
         height: 60px;
-        padding: 13px 56px;
+        bottom: -10px;
+        left: 320px;
+        transform: rotate(1deg);
         background: linear-gradient(173deg, #D3D5FF 10.64%, #BAA1FF 94.49%);
-        transform: rotate(4deg) translateY(-51px) translateX(-50px);
-        transition: opacity 1s ease, transform 1s ease;
     }
     &__contacts 
     {
+        position: absolute;
         width: 191.438px;
-        height: 60px;
-        padding: 13px 56px;
+        left: 450px;
+        bottom: -71px;
+        height: 60px;;
+        transform: rotate(0.83deg);
         background: linear-gradient(173deg, #D9FFD3 10.64%, #AEFFA1 94.49%);
-        transform: rotate(0.83deg) translateY(15px)translateX(-122px) ;
-        transition: opacity 1s ease, transform 1s ease;
     }
     &__terms-condtions
     {
+        position: absolute;
         width: 372px;
         height: 60px;
-        padding: 13px 56px;
+        left: 706px;
+        bottom: -36px;
+        transform: rotate(-12.78deg);
         background: linear-gradient(173deg, #FFD3EB 10.64%, #FFA1B8 94.49%);
-        transform: translateY(0);
-        transition: opacity 1s ease, transform 1s ease;
     }
     &__agreements 
     {
+        position: absolute;
         width: 269.616px;
         height: 60px;
-        padding: 13px 56px;
-        border-radius: 50px;
+        left: 980px;
+        bottom: -70px;
+        transform: rotate(-0.62deg);
         background: linear-gradient(173deg, #FFF5D3 10.64%, #FCB370 94.49%);
-        transform: translateY(0);
-        transition: opacity 1s ease, transform 1s ease;
     }
 }
