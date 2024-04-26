@@ -7,16 +7,33 @@
 {
     display: none;
 }
-
+#jcont
+{
+    left: 110px !important;
+    bottom: 118px !important;
+}
+.main_c7ca
+{
+    border-radius: 10px !important;
+}
+.input_ee90.show_e0cc
+{
+    border-radius: 10px !important;
+}
+.input_f20a
+{
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+}
 .LayerPage::after
 {
     content: '';
     width: 808.473px;
     height: 826.156px;
-    top: 150px;
+    top: 300px;
     z-index: -1;
     border-radius: 610px;
-    background: radial-gradient(circle, rgba(107, 78, 255, 0.35) 0%, 
+    background: radial-gradient(circle, rgba(107, 78, 255, 0.17) 0%, 
                                         rgba(107, 78, 255, 0) 100%);
     transform: rotate(75.545deg);
     flex-shrink: 0;
@@ -32,14 +49,13 @@
     width: 886.731px;
     height: 864px;
     right: 0;
-    top: 100px;
-    background: radial-gradient(circle, rgba(255, 0, 123, 0.25) 0%, 
+    top: 369px;
+    background: radial-gradient(circle, rgba(255, 0, 123, 0.17) 0%, 
                                         rgba(255, 0, 123, 0) 100%);
-    // transform: rotate(-47.55deg);
     flex-shrink: 0;
-    border-radius: 610px;
-    // opacity: 0.16;    
+    border-radius: 610px;  
     filter: blur(150px);
+    z-index: -1;
 }
 .group-message
 {

@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // margin-top: 138px;
+    padding-top: 138px;
     &__title
     {
         display: flex;
@@ -54,15 +54,20 @@
         font-size: 48px;
         line-height: 56px;
     }
+    // &__background
+    // {
+    //     display: inline-block;
+    //     width: 411px;
+    //     height: 64px;
+    //     border-radius: 6px;
+    //     margin-left: 10px;
+    //     background: #99D2FD;
+    //     transform: rotate(-1deg);
+    // }
     &__background
     {
-        display: inline-block;
-        width: 411px;
-        height: 64px;
-        border-radius: 6px;
+        position: relative;
         margin-left: 10px;
-        background: #99D2FD;
-        transform: rotate(-1deg);
     }
     &__background-second 
     {
@@ -85,19 +90,51 @@
         border-radius: 6px;
         background: #E38BBE;
     }
+    // &__background-fourth
+    // {
+    //     display: inline-block;
+    //     position: relative;
+    //     width: 439px;
+    //     height: 64px;
+    //     border-radius: 6px;
+    //     background: #C7FAA7;
+    // }
+    // &__subtitle-first
+    // {
+    //     display: inline-block;
+    //     transform: rotate(1deg);
+    // }
     &__background-fourth
     {
-        display: inline-block;
         position: relative;
+        z-index: -1;
+        margin-left: 10px;
+    }
+    &__subtitle-fourth:after 
+    {
+        content: '';
+        position: absolute;
         width: 439px;
         height: 64px;
         border-radius: 6px;
-        background: #C7FAA7;
+        // background: #C7FAA7;
+        background: url(../../../../assets/icons/Rectangle.svg);
+        z-index: -1;
+        left: -3px;
+        top: -7px;
     }
-    &__subtitle-first
+    &__subtitle-first::after
     {
-        display: inline-block;
-        transform: rotate(1deg);
+        content: '';
+        position: absolute;
+        width: 411px;
+        height: 64px;
+        border-radius: 6px;
+        background: #99D2FD;
+        transform: rotate(-1deg);
+        left: -4px;
+        z-index: -1;
+
     }
     &__subtitle-second, &__subtitle-third
     {
@@ -109,20 +146,17 @@ section
 {
     height: 100vh;
 }
-// .container .redirect
-// {
-//     width: 100vw;
-// }
+
 .redirect 
 {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     width: 100vw;
     left: 50%;
     right: 50%;
     position: relative;
     transform: translateX(-50%);
-    padding: 89px 0 100px ;
+    padding: 89px 0 100px 207px ;
     column-gap: 185px;
     &__cosmos 
     {
@@ -155,19 +189,26 @@ section
         position: relative;
         width: 730px;
         height: 730px;
-        // background: red;
         border: 1px dashed #C3C3C4;
         border-radius: 100%;
+        svg [fill] 
+        {
+            fill: revert-layer !important;
+        }
     }
     &__circle-second 
     {
-        position: absolute;
+        position: relative;
         top: 95px;
         left: 95px;
         width: 533px;
         height: 533px;
         border-radius: 100%;
         border: 1px dashed #C3C3C4;
+        svg [fill] 
+        {
+            fill: revert-layer !important;
+        }
     }
     &__circle-third 
     {
@@ -191,5 +232,95 @@ section
         width: 179px;
         height: 179px;
 
+    }
+    &__circle-fax 
+    {
+        position: absolute;
+        top: 3px;
+        right: -5px;
+    }
+    &__circle-phone
+    {
+        position: absolute;
+        top: -8px;
+        left: 20px;
+    }
+    &__circle-presentation
+    {
+        position: absolute;
+        bottom: 2px;
+        left: -13px;
+    }
+    &__circle-android 
+    {
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+    }
+    &__circle-people 
+    {
+        position: absolute;
+        top: 200px;
+        left: -45px;
+    }
+    &__circle-megaphone 
+    {
+        position: absolute;
+        bottom: -67px;
+        right: 165px;
+    }
+    &__circle-ivr 
+    {
+        position: absolute;
+        right: -60px;
+        bottom: 135px;
+    }
+    &__circle-wrapper
+    {
+        position: absolute;
+        top: -45px;
+        right: 165px;
+    }
+    &__circle-support 
+    {
+        position: absolute;
+        top: 0;
+        left: 75px;
+    }
+    &__circle-voice 
+    {
+        position: absolute;
+        top: 55px;
+        right: 10px;
+    }
+    &__circle-api
+    {
+        position: absolute;
+        top: 200px;
+        left: -45px;
+    }
+    &__circle-call
+    {
+        position: absolute;
+        top: 230px;
+        right: -40px;
+    }
+    &__circle-document
+    {
+        position: absolute;
+        bottom: 0px;
+        right: 75px;
+    }
+    &__circle-incoming
+    {
+        position: absolute;
+        bottom: -60px;
+        left: 90px;
+    }
+    &__circle-target 
+    {
+        position: absolute;
+        bottom: 110px;
+        left: 0;
     }
 }

@@ -4,8 +4,8 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      {/* <WelcomePage/> */}
-      <VoipPage/>
+      <WelcomePage/>
+      {/* <VoipPage/> */}
     </div>
   );
 }

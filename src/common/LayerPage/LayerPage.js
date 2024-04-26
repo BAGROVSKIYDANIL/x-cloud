@@ -21,10 +21,10 @@ const LayerPage = ({children}) =>
            <main className="container">
                 {children}
            </main>
-           {/* <div className="group-message" onClick={openChat} ></div>
+           <div className="group-message" onClick={openChat} ></div>
             <a href="https://t.me/VoiceXPayBot">
                 <div className="group-phone"></div>
-            </a> */}
+            </a>
         </div>
     )   
 }
