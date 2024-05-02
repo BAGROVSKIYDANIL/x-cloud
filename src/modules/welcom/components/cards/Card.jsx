@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import './Cards.scss';
+
 const Card = () => {
     const [voipLoaded, setVoipLoaded] = useState(false);
     const [voipButton, setVoipButton] = useState(false);
@@ -9,7 +11,8 @@ const Card = () => {
     const [appsLoaded, setAppsLoaded] = useState(false);
     const [cloudLoaded, setCloudLoaded] = useState(false);
     const [serviceLoaded, setServiceLoaded] = useState(false);  
-        useEffect(() => {
+
+    useEffect(() => {
         const voipTimer = setTimeout(() => {
             setVoipLoaded(true);
         }, 1000); // Появление первой карточки через 1 секунду
@@ -33,6 +36,7 @@ const Card = () => {
             clearTimeout(serviceTimer);
         };
     }, []);
+
     useEffect(() =>
     {
         const voipButtonTimer = setTimeout(() =>
@@ -58,10 +62,10 @@ const Card = () => {
             clearTimeout(serviceButtonTimer); 
         }
     },[])
-    console.log(voipButton)
+    
     return (
         <div className='card'>
-            {voipLoaded  ? <div className="card__voip">
+            {voipLoaded  ?  <div className="card__voip">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="271" height="289" viewBox="0 0 271 289" fill="none">

@@ -158,10 +158,7 @@ section
     transform: translateX(-50%);
     padding: 89px 0 100px 207px ;
     column-gap: 185px;
-    &__cosmos 
-    {
-        // position: relative;
-    }
+
     &__title 
     {
         width: 697px;
@@ -322,5 +319,18 @@ section
         position: absolute;
         bottom: 110px;
         left: 0;
+    }
+    &__circle-support,
+    &__circle-voice,
+    &__circle-api,
+    &__circle-call,
+    &__circle-document,
+    &__circle-incoming,
+    &__circle-target
+    {
+        svg 
+        {
+            transition-duration: 0.4s;
+        }
     }
 }

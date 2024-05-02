@@ -1,3 +1,4 @@
+@import '.././variables/colors'; 
 .container 
 {
     width: 1440px;
@@ -37,7 +38,6 @@
                                         rgba(107, 78, 255, 0) 100%);
     transform: rotate(75.545deg);
     flex-shrink: 0;
-    // opacity: 0.16;
     filter: blur(150px);
     position: absolute;
     
@@ -88,8 +88,8 @@
     background-image: url(../../assets/icons/message.svg);
     background-size: cover;
 }
-.group-message:hover,
-.group-phone:hover
+
+.group-message:hover
 {
     width: 142px;
     height: 142px;
@@ -103,13 +103,24 @@
     left: 24.41px;
     transition-duration: 0.4s;
 }
+.group-phone:hover
+{
+    width: 142px;
+    height: 142px;
+    transition-duration: 0.4s;
+    right: 34px;
+    bottom: 30px;
+}
 .group-phone
 {
     content: '';
     position: absolute;
+    // position: relative;
     cursor: pointer;
     width: 128px;
     height: 128px;
+    // top: -211px;
+    // right: -1750px;
     right: 48px;
     bottom: 44px;
     border-radius: 100%;
@@ -122,6 +133,40 @@
             #874CD0 86%,
             #975EDA 95%,
             #A66EE4 100%);
+    transition-duration: 0.4s;
+
+}
+.group-circle
+{
+    position: relative;
+    display: block;
+    pointer-events: none;
+    width: 300px;
+    height: 300px;
+    top: -164px;
+    z-index: 1;
+    right: 172px;
+   
+}
+.group-phone:hover .group-circle 
+{
+    pointer-events: auto;
+    transition-duration: 0.4s;
+}
+.group-circle:hover .group-telegram
+{   
+    opacity: 1;
+    transition-delay:  0s;
+}
+.group-circle:hover .group-support
+{
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+.group-circle:hover .group-descktop
+{
+    opacity: 1;
+    transition-delay:  1s;
 }
 .group-phone::after
 {
@@ -129,9 +174,10 @@
     position: absolute;
     width: 84px;
     height: 88px;
-    top: 19.5px;
-    left: 22.03px;
+    top: 18.5px;
+    left: 24px;
     background-image: url(../../assets/icons/phone.svg);
+    transition-duration: 0.4s;
     background-size: cover;
 }
 .group-phone:hover:after 
@@ -141,4 +187,60 @@
     top: 21.63px;
     left: 24.44px;
     transition-duration: 0.4s;
+}
+
+.group-telegram, .group-support, .group-descktop
+{
+    display: block;
+    opacity: 0;
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    border-radius: 100%;
+    filter: drop-shadow(20px 15px 38px rgba(129, 79, 193, 0.40));
+    background: radial-gradient(70.22% 70.22% at 41.44% 33.23%, #D8AEF9 0%,
+            #D1A5F5 5%,
+            #925BD4 47%,
+            #7A3EC8 66%,
+            #7D41CA 77%,
+            #874CD0 86%,
+            #975EDA 95%,
+            #A66EE4 100%);
+    transition-duration: 0.4s;
+}
+.group-telegram 
+{
+    top: 65px;
+    right: 30px;
+    svg 
+    {
+        position: absolute;
+        top: 16px;
+        left: 14px;
+        color: $color-white;
+    }
+}
+.group-support
+{
+    top: 120px;
+    right: 125px;
+    svg 
+    {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        color: $color-white;
+    }
+}
+.group-descktop
+{
+    bottom: 10px;
+    right: 163px;
+    svg
+    {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        color: $color-white;
+    }
 }

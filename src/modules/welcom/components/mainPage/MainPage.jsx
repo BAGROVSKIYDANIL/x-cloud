@@ -7,6 +7,7 @@ import './MainPage.scss';
 const MainPage = () => {
     const [loadCard, setLoadCard] = useState(false);
     const [loadButtons, setLoadButtons] = useState(false);
+
     useEffect(() =>
     {
         const timer = setTimeout(() =>
@@ -15,6 +16,7 @@ const MainPage = () => {
         }, 1000)
         return () => clearTimeout(timer)
     },[])
+
     useEffect(() =>
     {   
         let timer;
@@ -27,6 +29,7 @@ const MainPage = () => {
         }
         return () => clearTimeout(timer)
     },[loadButtons])
+    
     return (
         <section className='welcome'>
            <div className="welcome__wrapper">

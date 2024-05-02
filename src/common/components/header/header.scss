@@ -57,6 +57,27 @@
         border-radius: 50px;
         border: 1px solid $color-violet;
         white-space: nowrap;
+        cursor: pointer;
+    }
+    &__group:hover
+    {
+        background: linear-gradient(to right,
+                    #8833FF 0%,
+                    #6953D3 100%,
+                    #8363F4 100%,
+                    #8349FC 100%,
+                    #8833FF 100%);
+    }
+    &__group:hover &__static-text
+    {
+        color: $color-white;
+    }
+    &__group:hover &__active-text
+    {
+        background: linear-gradient(90deg, #E5D6FF 18.14%, #FFF 34.91%, #DFCCFF 56.54%, #F3EEFC 72.88%, #E7D9FF 93.63%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
     &__wrapper-text 
     {
