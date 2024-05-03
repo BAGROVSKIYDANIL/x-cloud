@@ -6,7 +6,7 @@ const WelcomePage = () => {
     return (
         <LayerPage>
             <MainPage/>
-            <Assistent/>
+            {/* <Assistent/> */}
         </LayerPage>
     );
 };

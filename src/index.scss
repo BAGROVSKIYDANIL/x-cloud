@@ -100,3 +100,13 @@ svg *[stroke] {stroke: currentColor}
   scroll-behavior: auto !important;
 }
 }
+::-webkit-scrollbar
+{
+    width: 8px ;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb
+{
+  border-radius: 7px;
+  background-color: rgba(137, 137, 137, 0.30);
+}
