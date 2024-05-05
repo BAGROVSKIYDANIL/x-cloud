@@ -3,3 +3,18 @@
     width: 414px;
     height: 781px;
 }
+
+.countries-list
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.country-card
+{
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}

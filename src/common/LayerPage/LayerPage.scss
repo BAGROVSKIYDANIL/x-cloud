@@ -313,8 +313,8 @@
 
 
 
-[data-tooltip]:before,
-[data-tooltip]::after
+[telegram-tooltip]:before,
+[telegram-tooltip]::after
 {
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  
@@ -322,41 +322,99 @@
     opacity: 0;
     pointer-events: none;
 }
-[data-tooltip]:before {
+[support-tooltip]:before,
+[support-tooltip]::after
+{
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    pointer-events: none;
+}
+
+[telegram-tooltip]:before 
+{
     position: absolute;
-    bottom: 150%;
-    left: 50%;
+    bottom: 80%;
+    left: 76%;
     margin-bottom: 5px;
     margin-left: -80px;
     padding: 7px;
     width: 160px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border-radius: 3px;
-    background-color: #000;
-    background-color: hsla(0, 0%, 20%, 0.9);
-    color: #fff;
-    content: attr(data-tooltip);
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #ADABFF;
+    color: #252422;
+    font-family: 'NunitoSans';
+    content: attr(telegram-tooltip);
     text-align: center;
     font-size: 14px;
     line-height: 1.2;
-  }
-  [data-tooltip]:after {
+}
+[telegram-tooltip]:after 
+{
     position: absolute;
-    bottom: 150%;
-    left: 50%;
+    bottom: 80%;
+    left: 76%;
     margin-left: -5px;
     width: 0;
-    border-top: 5px solid #000;
-    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-top: 5px solid #ADABFF;;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
     content: " ";
     font-size: 0;
     line-height: 0;
-  }
-  [data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+
+}
+[support-tooltip]:before 
+{
+    position: absolute;
+    bottom: 60%;
+    left: 45%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #ADABFF;
+    color: #252422;
+    font-family: 'NunitoSans';
+    content: attr(support-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+[support-tooltip]:after 
+{
+    position: absolute;
+    bottom: 60%;
+    left: 45%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #ADABFF;;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+
+}
+[telegram-tooltip]:hover:before,
+[telegram-tooltip]:hover:after 
+{
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: 'progid: DXImageTransform.Microsoft.Alpha(Opacity=100)';
+  opacity: 1;
+}
+[support-tooltip]:hover:before,
+[support-tooltip]:hover:after 
+{
   visibility: visible;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: 'progid: DXImageTransform.Microsoft.Alpha(Opacity=100)';
