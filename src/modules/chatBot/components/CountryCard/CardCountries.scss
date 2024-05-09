@@ -1,20 +1,62 @@
-.container
-{
-    width: 414px;
-    height: 781px;
-}
+@import '../../../../common/variables/colors';
+
 
 .countries-list
 {
-    display: flex;
+    width: 414px;
+    height: 787px;
+    overflow: hidden;
+    margin: 50px auto;
+    padding: 24px 0;
+    background: linear-gradient(180deg, #FCFCFF 0%, #EEF 100%);
+    display:  grid;
+    grid-template-columns: 116px 116px 116px;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 16px;
     justify-content: center;
 }
-.country-card
+.country
 {
-    width: 200px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
+    filter: drop-shadow(6px 6px 10px rgba(138, 99, 251, 0.10));
+    
+    &__card
+    {
+        height: 155px;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+    }
+    &__title 
+    {
+        font-family: 'Roboto';
+        color: $color-dark;
+        font-size: 18px;
+        line-height: 18px;
+        margin-top: 12px;
+    }
+    &__type-rooms
+    {
+        font-family: 'Roboto';
+        font-weight: 400;
+        margin-top: 6px;
+        font-size: 15px;
+        line-height: 18px;
+        color: $color-light-grey;
+    }
+    &__buy
+    {
+        width: 96px;
+        height: 30px;
+        margin-top: 12px;
+        color: white;
+        font-size: 16px;
+        font-family: 'NunitoSans';
+        font-weight: 700;
+        line-height: 18px;
+        padding: 0;
+        border: none;
+        background-color: $color-light-violet;
+        border-radius: 6px;
+        cursor: pointer;
+    }
 }

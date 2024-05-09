@@ -336,11 +336,11 @@
 {
     position: absolute;
     bottom: 80%;
-    left: 76%;
+    left: 85%;
     margin-bottom: 5px;
     margin-left: -80px;
-    padding: 7px;
-    width: 160px;
+    padding: 5px;
+    width: 105px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 6px;
@@ -350,7 +350,7 @@
     font-family: 'NunitoSans';
     content: attr(telegram-tooltip);
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
 }
 [telegram-tooltip]:after 
@@ -372,11 +372,11 @@
 {
     position: absolute;
     bottom: 60%;
-    left: 45%;
+    left: 53%;
     margin-bottom: 5px;
     margin-left: -80px;
-    padding: 7px;
-    width: 160px;
+    padding: 5px;
+    width: 105px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 6px;
@@ -386,7 +386,7 @@
     font-family: 'NunitoSans';
     content: attr(support-tooltip);
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
 }
 [support-tooltip]:after 

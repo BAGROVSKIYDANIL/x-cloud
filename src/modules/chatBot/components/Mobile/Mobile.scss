@@ -1,0 +1,152 @@
+@import '../../../../common/variables/colors';
+
+.mobile {
+    position: relative;
+    display: flex;
+    height: 324px;
+    width: 366px;
+    margin: 0 auto;
+    margin-top: 12px;
+    flex-direction: column;
+    align-items: center;
+
+    &__wrapper {
+        width: 366px;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: var(--Telegram-button_text_color, #FFF);
+        box-shadow: 0px 8px 24px 0px rgba(0, 9, 31, 0.02);
+        margin: 0 auto;
+        z-index: 1;
+    }
+
+    &__image {
+        margin-right: 6px;
+    }
+
+    &__title {
+        color: $color-light-violet;
+        font-family: 'Poppins';
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        text-transform: capitalize;
+    }
+
+    &__billing {
+        margin-right: 62px;
+        height: 21px;
+    }
+
+    &__billing-step {
+        color: #ADABFF;
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: -0.21px;
+        margin-right: 5px;
+    }
+
+    &__per-second {
+        color: $color-light-violet;
+        font-family: 'Poppins';
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 21px;
+    }
+
+    &__counter {
+        display: flex;
+    }
+
+    &__increase,
+    &__decrease,
+    &__number {
+        width: 24px;
+        height: 24px;
+        color: #ADABFF;
+    }
+
+    &__increase,
+    &__decrease {
+        cursor: pointer;
+    }
+
+    &__number {
+        color: $color-light-violet;
+        text-align: center;
+        font-family: 'Poppins';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%;
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: 42px;
+        z-index: 0;
+        width: 366px;
+        height: 282px;
+        padding: 16px 20.67px 18px 12px;
+        border-radius: 0 0 16px 16px;
+        background: #FAFAFA;
+        box-shadow: 0px 8px 24px 0px rgba(0, 9, 31, 0.05), 0px 1px 1px 0px rgba(255, 255, 255, 0.10);
+    }
+
+    &__group-once,
+    &__group-month,
+    &__group-out-minute,
+    &__group-in-minute {
+        display: flex;
+        margin-top: 16px;
+        justify-content: space-between;
+    }
+
+    &__column-left,
+    &__column-right {
+        font-family: 'Poppins';
+    }
+
+    &__group-title {
+        color: $color-light-violet;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: -0.18px;
+        text-transform: capitalize;
+    }
+
+    &__group-subtitle {
+        color: #ADABFF;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+    }
+
+    &__column-right {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
+
+    &__group-number {
+        color: $color-light-violet;
+        text-align: right;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 30px;
+        letter-spacing: -0.6px;
+    }
+
+    &__timing {
+        color: $color-light-violet;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 12px;
+    }
+}
