@@ -1,0 +1,121 @@
+@import '../../../../common/variables/colors';
+.trashBasket
+{
+    width: 414px;
+    height: 852px;
+    margin: 30px auto;
+    padding: 19px 22px 24px 24px;
+    background: linear-gradient(180deg, #FCFCFF 0%, #EEF 100%);
+    
+    &__menu
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__arrow-back
+    {
+        color: rgba(173, 171, 255, 1);
+        cursor: pointer;
+        height: 18px;
+    }
+    &__delete-all, &__trash-can
+    {
+        border: none;
+        padding: 0;
+        background: transparent;
+    }
+    &__group-remove 
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__delete-all
+    {
+        color: #ADABFF;
+        font-family: 'Roboto';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        margin-left: 238.13px; 
+        margin-right: 4px;
+        height: 18px;
+    }
+    &__trash-can
+    {
+        height: 24px;
+        color: #ADABFF;
+    }
+    &__header 
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 24px;
+    }
+    &__left-column-header
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__type-rooms
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+    }
+    &__name-type 
+    {
+        color:  #BABABA;
+        font-family: 'Roboto';
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 18px; 
+    }
+    &__increase, &__decrease 
+    {
+        color:rgba(173, 171, 255, 1);
+        width: 24px;
+        height: 24px;
+    }
+    &__increase,  &__decrease
+    {
+        cursor: pointer;
+    }
+    &__number 
+    {
+        color: $color-light-violet;
+        text-align: center;
+        width: 30px;
+        font-family: 'Poppins';
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 140%;
+    }
+    &__price 
+    {
+        color: $color-light-violet;
+        text-align: right;
+        font-family: 'Poppins';
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 18px; 
+        text-transform: capitalize;
+        margin-left: 28px;
+    }
+    &__icon 
+    {
+        margin-right: 7px;
+    }
+    &__right-column-body 
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__counter 
+    {
+        display: flex;
+        align-items: center;
+    }
+}

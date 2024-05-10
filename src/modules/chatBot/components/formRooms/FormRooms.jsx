@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MapCountry from '../../../../assets/icons/MapCountry.svg'
 import LandLine from '../oneTypeCall/LandLine';
-import Mobile from '../Mobile/Mobile';
+import Mobile from '../MobileTypes/Mobile';
+import NationalType from '../NationalType/NationalType';
+import TollfeeType from '../TollfeeType/TollfeeType';
+import RandomType from '../RandomType/RandomType';
 import './FormRooms.scss'
 const FormRooms = () => {
     return (
@@ -24,6 +27,9 @@ const FormRooms = () => {
             <h2 className="rooms__types">Types of rooms</h2>
                 <LandLine/>
                 <Mobile/>
+                <NationalType/>
+                <TollfeeType/>
+                <RandomType/>
             <button className="rooms__buy-now">Buy now</button>
             <div className="rooms__calls-responsibility">
                 <div className="rooms__calls-image">

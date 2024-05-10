@@ -3,6 +3,7 @@ import WelcomePage from './pages/WelcomePage';
 import VoipPage from './pages/VoipPage';
 import ChatPage from './pages/ChatPage'
 import FormRooms from './modules/chatBot/components/formRooms/FormRooms';
+import TrashBasket from './modules/chatBot/components/trashBasket/TrashBasket';
 import './App.scss';
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/voip' element={<VoipPage/>}/>
         <Route path='/chatBot' element={<ChatPage/>}/>
         <Route path='/rooms' element={<FormRooms/>} />
+        <Route path='/trashBasket' element={<TrashBasket/>} />
       </Routes>
     </div>
   );

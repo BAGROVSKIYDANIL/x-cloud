@@ -1,20 +1,32 @@
 @import '../../../../common/variables/colors';
 
-
-.countries-list
+.countries
 {
     width: 414px;
     height: 787px;
-    overflow: hidden;
     margin: 50px auto;
-    padding: 24px 0;
+    overflow: hidden;
+    padding: 24px 0 12px 0;
     background: linear-gradient(180deg, #FCFCFF 0%, #EEF 100%);
-    display:  grid;
-    grid-template-columns: 116px 116px 116px;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
+    &__list
+    {
+        display:  grid;
+        height: 745px;
+        overflow: auto;
+        grid-template-columns: 116px 116px 116px;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+    &__basket 
+    {
+        position: absolute;
+        fill: var(--White, #FDFEFF);
+        stroke-width: 2.5px;
+        color:  #7B76FF;
+    }
 }
+::-webkit-scrollbar { display: none; }
 .country
 {
     filter: drop-shadow(6px 6px 10px rgba(138, 99, 251, 0.10));

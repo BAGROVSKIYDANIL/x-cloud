@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CardCountries from './CardCountries';
 
 import './CardCountries.scss';
@@ -45,11 +46,19 @@ const CountriesList = () => {
     ]
 
     return (
-        <div className="countries-list">
-            {countries.map(country => (
-                <CardCountries  key={country.id} country={country}/>
-            ))}
-            
+        <div className="countries">
+            <div className="countries__list">
+                {countries.map(country => (
+                    <CardCountries  key={country.id} country={country}/>
+                ))}
+            </div>
+            <Link to='/trashBasket'>
+                <div className="countries__basket">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="62" height="62" viewBox="0 0 62 62" fill="none">
+                        <circle cx="31" cy="31" r="29.75" fill="#FDFEFF" stroke="#7B76FF" stroke-width="2.5"/>
+                    </svg>
+                </div>
+            </Link>
         </div>
     );
 }

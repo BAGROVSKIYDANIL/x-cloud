@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import LandLineImg from '../../../../assets/icons/LandLine.svg'
+import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
 
 import './LandLine.scss';
 
@@ -14,7 +14,7 @@ const LandLine = () =>
     }
     console.log(activeArrow)
     return (
-        <div className='landline'>
+        <div className={`landline ${activeArrow ? 'active-dropdown' : ''}`}>
             <div className="landline__wrapper">
                 <div className="landline__image">
                     <img src={LandLineImg} alt="" />

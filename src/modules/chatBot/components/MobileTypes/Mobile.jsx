@@ -1,11 +1,16 @@
-import React from 'react';
-import Mobile from '../../../../assets/icons/mobile.svg'
+import React, {useState} from 'react';
+import Mobile from '../../../../assets/icons/TypesCall/mobile.svg'
 
 import './Mobile.scss';
 
-const LandLine = () => {
+const MobileType = () => {
+    const [activeArrow, setActiveArrow] = useState(false);
+    const handleClickArrow = () =>
+    {
+        setActiveArrow(!activeArrow)
+    }
     return (
-        <div className='mobile'>
+        <div className={`mobile ${activeArrow ? 'active-dropdown' : ''}`}>
             <div className="mobile__wrapper">
                 <div className="mobile__image">
                     <img src={Mobile} alt="" />
@@ -30,11 +35,11 @@ const LandLine = () => {
                         </svg>
                     </div>
                 </div>
-                <div className="mobile__arrow">
+                <div onClick={handleClickArrow} className={`mobile__arrow ${activeArrow ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className="mobile__dropdown">
+            <div className={`mobile__dropdown ${activeArrow ? 'visible' : ''}`}>
                 <div className="mobile__group-once">
                     <div className="mobile__column-left">
                         <div className="mobile__group-title">Activation Free</div>
@@ -80,4 +85,4 @@ const LandLine = () => {
     );
 };
 
-export default LandLine;
+export default MobileType;
