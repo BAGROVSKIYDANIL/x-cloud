@@ -2,18 +2,21 @@ import React, {useState} from 'react';
 import TollfeeTypeSvg from '../../../../assets/icons/TypesCall/Tollfee.svg'
 import './TollfeeType.scss';
 
-const TollfeeType = () => {
-    const [activeArrow, setActiveArrow] = useState(false);
-    const handleClickArrow = () =>
-    {
-        setActiveArrow(!activeArrow)
-    }
+const TollfeeType = ({active, onComponentClick}) => {
+    const [activeImage, setactiveImage] = useState(false);
     return (
-        <div className={`tollfee ${activeArrow ? 'active-dropdown' : ''}`}>
+        <div className={`tollfee ${active ? 'active-dropdown' : ''}`}>
             <div className="tollfee__wrapper">
-                <div className="tollfee__image">
-                    <img src={TollfeeTypeSvg} alt="" />
-                </div>
+                { activeImage ?
+                    <div className="tollfee__image">
+                        <img src={TollfeeTypeSvg} alt="" />
+                    </div>
+                    :''
+                }
+                <label className="landline__checkbox-wrapper">
+                    <input className='landline__input' type="checkbox"/>
+                    <span className="landline__checkbox"></span>
+                </label>
                 <div className="tollfee__title-information">
                     <div className="tollfee__title">Tollfee</div>
                     <div className="tollfee__billing">
@@ -34,11 +37,11 @@ const TollfeeType = () => {
                         </svg>
                     </div>
                 </div>
-                <div onClick={handleClickArrow} className={`tollfee__arrow ${activeArrow ? 'active' : ''}`}>
+                <div onClick={onComponentClick} className={`tollfee__arrow ${active ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className={`tollfee__dropdown ${activeArrow ? 'visible' : ''}`}>
+            <div className={`tollfee__dropdown ${active ? 'visible' : ''}`}>
                 <div className="tollfee__group-once">
                     <div className="tollfee__column-left">
                         <div className="tollfee__group-title">Activation Free</div>

@@ -4,13 +4,18 @@
     width: 414px;
     height: 852px;
     margin: 30px auto;
-    padding: 19px 22px 24px 24px;
+    padding: 19px 0px 24px 0px;
     background: linear-gradient(180deg, #FCFCFF 0%, #EEF 100%);
     
     &__menu
     {
         display: flex;
         align-items: center;
+        padding: 0 22px 0 24px;
+    }
+    &__selected-country
+    {
+        padding: 0 22px 0 24px;
     }
     &__arrow-back
     {
@@ -40,11 +45,13 @@
         margin-left: 238.13px; 
         margin-right: 4px;
         height: 18px;
+        cursor: pointer;
     }
     &__trash-can
     {
         height: 24px;
         color: #ADABFF;
+        cursor: pointer;
     }
     &__header 
     {
@@ -117,5 +124,65 @@
     {
         display: flex;
         align-items: center;
+    }
+    &__line 
+    {
+        width: 366px;
+        margin-top: 16px;
+    }
+    &__footer 
+    {
+        position: fixed;
+        bottom: 54px;
+    }
+    &__amount, &__discount, &__total
+    {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        font-family: 'Poppins';
+        line-height: 140%;
+        padding: 0 22px 0 24px;
+    }
+    &__amount
+    {
+        font-weight: 500;
+        color: $color-dark;
+    }
+    &__amount-text, &__discount-text 
+    {
+        font-size: 14px;
+    }
+    &__amount-price, &__discount-price 
+    {
+        font-size: 16px;
+    }
+    &__discount 
+    {
+        font-weight: 500;
+        color: #06D665;
+    }
+    &__total
+    {
+        font-size: 24px;
+        font-weight: 600;
+        color: $color-dark;
+    }
+    &__buy-now
+    {
+        width: 390px;
+        height: 48px;
+        padding: 0;
+        border: none;
+        margin: 0 12px;
+        border-radius: 24px;
+        background: #7B76FF;
+        color: var(--White, #FDFEFF);
+        text-align: center;
+        font-family: 'NunitoSans';
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 16px;
+        cursor: pointer;
     }
 }

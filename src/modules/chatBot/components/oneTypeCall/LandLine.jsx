@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
-
 import './LandLine.scss';
 
-const LandLine = () => 
+const LandLine = ({ active, onComponentClick }) => 
 {
-    const [isVibisibleArrow, setIsVisibleArrow] = useState(true);
-    const [activeArrow, setActiveArrow] = useState(false);
 
-    const handleClickArrow = () =>
-    {
-        setActiveArrow(!activeArrow)
-    }
-    console.log(activeArrow)
+    const [activeImage, setactiveImage] = useState(false);
+
+
     return (
-        <div className={`landline ${activeArrow ? 'active-dropdown' : ''}`}>
+        <div className={`landline ${active ? 'active-dropdown' : ''}`}>
             <div className="landline__wrapper">
-                <div className="landline__image">
-                    <img src={LandLineImg} alt="" />
-                </div>
+                {
+                    activeImage ? 
+                        <div className="landline__image">
+                            <img src={LandLineImg} alt="" />
+                        </div>
+                    : ''
+                }
+                <label className="landline__checkbox-wrapper">
+                    <input className='landline__input' type="checkbox"/>
+                    <span className="landline__checkbox"></span>
+                </label>
                 <div className="landline__title-information">
                     <div className="landline__title">LandLine</div>
                     <div className="landline__billing">
@@ -39,11 +42,11 @@ const LandLine = () =>
                         </svg>
                     </div>
                 </div>
-                <div onClick={handleClickArrow} className={`landline__arrow ${activeArrow ? 'active' : ''}`}>
+                <div onClick={onComponentClick} className={`landline__arrow ${active ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className={`landline__dropdown ${activeArrow ? 'visible' : ''} `}>
+            <div className={`landline__dropdown ${active ? 'visible' : ''} `}>
                     <div className="landline__group-once">
                         <div className="landline__column-left">
                             <div className="landline__group-title">Activation Free</div>

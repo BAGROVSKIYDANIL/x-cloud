@@ -2,18 +2,22 @@ import React, {useState} from 'react';
 import NationalTypeSvg from '../../../../assets/icons/TypesCall/National.svg'
 import './NationalType.scss';
 
-const NationalType = () => {
-    const [activeArrow, setActiveArrow] = useState(false);
-    const handleClickArrow = () =>
-    {
-        setActiveArrow(!activeArrow)
-    }
+const NationalType = ({active, onComponentClick}) => {
+    const [activeImage, setactiveImage] = useState(false);
+
     return (
-        <div className={`national ${activeArrow ? 'active-dropdown' : ''}`}>
+        <div className={`national ${active ? 'active-dropdown' : ''}`}>
             <div className="national__wrapper">
-                <div className="national__image">
-                    <img src={NationalTypeSvg} alt="" />
-                </div>
+                {   activeImage ? 
+                    <div className="national__image">
+                        <img src={NationalTypeSvg} alt="" />
+                    </div>
+                    : ''
+                }
+                <label className="landline__checkbox-wrapper">
+                    <input className='landline__input' type="checkbox"/>
+                    <span className="landline__checkbox"></span>
+                </label>
                 <div className="national__title-information">
                     <div className="national__title">National</div>
                     <div className="national__billing">
@@ -34,11 +38,11 @@ const NationalType = () => {
                         </svg>
                     </div>
                 </div>
-                <div onClick={handleClickArrow} className={`national__arrow ${activeArrow ? 'active' : ''}`}>
+                <div onClick={onComponentClick} className={`national__arrow ${active ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className={`national__dropdown ${activeArrow ? 'visible' : ''}`}>
+            <div className={`national__dropdown ${active ? 'visible' : ''}`}>
                 <div className="national__group-once">
                     <div className="national__column-left">
                         <div className="national__group-title">Activation Free</div>

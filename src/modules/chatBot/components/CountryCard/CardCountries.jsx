@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CardCountries = ({country}) => {
 
     const url = country.imageUrl;
-    console.log(country.imageUrl)
+
     return (
         <div className='country' >
             <div className="country__card">

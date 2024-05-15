@@ -3,18 +3,20 @@ import Mobile from '../../../../assets/icons/TypesCall/mobile.svg'
 
 import './Mobile.scss';
 
-const MobileType = () => {
-    const [activeArrow, setActiveArrow] = useState(false);
-    const handleClickArrow = () =>
-    {
-        setActiveArrow(!activeArrow)
-    }
+const MobileType = ({ active, onComponentClick }) => {
+    const [activeImage, setactiveImage] = useState(false);
     return (
-        <div className={`mobile ${activeArrow ? 'active-dropdown' : ''}`}>
+        <div className={`mobile ${active ? 'active-dropdown' : ''}`}>
             <div className="mobile__wrapper">
-                <div className="mobile__image">
-                    <img src={Mobile} alt="" />
-                </div>
+                { activeImage ?  <div className="mobile__image">
+                            <img src={Mobile} alt="" />
+                        </div>
+                        : ''
+                }
+                <label className="landline__checkbox-wrapper">
+                    <input className='landline__input' type="checkbox"/>
+                    <span className="landline__checkbox"></span>
+                </label>
                 <div className="mobile__title-information">
                     <div className="mobile__title">Mobile</div>
                     <div className="mobile__billing">
@@ -35,11 +37,11 @@ const MobileType = () => {
                         </svg>
                     </div>
                 </div>
-                <div onClick={handleClickArrow} className={`mobile__arrow ${activeArrow ? 'active' : ''}`}>
+                <div onClick={onComponentClick} className={`mobile__arrow ${active ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className={`mobile__dropdown ${activeArrow ? 'visible' : ''}`}>
+            <div className={`mobile__dropdown ${active ? 'visible' : ''}`}>
                 <div className="mobile__group-once">
                     <div className="mobile__column-left">
                         <div className="mobile__group-title">Activation Free</div>

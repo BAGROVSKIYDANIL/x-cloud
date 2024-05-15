@@ -2,18 +2,21 @@ import React, {useState} from 'react';
 import RandomTypeSvg from '../../../../assets/icons/TypesCall/Random.svg'
 import './RandomType.scss';
 
-const RandomType = () => {
-    const [activeArrow, setActiveArrow] = useState(false);
-    const handleClickArrow = () =>
-    {
-        setActiveArrow(!activeArrow)
-    }
+const RandomType = ({active, onComponentClick}) => {
+    const [activeImage, setactiveImage] = useState(false);
     return (
-        <div className={`random ${activeArrow ? 'active-dropdown' : ''}`}>
+        <div className={`random ${active ? 'active-dropdown' : ''}`}>
             <div className="random__wrapper">
-                <div className="random__image">
-                    <img src={RandomTypeSvg} alt="" />
-                </div>
+                {   activeImage ? 
+                    <div className="random__image">
+                        <img src={RandomTypeSvg} alt="" />
+                    </div>
+                    : ''
+                }
+                <label className="landline__checkbox-wrapper">
+                    <input className='landline__input' type="checkbox"/>
+                    <span className="landline__checkbox"></span>
+                </label>
                 <div className="random__title-information">
                     <div className="random__title">random</div>
                     <div className="random__billing">
@@ -34,11 +37,11 @@ const RandomType = () => {
                         </svg>
                     </div>
                 </div>
-                <div onClick={handleClickArrow} className={`random__arrow ${activeArrow ? 'active' : ''}`}>
+                <div onClick={onComponentClick} className={`random__arrow ${active ? 'active' : ''}`}>
 
                 </div>
             </div>
-            <div className={`random__dropdown ${activeArrow ? 'visible' : ''}`}>
+            <div className={`random__dropdown ${active ? 'visible' : ''}`}>
                 <div className="random__group-once">
                     <div className="random__column-left">
                         <div className="random__group-title">Activation Free</div>
