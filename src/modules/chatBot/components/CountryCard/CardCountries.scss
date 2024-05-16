@@ -12,6 +12,7 @@
     &__list
     {
         display:  grid;
+        padding-top: 6px;
         height: 745px;
         overflow: auto;
         grid-template-columns: 116px 116px 116px;
@@ -47,6 +48,7 @@
         background: white;
         border-radius: 100%;
         border: 1.5px solid $color-light-violet;
+        color: $color-light-violet;
         top: -10.5px;
         right: 6px;
         font-family: "NunitoSans";
@@ -60,7 +62,7 @@
 .country
 {
     filter: drop-shadow(6px 6px 10px rgba(138, 99, 251, 0.10));
-    
+
     &__card
     {
         height: 155px;
@@ -79,7 +81,7 @@
     &__type-rooms
     {
         font-family: 'Roboto';
-        font-weight: 400;
+        font-weight: 300;
         margin-top: 6px;
         font-size: 15px;
         line-height: 18px;
@@ -100,5 +102,16 @@
         background-color: $color-light-violet;
         border-radius: 6px;
         cursor: pointer;
+    }
+    &__check-circle 
+    {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        svg 
+        {
+            color: #7B76FF;
+            fill: white;
+        }
     }
 }

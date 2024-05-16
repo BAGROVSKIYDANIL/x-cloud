@@ -65,7 +65,7 @@ const Card = () => {
     
     return (
         <div className='card'>
-            {voipLoaded  ?  <div className="card__voip">
+            {voipLoaded  ? <Link to='/voip'> <div className="card__voip">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">
                         <svg xmlns="http://www.w3.org/2000/svg" width="271" height="289" viewBox="0 0 271 289" fill="none">
@@ -288,7 +288,7 @@ const Card = () => {
                         </defs>
                     </svg>: false}
                 </div>
-             </div> : false}
+             </div>   </Link> : false}
             {appsLoaded  ?  <div className="card__apps">
                 <div className="card__wrapper-svg">
                     <div className="card__wrapper-rotate">

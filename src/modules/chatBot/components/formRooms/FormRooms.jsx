@@ -15,7 +15,6 @@ const FormRooms = () => {
     const handleComponentClick = (componentName) => {
         setActiveComponent((prevComponent) => (prevComponent === componentName ? null : componentName));
     };
-    console.log(activeComponent)
     return (
         <div className='rooms'>
             <Link to='/chatBot' className={activeComponent ? 'active-component' : ''}>
