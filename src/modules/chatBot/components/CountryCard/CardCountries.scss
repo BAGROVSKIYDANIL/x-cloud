@@ -41,7 +41,7 @@
     }
     &__basket::before
     {
-        content: '1';
+        content: attr(data-count);
         width: 21px;
         height: 21px;
         position: absolute;

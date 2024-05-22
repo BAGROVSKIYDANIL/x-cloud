@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TrashBasketList from "./TrashBasketList";
@@ -7,11 +7,26 @@ import './TrashBasket.scss'
 const TrashBasket = () =>
     {
         const {CountryList} = useSelector(state => state.bot);
-        const coutryId = JSON.parse(localStorage.getItem('countryId'));
-        const selectedCountry = CountryList.filter((item) =>
+        const [selectedCountry, setSelectedCountry] = useState([])
+        // const coutryId = JSON.parse(localStorage.getItem('countryId'));
+        // const selectedCountry = CountryList.filter((item) =>
+        // {
+        //     return coutryId ? coutryId.includes(item.id) : ''
+        // })
+        useEffect(() =>
         {
-            return coutryId ? coutryId.includes(item.id) : ''
-        })
+            const countryId = JSON.parse(localStorage.getItem('countryId'));
+            const selectedCountry = CountryList.filter((item) => countryId.includes(item.id));
+                // return coutryId ? coutryId.includes(item.id) : ''
+                setSelectedCountry(selectedCountry)
+        }, [CountryList])
+        const handleDeleteClick = (id) => 
+        {
+            const updateCountryList = selectedCountry.filter(country => country.id !== country.id);
+            setSelectedCountry(updateCountryList);
+            const updateCountryId = updateCountryList.map(country => country.id)
+            localStorage.setItem('countryId', JSON.stringify(updateCountryId))
+        }
         console.log(selectedCountry)
         return(
             <div className="trashBasket">
@@ -40,7 +55,9 @@ const TrashBasket = () =>
                 {
                     selectedCountry.map(country =>
                         (
-                            <TrashBasketList key={country.id} country={country} />
+                        <TrashBasketList    key={country.id} 
+                                            country={country} 
+                                            handleDeleteClick={handleDeleteClick} />
                         )
                     )
                 }
