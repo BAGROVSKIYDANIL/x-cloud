@@ -7,27 +7,29 @@ import './TrashBasket.scss'
 const TrashBasket = () =>
     {
         const {CountryList} = useSelector(state => state.bot);
-        const [selectedCountry, setSelectedCountry] = useState([])
-        // const coutryId = JSON.parse(localStorage.getItem('countryId'));
-        // const selectedCountry = CountryList.filter((item) =>
-        // {
-        //     return coutryId ? coutryId.includes(item.id) : ''
-        // })
+        const [selectedCountryState, setSelectedCountryState] = useState([])
+
         useEffect(() =>
         {
             const countryId = JSON.parse(localStorage.getItem('countryId'));
-            const selectedCountry = CountryList.filter((item) => countryId.includes(item.id));
-                // return coutryId ? coutryId.includes(item.id) : ''
-                setSelectedCountry(selectedCountry)
+            const selectedCountry = countryId ? CountryList.filter((item) => countryId.includes(item.id)) : '';
+            setSelectedCountryState(selectedCountry)
         }, [CountryList])
-        const handleDeleteClick = (id) => 
+
+        const handleAllDeleteClick = () => 
         {
-            const updateCountryList = selectedCountry.filter(country => country.id !== country.id);
-            setSelectedCountry(updateCountryList);
+            setSelectedCountryState([])
+            localStorage.removeItem('countryId');
+        }    
+
+        const handleDeleteClick = (id) => 
+        {   
+            const updateCountryList = selectedCountryState.filter(country => country.id !== id);
+            setSelectedCountryState(updateCountryList);
             const updateCountryId = updateCountryList.map(country => country.id)
             localStorage.setItem('countryId', JSON.stringify(updateCountryId))
         }
-        console.log(selectedCountry)
+
         return(
             <div className="trashBasket">
                 <nav className="trashBasket__menu">
@@ -39,10 +41,10 @@ const TrashBasket = () =>
                         </div>
                     </Link>
                     <div className="trashBasket__group-remove">
-                        <button className="trashBasket__delete-all">
+                        <span className="trashBasket__delete-all">
                             Delete all
-                        </button>
-                        <button className="trashBasket__trash-can">
+                        </span>
+                        <button  onClick={handleAllDeleteClick} className="trashBasket__trash-can">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M3 6H5H21" stroke="#ADABFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="#ADABFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -52,15 +54,20 @@ const TrashBasket = () =>
                         </button>
                     </div>
                 </nav>
-                {
-                    selectedCountry.map(country =>
-                        (
-                        <TrashBasketList    key={country.id} 
-                                            country={country} 
-                                            handleDeleteClick={handleDeleteClick} />
-                        )
-                    )
-                }
+                <div className="trashBasket__wrapper">
+                    <div className="trashBasket__wrapper-list">
+                        {
+                            selectedCountryState ? selectedCountryState.map(country =>
+                                (
+                                <TrashBasketList    key={country.id} 
+                                                    country={country} 
+                                                    handleDeleteClick={handleDeleteClick} />
+                                )
+                            )
+                            : ''
+                        }                        
+                    </div>
+                </div>
                 <footer className="trashBasket__footer">
                     <div className="trashBasket__amount">
                         <span className="trashBasket__amount-text">Amount without discount</span>

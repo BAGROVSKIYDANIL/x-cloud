@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-
+import React from 'react';
+import './TrashBasket.scss'
 
 const TrashBasketList = ({country, handleDeleteClick}) => {
     const url = country.imageUrl;
@@ -18,7 +18,6 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
     // }
 
     return (
-        <div className="trashbasket__wrapper-list">
             <div className="trashBasket__selected-country">
                 <div className="trashBasket__item">
                     <div className="trashBasket__header">
@@ -82,7 +81,6 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                     </div>
                 </div>
             </div>
-        </div>
     );
 };
 

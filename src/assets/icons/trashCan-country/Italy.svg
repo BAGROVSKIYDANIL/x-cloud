@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="italy" clip-path="url(#clip0_2170_14801)">
+<path id="Vector" d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z" fill="#F0F0F0"/>
+<path id="Vector_2" d="M32 16.0001C32 9.12061 27.658 3.25593 21.5652 0.995239V31.0049C27.658 28.7442 32 22.8795 32 16.0001Z" fill="#D80027"/>
+<path id="Vector_3" d="M0 16.0001C0 22.8795 4.342 28.7442 10.4348 31.0049V0.995239C4.342 3.25593 0 9.12061 0 16.0001Z" fill="#6DA544"/>
+</g>
+<defs>
+<clipPath id="clip0_2170_14801">
+<rect width="32" height="32" fill="white"/>
+</clipPath>
+</defs>
+</svg>

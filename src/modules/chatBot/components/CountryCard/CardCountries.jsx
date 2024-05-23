@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link, json } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { selectCountry } from '../../chatBotSlice';
 import { useDispatch } from 'react-redux';
 
@@ -7,24 +7,23 @@ const CardCountries = ({country}) => {
 
     const url = country.imageUrl;
     const dispatch = useDispatch();
-    // const cou = +localStorage.getItem('countryId')
     const cou = JSON.parse(localStorage.getItem('countryId'));
     const [selectedCountryId, setSelectedCountryId] = useState(null);
-    const getStoredCountryIds = () => {
-    try 
-    {
-        const storage = JSON.parse(localStorage.getItem('countryId'));
-        if (storage && Array.isArray(storage)) 
-        {
-            return storage;
-        }
-    } 
-    catch (error) 
-    {
-        console.error('Error parsing localStorage:', error);
-    }
-    return []; // Return empty array on errors or invalid format
-    };
+    // const getStoredCountryIds = () => {
+    // try 
+    // {
+    //     const storage = JSON.parse(localStorage.getItem('countryId'));
+    //     if (storage && Array.isArray(storage)) 
+    //     {
+    //         return storage;
+    //     }
+    // } 
+    // catch (error) 
+    // {
+    //     console.error('Error parsing localStorage:', error);
+    // }
+    // return []; // Return empty array on errors or invalid format
+    // };
     const updateLocalStorage = (id) =>
     {
         let storage = JSON.parse(localStorage.getItem('countryId')) || [];
