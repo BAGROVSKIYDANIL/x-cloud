@@ -1,7 +1,9 @@
 @import '../../../../common/variables/colors';
-::-webkit-scrollbar 
+.trashBasket__wrapper-list::-webkit-scrollbar 
 {
     display: block;
+    width: 5px;
+    
 }
 ::-webkit-scrollbar-thumb
 {
@@ -33,11 +35,12 @@
         flex-direction: column;
         gap: 18px;
         height: 565px;
+        margin-right: 4px;
         overflow: auto;
     }
     &__selected-country
     {
-        padding: 0 22px 0 24px;
+        padding: 0 14px 0 24px;
     }
     &__arrow-back
     {

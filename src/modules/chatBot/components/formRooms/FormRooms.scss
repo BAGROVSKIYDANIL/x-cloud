@@ -1,7 +1,45 @@
-.active-component
+@keyframes slideUp {
+    from {
+      height: 0;
+    }
+    to {
+      height: 188px;
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      height: 188px;
+    }
+    to {
+      height: 0;
+    }
+  }
+// .active-component
+// {
+//     position: absolute;
+//     transition-duration: 0.8s;
+// }
+.hidden 
 {
-    position: absolute;
+    // opacity: 0 !important;
+    // transition: opacity 0.5s ease-in-out;
+    // height: 0;
+    padding: 0 22px;
+    // transition-duration: 0.4s;
+    animation: slideDown 0.8s forwards;
+    overflow: hidden;
+    img 
+    {
+        animation: slideDown 0.8s forwards;
+        overflow: hidden;
+        max-width: initial;
+        width: 370px;
+    }
 }
+
+
+
 .rooms 
 {
     position: relative;
@@ -21,7 +59,19 @@
     &__map 
     {
         padding: 0 22px;
+        animation: slideUp 0.8s forwards;
+        overflow: hidden;
+        img 
+        {
+            width: 370px;
+            overflow: hidden;
+            animation: slideUp 0.8s forwards;
+        }
+        // background: red;
+        // transition-duration: 0.4s;
+        // height: auto;
     }
+
     &__wrapper-title 
     {
         width: 203px;
@@ -53,6 +103,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 14px;
+        margin-top: 5px;
     }
     &__types 
     {
@@ -64,6 +115,10 @@
         font-size: 20px;
         font-weight: 500;
         height: 24px;
+    }
+    &__wrapper-types 
+    {
+
     }
     &__buy-now 
     {
@@ -101,6 +156,6 @@
     &__footer 
     {
         position: fixed;
-        bottom: 23px;
+        bottom: 14px;
     }
 }

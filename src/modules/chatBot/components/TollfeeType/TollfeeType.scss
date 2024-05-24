@@ -50,7 +50,7 @@
         color: #ADABFF;
         font-family: 'Poppins';
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 21px;
         letter-spacing: -0.21px;
         margin-right: 5px;
@@ -66,7 +66,7 @@
 
     &__counter {
         display: flex;
-        margin-right: 2px;
+        margin-right: 14px;
     }
 
     &__increase,
@@ -165,11 +165,11 @@
     &__arrow::before 
     {
     content: '';
-    width: 12px;
+    width: 10px;
     position: absolute;
     display: block;
     top: 50%;
-    right: 5px;
+    right: 4px;
     height: 1px;
     border-radius: 10px;
     cursor: pointer;
@@ -184,7 +184,7 @@
         position: relative;
         cursor: pointer;
         user-select: none;
-        margin-right: 10px;
+        margin-right: 14px;
     }
     .active::before
     {
@@ -197,7 +197,7 @@
     &__arrow:after 
     {
         content: '';
-        width: 12px;
+        width: 10px;
         display: block;
         position: absolute;
         top: 50%;

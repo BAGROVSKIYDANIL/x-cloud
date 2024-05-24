@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import MapCountry from '../../../../assets/icons/MapCountry.svg'
+import Map from '../../../../assets/icons/Map.png'
 import LandLine from '../oneTypeCall/LandLine';
 import Mobile from '../MobileTypes/Mobile';
 import NationalType from '../NationalType/NationalType';
@@ -15,6 +15,7 @@ const FormRooms = () => {
     const handleComponentClick = (componentName) => {
         setActiveComponent((prevComponent) => (prevComponent === componentName ? null : componentName));
     };
+    console.log(activeComponent)
     return (
         <div className='rooms'>
             <Link to='/chatBot' className={activeComponent ? 'active-component' : ''}>
@@ -25,22 +26,24 @@ const FormRooms = () => {
                 </div>
             </Link>
             {
-                activeComponent === null ?
-                <div className="rooms__map">
-                    <img src={MapCountry} alt="" className="rooms__map-country" />
+                
+                <div className={` ${activeComponent === null ? 'rooms__map' : 'hidden'}`}>
+                    <img src={Map} alt="" className="rooms__map-country" />
                 </div>
-                : ''
+
             }
             <div className="rooms__wrapper-title">
                 <h1 className="rooms__title-country">Canada</h1>
                 <h4 className="rooms__subtitle">Local calls only</h4>
             </div>
             <h2 className="rooms__types">Types of rooms</h2>
-                <LandLine active={activeComponent === 'LandLine'} onComponentClick={() => handleComponentClick('LandLine')}/>
-                <Mobile active={activeComponent === 'Mobile'} onComponentClick={() => handleComponentClick('Mobile')}/>
-                <NationalType  active={activeComponent === 'NationalType'} onComponentClick={() => handleComponentClick('NationalType')}/>
-                <TollfeeType  active={activeComponent === 'TollfeeType'} onComponentClick={() => handleComponentClick('TollfeeType')}/>
-                <RandomType  active={activeComponent === 'RandomType'} onComponentClick={() => handleComponentClick('RandomType')}/>
+                <div className="rooms__wrapper-types">
+                        <LandLine active={activeComponent === 'LandLine'} onComponentClick={() => handleComponentClick('LandLine')}/>
+                        <Mobile active={activeComponent === 'Mobile'} onComponentClick={() => handleComponentClick('Mobile')}/>
+                        <NationalType  active={activeComponent === 'NationalType'} onComponentClick={() => handleComponentClick('NationalType')}/>
+                        <TollfeeType  active={activeComponent === 'TollfeeType'} onComponentClick={() => handleComponentClick('TollfeeType')}/>
+                        <RandomType  active={activeComponent === 'RandomType'} onComponentClick={() => handleComponentClick('RandomType')}/>
+                </div>
             <div className="rooms__footer">
                 <button className="rooms__buy-now">Buy now</button>
                 <div className="rooms__calls-responsibility">
