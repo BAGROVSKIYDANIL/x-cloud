@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Map from '../../../../assets/icons/Map.png'
-import LandLine from '../oneTypeCall/LandLine';
-import Mobile from '../MobileTypes/Mobile';
-import NationalType from '../NationalType/NationalType';
-import TollfeeType from '../TollfeeType/TollfeeType';
-import RandomType from '../RandomType/RandomType';
+import TypeRoom from '../TypeRoom/TypeRoom';
 
 import './FormRooms.scss'
+import LandLineIcon from '../../../../assets/icons/TypesCall/LandLine.svg'
+import MobileIcon from '../../../../assets/icons/TypesCall/Mobile.svg'
+import NationalIcon from '../../../../assets/icons/TypesCall/National.svg'
+import TollFeeIcon from '../../../../assets/icons/TypesCall/Tollfee.svg'
+import RandomIcon from '../../../../assets/icons/TypesCall/Random.svg'
 
 const FormRooms = () => {
     const [activeComponent, setActiveComponent] = useState(null);
@@ -15,7 +16,7 @@ const FormRooms = () => {
     const handleComponentClick = (componentName) => {
         setActiveComponent((prevComponent) => (prevComponent === componentName ? null : componentName));
     };
-    console.log(activeComponent)
+
     return (
         <div className='rooms'>
             <Link to='/chatBot' className={activeComponent ? 'active-component' : ''}>
@@ -26,23 +27,39 @@ const FormRooms = () => {
                 </div>
             </Link>
             {
-                
                 <div className={` ${activeComponent === null ? 'rooms__map' : 'hidden'}`}>
                     <img src={Map} alt="" className="rooms__map-country" />
                 </div>
-
             }
             <div className="rooms__wrapper-title">
                 <h1 className="rooms__title-country">Canada</h1>
                 <h4 className="rooms__subtitle">Local calls only</h4>
             </div>
-            <h2 className="rooms__types">Types of rooms</h2>
+            <h2 className='rooms__types'>Types of rooms</h2>
                 <div className="rooms__wrapper-types">
-                        <LandLine active={activeComponent === 'LandLine'} onComponentClick={() => handleComponentClick('LandLine')}/>
-                        <Mobile active={activeComponent === 'Mobile'} onComponentClick={() => handleComponentClick('Mobile')}/>
-                        <NationalType  active={activeComponent === 'NationalType'} onComponentClick={() => handleComponentClick('NationalType')}/>
-                        <TollfeeType  active={activeComponent === 'TollfeeType'} onComponentClick={() => handleComponentClick('TollfeeType')}/>
-                        <RandomType  active={activeComponent === 'RandomType'} onComponentClick={() => handleComponentClick('RandomType')}/>
+                    <div className="rooms__wrapper-body">
+                        <TypeRoom   type='Lanline'
+                                    icon={LandLineIcon} 
+                                    active={activeComponent === 'LandLine'} 
+                                    onComponentClick={() => handleComponentClick('LandLine')}/>
+                        <TypeRoom   type='Mobile' 
+                                    icon={MobileIcon} 
+                                    active={activeComponent === 'Mobile'} 
+                                    onComponentClick={() => handleComponentClick('Mobile')}/>
+                        <TypeRoom   type='NationalType' 
+                                    icon={NationalIcon} 
+                                    active={activeComponent === 'NationalType'} 
+                                    onComponentClick={() => handleComponentClick('NationalType')}/>
+                        <TypeRoom   type='TollfeeType' 
+                                    icon={TollFeeIcon} 
+                                    active={activeComponent === 'TollfeeType'} 
+                                    onComponentClick={() => handleComponentClick('TollfeeType')}/>
+                                    
+                        <TypeRoom   type='RandomType' 
+                                    icon={RandomIcon} 
+                                    active={activeComponent === 'RandomType'} 
+                                    onComponentClick={() => handleComponentClick('RandomType')}/>
+                                    </div>
                 </div>
             <div className="rooms__footer">
                 <button className="rooms__buy-now">Buy now</button>

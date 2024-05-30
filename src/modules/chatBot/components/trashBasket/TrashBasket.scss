@@ -44,6 +44,7 @@
     }
     &__arrow-back
     {
+        // position: absolute;
         color: rgba(173, 171, 255, 1);
         cursor: pointer;
         height: 18px;
@@ -120,6 +121,10 @@
     &__increase,  &__decrease
     {
         cursor: pointer;
+    }
+    &__number, &__price, &__name-type 
+    {
+        user-select: none;
     }
     &__number 
     {

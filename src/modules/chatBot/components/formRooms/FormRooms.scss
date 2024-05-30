@@ -22,11 +22,7 @@
 // }
 .hidden 
 {
-    // opacity: 0 !important;
-    // transition: opacity 0.5s ease-in-out;
-    // height: 0;
     padding: 0 22px;
-    // transition-duration: 0.4s;
     animation: slideDown 0.8s forwards;
     overflow: hidden;
     img 
@@ -67,9 +63,6 @@
             overflow: hidden;
             animation: slideUp 0.8s forwards;
         }
-        // background: red;
-        // transition-duration: 0.4s;
-        // height: auto;
     }
 
     &__wrapper-title 
@@ -116,10 +109,6 @@
         font-weight: 500;
         height: 24px;
     }
-    &__wrapper-types 
-    {
-
-    }
     &__buy-now 
     {
         width: 390px;
@@ -156,6 +145,6 @@
     &__footer 
     {
         position: fixed;
-        bottom: 14px;
+        bottom: 19px;
     }
 }

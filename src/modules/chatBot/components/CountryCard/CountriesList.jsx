@@ -44,7 +44,7 @@ const countries = [
 ]
 const CountriesList = () => {
 
-    const countryId = JSON.parse(localStorage.getItem('countryId')) ?.length || '';
+    const countryId = JSON.parse(localStorage.getItem('countryId'))?.length || '';
 
     return (
         <div className="countries">

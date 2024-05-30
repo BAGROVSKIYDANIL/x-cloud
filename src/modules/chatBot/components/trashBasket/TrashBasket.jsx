@@ -2,12 +2,14 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TrashBasketList from "./TrashBasketList";
+import { getCountrys } from "../../../../api/api";
 import './TrashBasket.scss'
 
 const TrashBasket = () =>
     {
-        const {CountryList} = useSelector(state => state.bot);
-        const [selectedCountryState, setSelectedCountryState] = useState([])
+        const {CountryList, stateTotalCount} = useSelector(state => state.bot);
+        const [asyncCountryArray, setAsyncCountryArray] = useState([])
+        const [selectedCountryState, setSelectedCountryState] = useState([]);
 
         useEffect(() =>
         {
@@ -16,6 +18,12 @@ const TrashBasket = () =>
             setSelectedCountryState(selectedCountry)
         }, [CountryList])
 
+        useEffect(() =>
+        {
+            getCountrys.then(res => setAsyncCountryArray(res.data.data))
+        }, [])
+
+        console.log(asyncCountryArray)
         const handleAllDeleteClick = () => 
         {
             setSelectedCountryState([])
@@ -29,7 +37,6 @@ const TrashBasket = () =>
             const updateCountryId = updateCountryList.map(country => country.id)
             localStorage.setItem('countryId', JSON.stringify(updateCountryId))
         }
-
         return(
             <div className="trashBasket">
                 <nav className="trashBasket__menu">
@@ -79,7 +86,8 @@ const TrashBasket = () =>
                     </div>
                     <div className="trashBasket__total">
                         <span className="trashBasket__total-text">Total</span>
-                        <span className="trashBasket__total-price">$29.07</span>
+                        {/* <span className="trashBasket__total-price">$29.07</span> */}
+                        <span className="trashBasket__total-price">${stateTotalCount}</span>
                     </div>
                     <button className="trashBasket__buy-now">Buy now</button>
                 </footer>

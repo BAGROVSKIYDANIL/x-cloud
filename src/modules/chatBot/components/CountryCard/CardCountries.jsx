@@ -7,23 +7,9 @@ const CardCountries = ({country}) => {
 
     const url = country.imageUrl;
     const dispatch = useDispatch();
-    const cou = JSON.parse(localStorage.getItem('countryId'));
+    const coutryArray = JSON.parse(localStorage.getItem('countryId'));
     const [selectedCountryId, setSelectedCountryId] = useState(null);
-    // const getStoredCountryIds = () => {
-    // try 
-    // {
-    //     const storage = JSON.parse(localStorage.getItem('countryId'));
-    //     if (storage && Array.isArray(storage)) 
-    //     {
-    //         return storage;
-    //     }
-    // } 
-    // catch (error) 
-    // {
-    //     console.error('Error parsing localStorage:', error);
-    // }
-    // return []; // Return empty array on errors or invalid format
-    // };
+
     const updateLocalStorage = (id) =>
     {
         let storage = JSON.parse(localStorage.getItem('countryId')) || [];
@@ -39,13 +25,11 @@ const CardCountries = ({country}) => {
         const countryId = +e.currentTarget.getAttribute('data-id');
         dispatch(selectCountry(countryId));
         setSelectedCountryId(id)
-        // localStorage.setItem('countryId', id)
         updateLocalStorage(id)
     }
-    // console.log(selectedCountryId)
-    // console.log(typeof cou)
 
-    const isSelectedCountry = cou ? cou.includes(country.id) : ''
+
+    const isSelectedCountry = coutryArray ? coutryArray.includes(country.id) : ''
     return (
         <div className='country' >
             <div className="country__card">

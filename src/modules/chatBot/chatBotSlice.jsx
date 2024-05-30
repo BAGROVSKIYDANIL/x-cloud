@@ -41,18 +41,19 @@ const chatBotSlice = createSlice({
                     {id: 35, name: 'France', imageUrl: 'France.svg'},
                     {id: 36, name: 'Greece', imageUrl: 'Greece.svg'},
         ],
-        trashBasket:[
-
-        ],
+        stateTotalCount: 0,
         selectedCounty: 0
     },
     reducers: {
         selectCountry(state, action)
         {
             state.selectedCounty = action.payload;
+        },
+        changeTotalCount(state, action)
+        {
+            state.stateTotalCount = action.payload;
         }
     },
 })
-export const {selectCountry} = chatBotSlice.actions;
-export const {openMobile} = chatBotSlice.actions;
+export const {selectCountry, changeTotalCount} = chatBotSlice.actions;
 export default chatBotSlice.reducer;
