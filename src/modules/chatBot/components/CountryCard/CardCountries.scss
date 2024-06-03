@@ -56,7 +56,10 @@
         font-weight: 700;
         text-align: center;
     }
-    
+    &__basket.hidden-circle::before
+    {
+        content: none;
+    }
 }
 ::-webkit-scrollbar 
 { 

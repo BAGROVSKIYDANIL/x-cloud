@@ -42,7 +42,8 @@ const chatBotSlice = createSlice({
                     {id: 36, name: 'Greece', imageUrl: 'Greece.svg'},
         ],
         stateTotalCount: 0,
-        selectedCounty: 0
+        selectedCounty: 0,
+        countState: []
     },
     reducers: {
         selectCountry(state, action)
@@ -52,8 +53,12 @@ const chatBotSlice = createSlice({
         changeTotalCount(state, action)
         {
             state.stateTotalCount = action.payload;
+        },
+        postAllCount(state, action)
+        {
+            state.countState = action.payload;
         }
     },
 })
-export const {selectCountry, changeTotalCount} = chatBotSlice.actions;
+export const {selectCountry, changeTotalCount, postAllCount} = chatBotSlice.actions;
 export default chatBotSlice.reducer;

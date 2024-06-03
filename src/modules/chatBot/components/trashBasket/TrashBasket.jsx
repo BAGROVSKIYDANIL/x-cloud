@@ -18,12 +18,43 @@ const TrashBasket = () =>
             setSelectedCountryState(selectedCountry)
         }, [CountryList])
 
+
         useEffect(() =>
         {
             getCountrys.then(res => setAsyncCountryArray(res.data.data))
         }, [])
+        // console.log(selectedCountryState)
+        // console.log(asyncCountryArray)
+        // asyncCountryArray.map(item => 
+        //     {
+        //         if(!!item)
+        //             {
+        //                 console.log(item)
+        //             }
+        //     }
+        // )
 
-        console.log(asyncCountryArray)
+        // asyncCountryArray.forEach(obj =>
+        //     {
+        //         Object.keys(obj).forEach(keys =>
+        //         {
+
+        //             selectedCountryState.forEach(country =>
+        //                 {
+        //                     if(obj.Country === country.name)
+        //                         {
+        //                             if(obj[keys] > 0)
+        //                             {
+        //                                 console.log(obj[keys])
+        //                                 console.log([keys])
+        //                             }
+        //                         }
+        //                 }
+        //             )
+        //         })
+        //     }
+        // )
+
         const handleAllDeleteClick = () => 
         {
             setSelectedCountryState([])

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Map from '../../../../assets/icons/Map.png'
+import PointToMap from '../../../../assets/icons/PointToMap.svg'
 import TypeRoom from '../TypeRoom/TypeRoom';
 
 import './FormRooms.scss'
@@ -29,6 +30,9 @@ const FormRooms = () => {
             {
                 <div className={` ${activeComponent === null ? 'rooms__map' : 'hidden'}`}>
                     <img src={Map} alt="" className="rooms__map-country" />
+                    <div className={`${activeComponent === null ? 'rooms__point-map' : ''}`}>
+                        <img  src={PointToMap} alt="" />
+                    </div>
                 </div>
             }
             <div className="rooms__wrapper-title">
