@@ -18,7 +18,7 @@ const TrashBasket = () =>
             setSelectedCountryState(selectedCountry)
         }, [CountryList])
 
-
+        // console.log(asyncCountryArray)
         useEffect(() =>
         {
             getCountrys.then(res => setAsyncCountryArray(res.data.data))

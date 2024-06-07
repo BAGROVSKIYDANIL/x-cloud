@@ -57,6 +57,7 @@ const chatBotSlice = createSlice({
         postAllCount(state, action)
         {
             state.countState = action.payload;
+            // console.log(action.payload)
         }
     },
 })

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postAllCount } from '../../chatBotSlice';
 import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
@@ -11,7 +11,8 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
     const [activeImage, setactiveImage] = useState(false);
     const [count, setCount] = useState(0);
     const dispatch = useDispatch();
-    console.log(countState)
+    // console.log(countState)
+
     const  hadnlerIncrementCount = () =>
     {
         setCount(count => count + 1)
@@ -24,17 +25,19 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
             setCount(count - 1)
         }
     }
-    // console.log(count)
-    const payload = 
+
+
+    const payload = useMemo(() => (
     {
         TypeRoom: type,
         num: count
     }
-    
-    useEffect(() =>
-    {
-        dispatch(postAllCount(payload))
-    }, [])
+    ),[type, count]);
+// ;
+//     useEffect(() =>
+//     {
+//         dispatch(postAllCount(payload))
+//     }, [payload, dispatch])
 
     useEffect(() =>
     {
@@ -52,6 +55,10 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
             }
     },[active])
 
+    useEffect(() =>
+    {
+    }, [])
+    localStorage.setItem('NumberCounter', JSON.stringify(payload))
     return (
         <div className={`type ${activeStateOpenDropDown ? 'active-dropdown' : ''}`}>
             <div className="type__wrapper">
