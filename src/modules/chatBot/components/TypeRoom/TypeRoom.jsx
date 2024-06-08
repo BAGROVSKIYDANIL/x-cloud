@@ -4,7 +4,7 @@ import { postAllCount } from '../../chatBotSlice';
 import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
 import './TypeRoom.scss';
 
-const TypeRoom = ({ type, active, onComponentClick }) => 
+const TypeRoom = ({ type, active, onComponentClick, onCountChange  }) => 
 {
     const [activeStateOpenDropDown, setactiveStateOpenDropDown] = useState(false);
     const {countState} = useSelector(state => state.bot);
@@ -15,14 +15,28 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
 
     const  hadnlerIncrementCount = () =>
     {
-        setCount(count => count + 1)
+        setCount(count => 
+            
+                // const newCount = count + 1;
+                // onCountChange(type, newCount);
+                // return newCount;
+                count + 1
+            
+        )
     }
 
     const handlerDecrementCount = () =>
     {
         if(count !== 0)
         {
-            setCount(count - 1)
+            setCount(count =>
+                
+                    // const newCount = count - 1;
+                    // onCountChange(type, newCount);
+                    // return newCount;
+                    count - 1
+                
+            )
         }
     }
 
@@ -34,10 +48,13 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
     }
     ),[type, count]);
 // ;
-//     useEffect(() =>
-//     {
-//         dispatch(postAllCount(payload))
-//     }, [payload, dispatch])
+    // useEffect(() =>
+    // {
+    //     if(count !== 0)
+    //         {
+    //             dispatch(postAllCount(payload))
+    //         }
+    // }, [count])
 
     useEffect(() =>
     {
@@ -54,11 +71,12 @@ const TypeRoom = ({ type, active, onComponentClick }) =>
                 setactiveStateOpenDropDown(false);
             }
     },[active])
-
     useEffect(() =>
     {
-    }, [])
-    localStorage.setItem('NumberCounter', JSON.stringify(payload))
+        onCountChange(type, count)
+    }, [count, type, onCountChange])
+
+    // localStorage.setItem('NumberCounter', JSON.stringify(payload))
     return (
         <div className={`type ${activeStateOpenDropDown ? 'active-dropdown' : ''}`}>
             <div className="type__wrapper">

@@ -45,6 +45,7 @@ const chatBotSlice = createSlice({
         selectedCounty: 0,
         countState: []
     },
+    
     reducers: {
         selectCountry(state, action)
         {
@@ -56,8 +57,19 @@ const chatBotSlice = createSlice({
         },
         postAllCount(state, action)
         {
-            state.countState = action.payload;
-            // console.log(action.payload)
+            const existingIndex = state.countState.findIndex(item => item.TypeRoom === action.payload.TypeRoom);
+            if(existingIndex !== -1)
+                {
+                    const updateCount = [...state.countState]
+                    updateCount[existingIndex] = action.payload;
+                    state.countState = updateCount;
+                }
+                else 
+                {
+                    const newCount = [...state.countState, action.payload];
+                    state.countState =  newCount;
+                }
+                console.log(state.countState)
         }
     },
 })

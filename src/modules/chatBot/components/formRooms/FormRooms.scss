@@ -33,7 +33,16 @@
         width: 370px;
     }
 }
-
+.disabled
+{
+    background: transparent !important;
+    color: rgba(173, 171, 255, 1) !important;
+    border: 1px solid rgba(173, 171, 255, 1) !important;
+}
+.opacited 
+{
+    opacity: 0.5;
+}
 
 
 .rooms 
@@ -137,6 +146,7 @@
         font-weight: 600;
         line-height: 16px;
         cursor: pointer;
+        transition-duration: 0.4s ;
     }
     &__calls-responsibility 
     {
@@ -149,6 +159,7 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 14px;
+        transition-duration: 0.4s;
     }
     &__calls-image 
     {
@@ -159,4 +170,5 @@
         position: fixed;
         bottom: 35px;
     }
+
 }
