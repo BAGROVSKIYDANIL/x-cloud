@@ -5,17 +5,29 @@ import './TrashBasket.scss'
 
 const TrashBasketList = ({country, handleDeleteClick}) => {
 
-    const url = country.imageUrl;
+    const url = `${country.Country}.svg`;
     const {countState} = useSelector(state => state.bot);
     const dispatch = useDispatch();
-    const numberCount = countState[0] ? countState[0][0].num : null;
-    const [count, setCount] = useState(numberCount);
+    // const typeRooms = countState.map(item => item.TypeRoom)
+    // const numberCount = countState.map(item => item.num)
+    const typeAndNumCount = JSON.parse(localStorage.getItem('numberCount'));
+    // console.log(typeAndNumCount)
+    const typeRooms = typeAndNumCount.map(item => item.TypeRoom);
+    const numberCount = typeAndNumCount.map(item => item.num)
+    // console.log(numberCount)
+    const [count, setCount] = useState(numberCount[0]);
     const [total, setTotal] = useState(0);
 
-    const  incrementCount = () =>
-    {
-        setCount(count => count + 1)
+    const updateLocalStorage = (count) =>
+    {   
+      const storage = typeAndNumCount.map((item) => ({...item, num: count}))
+      localStorage.setItem('numberCount', JSON.stringify(storage))
     }
+
+    const incrementCount = () =>
+    {
+        setCount(count => count + 1);
+    }   
 
     const decrementCount = () =>
     {
@@ -24,29 +36,18 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
             setCount(count - 1)
         }
     }
-    // console.log(countState[0][0].num)
-    const typeCount = countState[0] ? countState[0][0].TypeRoom : null;
-    
+
     useEffect(() =>
     {
+        updateLocalStorage(count)
+    },[count])
+
+    useEffect(() =>
+    {   console.log(count)
         setTotal(count * 480);
         dispatch(changeTotalCount(total))
-    }, [count, dispatch, total])
+    }, [count, total])
 
-    // useEffect(() =>
-    // {
-    //     getCountrys.then(responce => console.log(responce))
-    // },[])
-    
-        // const hash = 'YWRtaW46YWRtaW4=';
-        // const encodeHash = btoa(hash);
-        // const headers = {
-        //     // 'Content-Type': 'application/json',
-        //     'Authorization': `Basic ${hash}`
-        // }
-        // fetch('https://pay.voicex.biz:7260/api/Countrys')
-        // .then(responce => responce.json())
-        // .then(data => console.log(data))
 
     return (
             <div className="trashBasket__selected-country">
@@ -56,7 +57,7 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                         <div className="trashBasket__icon">
                             <img src={require(`../../../../assets/icons/trashCan-country/${url}`)} alt={`Flag of ${country.name}`} />
                         </div>
-                        <div className="trashBasket__title">{country.name}</div>
+                        <div className="trashBasket__title">{country.Country}</div>
                         </div>
                         <button onClick={() => handleDeleteClick(country.id)} className="trashBasket__trash-can">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -70,7 +71,7 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                     <div className="trashBasket__body">
                         <div className="trashBasket__type-rooms">
                             {/* <div className="trashBasket__name-type">Tollfee</div> */}
-                            <div className="trashBasket__name-type">{typeCount}</div>
+                            <div className="trashBasket__name-type">{typeRooms}</div>
                             <div className="trashBasket__right-column-body">
                                 <div className="trashBasket__counter">
                                     <div onClick={decrementCount} className="trashBasket__decrease">

@@ -36,7 +36,7 @@ const CardCountries = ({country}) => {
         updateLocalStorage(countryId)
     }
 
-    const isSelectedCountry = coutryArray  ? coutryArray.includes(1) : '';
+    const isSelectedCountry = coutryArray  ? coutryArray.includes(country.id) : '';
     // console.log(isSelectedCountry)
     return (
         <div className='country' >

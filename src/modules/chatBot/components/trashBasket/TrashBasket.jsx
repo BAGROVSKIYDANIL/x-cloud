@@ -9,9 +9,6 @@ import './TrashBasket.scss'
 const TrashBasket = () =>
     {
         const {CountryList, stateTotalCount, country} = useSelector(state => state.bot);
-        // console.log(country.Data.filter(item => item))
-        console.log(country)
-        // console.log(CountryList[0].id)
         const [selectedCountryState, setSelectedCountryState] = useState([]);
         const dispatch = useDispatch();
         useEffect(() =>
@@ -22,16 +19,15 @@ const TrashBasket = () =>
         {
             const countryId = JSON.parse(localStorage.getItem('countryId'));
             // const selectedCountry = countryId ? CountryList.filter((item) => countryId.includes(item.id)) : '';
-            // const selectedCountry = countryId ? country.Data.filter((item) => item) : '';
-            // console.log(selectedCountry)
-            // console.log(CountryList)
-            // setSelectedCountryState(selectedCountry))
+            const selectedCountry = country.Data ? country.Data.filter((item) => countryId.includes(item.id)): null;
+            setSelectedCountryState(selectedCountry)
         }, [country])
 
         const handleAllDeleteClick = () => 
         {
             setSelectedCountryState([])
             localStorage.removeItem('countryId');
+            localStorage.removeItem('numberCount');
         }    
 
         const handleDeleteClick = (id) => 
@@ -40,6 +36,7 @@ const TrashBasket = () =>
             setSelectedCountryState(updateCountryList);
             const updateCountryId = updateCountryList.map(country => country.id)
             localStorage.setItem('countryId', JSON.stringify(updateCountryId));
+            localStorage.removeItem('numberCount');
         }
 
         return(
@@ -73,10 +70,9 @@ const TrashBasket = () =>
                                 (
                                 <TrashBasketList    key={country.id} 
                                                     country={country} 
-                                                    handleDeleteClick={handleDeleteClick} />
-                                )
-                            )
-                            : ''
+                                                    handleDeleteClick={handleDeleteClick} 
+                                                    />
+                                )): ''
                         }                        
                     </div>
                 </div>

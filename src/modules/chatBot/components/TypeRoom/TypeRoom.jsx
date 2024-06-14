@@ -15,28 +15,14 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
     
     const  hadnlerIncrementCount = () =>
     {
-        setCount(count => 
-            
-                // const newCount = count + 1;
-                // onCountChange(type, newCount);
-                // return newCount;
-                count + 1
-            
-        )
+        setCount(count =>  count + 1 )
     }
 
     const handlerDecrementCount = () =>
     {
         if(count !== 0)
         {
-            setCount(count =>
-                
-                    // const newCount = count - 1;
-                    // onCountChange(type, newCount);
-                    // return newCount;
-                    count - 1
-                
-            )
+            setCount(count => count - 1)
         }
     }
 

@@ -33,7 +33,6 @@ const FormRooms = () => {
 
     const handleComponentClick = (componentName) => 
     {
-        console.log(componentName)
         setActiveComponent((prevComponent) => (prevComponent === componentName ? null : componentName));
     };
 
@@ -51,7 +50,6 @@ const FormRooms = () => {
                             uniqueTypes.add(tariffs.type)
                         });
                 });
-                // uniqueTypes.size === 1 ? setNumberTypeOfRoom(true) : setNumberTypeOfRoom(false);
             return uniqueTypes.size;
     }
     const numberOfRoomTypes = useMemo(() => counterNumberOfRoomTypes(country.Data), [country.Data]);
@@ -59,12 +57,12 @@ const FormRooms = () => {
     useEffect(() =>
     {
         dispatch(fetchCountry())
-    }, [dispatch])
+    }, [])
 
     useEffect(() =>
     {
         setOneTypeOfRoom(numberOfRoomTypes === 1) 
-    },  [numberOfRoomTypes])
+    }, [numberOfRoomTypes])
 
 
     useEffect(() =>
@@ -78,8 +76,10 @@ const FormRooms = () => {
     {           
         if(activeNumber)
         {
+            // const payloads = Object.entries(counts).filter(([type, count]) => count !== 0).map(([type, count]) => ({TypeRoom: type, num: count}));
             const payloads = Object.entries(counts).filter(([type, count]) => count !== 0).map(([type, count]) => ({TypeRoom: type, num: count}));
             dispatch(postAllCount(payloads));
+            localStorage.setItem('numberCount', JSON.stringify(payloads))
             localStorage.setItem('countryId', JSON.stringify(localStorageIdCountry))
             navigate('/chatBot');
         }
@@ -116,12 +116,6 @@ const FormRooms = () => {
         ))
     }
 
-
-
-
-// const uniqueTypes = [...new Set(country.Data.map(tariff => tariff.Tariffs.type))];
-// console.log(uniqueTypes)
-    // const numberOfRooms = countTariffTypes(country.Tariffs);
     const nameCountry = country.Data ? country.Data.map(name => name.Country):'';
 
     return (
