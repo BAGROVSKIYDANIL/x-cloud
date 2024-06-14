@@ -1,14 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link} from 'react-router-dom';
-import { selectCountry } from '../../chatBotSlice';
-import { useDispatch } from 'react-redux';
+import {postIdCounry } from '../../chatBotSlice';
+import { useDispatch} from 'react-redux';
 
 const CardCountries = ({country}) => {
 
-    const url = country.imageUrl;
+    const url = `${country.Country}.png`;
+    // const numberOfRoomms = 
     const dispatch = useDispatch();
     const coutryArray = JSON.parse(localStorage.getItem('countryId'));
-    const [selectedCountryId, setSelectedCountryId] = useState(null);
+    const countTariffTypes = (tariffs) =>
+    {
+        const uniqueTypes = new Set();
+        for(const tariff of tariffs)
+        {
+            uniqueTypes.add(tariff.type)
+        }
+        return uniqueTypes.size;
+    }
+    const numberOfRoomms = countTariffTypes(country.Tariffs)
 
     const updateLocalStorage = (id) =>
     {
@@ -17,29 +27,28 @@ const CardCountries = ({country}) => {
         {
             storage.push(id);
         }
-        localStorage.setItem('countryId', JSON.stringify(storage))
+        dispatch(postIdCounry(storage))
     }
-    const handleClickCountry = (e, id) =>
+    const handleClickCountry = (e) =>
     {
         // e.preventDefault();
         const countryId = +e.currentTarget.getAttribute('data-id');
-        dispatch(selectCountry(countryId));
-        setSelectedCountryId(id)
-        updateLocalStorage(id)
+        updateLocalStorage(countryId)
     }
 
-
-    const isSelectedCountry = coutryArray ? coutryArray.includes(country.id) : ''
+    const isSelectedCountry = coutryArray  ? coutryArray.includes(1) : '';
+    // console.log(isSelectedCountry)
     return (
         <div className='country' >
             <div className="country__card">
                 <div className="country-image">
-                    <img src={require(`../../../../assets/icons/countries/${url}`)} alt={`Flag of ${country.name}`} />
+                    <img src={require(`../../../../assets/icons/countries/${url}`)} alt={`Flag of ${country.Country}`} />
                 </div>
-                <div className="country__title">{country.name}</div>
-                <div className="country__type-rooms">4 types rooms</div>
+                <div className="country__title">{country.Country}</div>
+                <div className="country__type-rooms">{`${numberOfRoomms} types rooms`}</div>
                     <Link to='/rooms'>
-                        <button onClick={(e) => handleClickCountry(e, country.id)} data-id={country.id} className="country__buy">Buy now</button>
+                        <button onClick={(e) => handleClickCountry(e)} 
+                                data-id={country.Ptefix} className="country__buy">Buy now</button>
                     </Link>
                 </div>
                 {

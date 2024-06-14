@@ -1,6 +1,6 @@
-import React, {useState, useCallback} from 'react';
-import { useDispatch } from 'react-redux';
-import { postAllCount } from '../../chatBotSlice';
+import React, {useState, useCallback, useEffect, useMemo} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { postAllCount, postIdCounry, fetchCountry } from '../../chatBotSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import Map from '../../../../assets/icons/Map.png'
 import PointToMap from '../../../../assets/icons/PointToMap.svg'
@@ -15,9 +15,13 @@ import RandomIcon from '../../../../assets/icons/TypesCall/Random.svg'
 
 const FormRooms = () => {
     const [activeComponent, setActiveComponent] = useState(null);
+    const [oneTypeOfRoom, setOneTypeOfRoom] = useState(false);
     const [counts, setCounts] = useState(0);
-    const [activeNumber, setActiveNumber] = useState([]);
+    const [activeNumber, setActiveNumber] = useState(false);
+   
+    // const coutryArray = JSON.parse(localStorage.getItem('countryId'));
     const dispatch = useDispatch();
+    const {localStorageIdCountry, country} = useSelector(state => state.bot)
     const navigate = useNavigate();
 
     const handleCountChange = useCallback((type, count) => {
@@ -25,34 +29,100 @@ const FormRooms = () => {
               ...prevCounts,
               [type]: count
             }));
-            // console.log(count)
-            // let activeNum = [];
-            // activeNum.map(count);
-            // console.log(activeNum)
-            // setActiveNumber(count !== 0 ? true : false);
         }, [])
-    // const handleCountChange = (type, count) => {
-    //         setCounts(prevCounts => ({
-    //           ...prevCounts,
-    //           [type]: count
-    //         }));
-    //         setActiveNumber(count);
-    //     };
 
     const handleComponentClick = (componentName) => 
     {
+        console.log(componentName)
         setActiveComponent((prevComponent) => (prevComponent === componentName ? null : componentName));
     };
-    console.log(counts)
-    console.log(activeNumber)
-    const handleBuyNow = () => 
+
+    const counterNumberOfRoomTypes = (data) =>
     {
-        Object.entries(counts).forEach(([type, count]) => {
-          const payload = {TypeRoom: type, num: count};
-          dispatch(postAllCount(payload));
-        });
-        // navigate('/chatBot')
+        if(!data || data.length === 0)
+        {
+            return null;
+        }
+        const uniqueTypes = new Set();
+        data.forEach(country =>
+                {
+                    country.Tariffs.forEach(tariffs =>
+                        {
+                            uniqueTypes.add(tariffs.type)
+                        });
+                });
+                // uniqueTypes.size === 1 ? setNumberTypeOfRoom(true) : setNumberTypeOfRoom(false);
+            return uniqueTypes.size;
+    }
+    const numberOfRoomTypes = useMemo(() => counterNumberOfRoomTypes(country.Data), [country.Data]);
+
+    useEffect(() =>
+    {
+        dispatch(fetchCountry())
+    }, [dispatch])
+
+    useEffect(() =>
+    {
+        setOneTypeOfRoom(numberOfRoomTypes === 1) 
+    },  [numberOfRoomTypes])
+
+
+    useEffect(() =>
+    {
+        const noneZeroCount = Object.values(counts).some(count => count !== 0);
+        setActiveNumber(noneZeroCount)
+    }, [counts])
+
+
+    const handleBuyNow = () => 
+    {           
+        if(activeNumber)
+        {
+            const payloads = Object.entries(counts).filter(([type, count]) => count !== 0).map(([type, count]) => ({TypeRoom: type, num: count}));
+            dispatch(postAllCount(payloads));
+            localStorage.setItem('countryId', JSON.stringify(localStorageIdCountry))
+            navigate('/chatBot');
+        }
     };
+
+    const typeIcons = 
+    {
+    fixed: LandLineIcon,
+    Mobile: MobileIcon,
+    NationalType: NationalIcon,
+    TollfeeType: TollFeeIcon,
+    RandomType: RandomIcon
+    };
+
+
+
+    const renderTypeRooms = (data) => 
+    {
+        if(!data || data.length === 0)
+        {
+            return null;
+        }
+        const allTariffs =  data.flatMap(country => country.Tariffs);
+        const uniqueTypes = [...new Set( allTariffs.map(tariff => tariff.type))];
+        return uniqueTypes.map(type => (
+            <TypeRoom
+                key={type}
+                type={type}
+                icon={typeIcons[type]}
+                active={activeComponent === type}
+                oneType={oneTypeOfRoom}
+                onComponentClick={() => handleComponentClick(type)}
+                onCountChange={handleCountChange}/>
+        ))
+    }
+
+
+
+
+// const uniqueTypes = [...new Set(country.Data.map(tariff => tariff.Tariffs.type))];
+// console.log(uniqueTypes)
+    // const numberOfRooms = countTariffTypes(country.Tariffs);
+    const nameCountry = country.Data ? country.Data.map(name => name.Country):'';
 
     return (
         <div className='rooms'>
@@ -72,13 +142,13 @@ const FormRooms = () => {
                 </div>
             }
             <div className="rooms__wrapper-title">
-                <h1 className="rooms__title-country">Canada</h1>
+                <h1 className="rooms__title-country">{nameCountry}</h1>
                 <h4 className="rooms__subtitle">Local calls only</h4>
             </div>
             <h2 className='rooms__types'>Types of rooms</h2>
                 <div className="rooms__wrapper-types">
                     <div className="rooms__wrapper-body">
-                        <TypeRoom   type='Lanline'
+                        {/* <TypeRoom   type='Lanline'
                                     icon={LandLineIcon} 
                                     active={activeComponent === 'LandLine'} 
                                     onComponentClick={() => handleComponentClick('LandLine')}
@@ -103,8 +173,9 @@ const FormRooms = () => {
                                     icon={RandomIcon} 
                                     active={activeComponent === 'RandomType'} 
                                     onComponentClick={() => handleComponentClick('RandomType')}
-                                    onCountChange={handleCountChange}/>
-                                    </div>
+                                    onCountChange={handleCountChange}/> */}
+                                    {renderTypeRooms(country.Data)}
+                    </div>
                 </div>
             <div className="rooms__footer">
                 <button onClick={handleBuyNow} 

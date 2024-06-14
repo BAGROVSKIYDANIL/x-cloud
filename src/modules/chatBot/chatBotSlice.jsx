@@ -1,8 +1,26 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {v4 as uuidv4} from 'uuid'
+
+
+
+const id = uuidv4();
+console.log(id)
+export const fetchCountry = createAsyncThunk(
+    'chatBot/fetchCountry',
+    async () => {
+        // const response = await axios.api.getCountry();
+        // return await response;
+        const responce = await fetch('https://pay.voicex.biz:7260/api/Countrys');
+        const data = await responce.json();
+        return data;
+    })
 
 const chatBotSlice = createSlice({
     name: 'chatBot',
-    initialState: {
+    initialState: 
+    {
+        status: null,
+        error: null,
         CountryList:[
                     {id: 1, name: 'Austria', imageUrl: 'Austria.svg'},
                     {id: 2, name: 'Slovakia', imageUrl: 'Slovakia.svg'},
@@ -41,16 +59,18 @@ const chatBotSlice = createSlice({
                     {id: 35, name: 'France', imageUrl: 'France.svg'},
                     {id: 36, name: 'Greece', imageUrl: 'Greece.svg'},
         ],
+        localStorageIdCountry: [],
+        country: [],
         stateTotalCount: 0,
         selectedCounty: 0,
         countState: []
     },
     
     reducers: {
-        selectCountry(state, action)
-        {
-            state.selectedCounty = action.payload;
-        },
+        // selectCountry(state, action)
+        // {
+        //     state.selectedCounty = action.payload;
+        // },
         changeTotalCount(state, action)
         {
             state.stateTotalCount = action.payload;
@@ -69,9 +89,46 @@ const chatBotSlice = createSlice({
                     const newCount = [...state.countState, action.payload];
                     state.countState =  newCount;
                 }
-                console.log(state.countState)
+        },
+        postIdCounry(state, action)
+        {
+            state.localStorageIdCountry = action.payload;
         }
     },
+    extraReducers: (builder) =>
+    {
+        builder 
+            .addCase(fetchCountry.pending, (state) =>
+            {
+                state.status = 'loading';
+                state.error = null;
+            })
+            .addCase(fetchCountry.fulfilled, (state, action) =>
+            {
+                state.status = 'resolved';
+                // state.country = action.payload;
+                // state.country = state.country.Data.map((country, index) => ({
+                //     ...state.country,
+                //     id: index + 1
+                // }))
+                // state.country = action.payload.Data.forEach((country, index) =>
+                // {
+                //     country.id = index + 1;
+                // })
+                state.country = {
+                    ...action.payload,
+                    Data: action.payload.Data.map((country, index) => ({
+                        ...country,
+                        id: index + 1 // Добавляем уникальный идентификатор
+                        }))
+                        };
+                    console.log(state.country)
+            })
+            .addCase(fetchCountry.rejected, (state, action) =>
+            {
+
+            })
+    }
 })
-export const {selectCountry, changeTotalCount, postAllCount} = chatBotSlice.actions;
+export const {selectCountry, changeTotalCount, postAllCount, postIdCounry} = chatBotSlice.actions;
 export default chatBotSlice.reducer;

@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useMemo} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; 
 import { postAllCount } from '../../chatBotSlice';
 import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
 import './TypeRoom.scss';
 
-const TypeRoom = ({ type, active, onComponentClick, onCountChange  }) => 
+const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon }) => 
 {
     const [activeStateOpenDropDown, setactiveStateOpenDropDown] = useState(false);
     const {countState} = useSelector(state => state.bot);
@@ -12,7 +12,7 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange  }) =>
     const [count, setCount] = useState(0);
     const dispatch = useDispatch();
     // console.log(countState)
-
+    
     const  hadnlerIncrementCount = () =>
     {
         setCount(count => 
@@ -40,22 +40,6 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange  }) =>
         }
     }
 
-
-    const payload = useMemo(() => (
-    {
-        TypeRoom: type,
-        num: count
-    }
-    ),[type, count]);
-// ;
-    // useEffect(() =>
-    // {
-    //     if(count !== 0)
-    //         {
-    //             dispatch(postAllCount(payload))
-    //         }
-    // }, [count])
-
     useEffect(() =>
     {
         if(active)
@@ -81,16 +65,20 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange  }) =>
         <div className={`type ${activeStateOpenDropDown ? 'active-dropdown' : ''}`}>
             <div className="type__wrapper">
                 {
-                    activeImage ? 
+                    oneType ? 
                         <div className="type__image">
                             <img src={LandLineImg} alt="" />
                         </div>
                     : ''
                 }
-                <label className="type__checkbox-wrapper">
-                    <input className='type__input' type="checkbox"/>
-                    <span className="type__checkbox"></span>
-                </label>
+                {
+                    oneType ? '':
+                    <label className="type__checkbox-wrapper">
+                        <input className='type__input' type="checkbox"/>
+                        <span className="type__checkbox"></span>
+                    </label>
+
+                }
                 <div className="type__title-information">
                     <div className="type__title">{type}</div>
                     <div className="type__billing">

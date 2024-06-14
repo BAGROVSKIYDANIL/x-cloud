@@ -1,59 +1,32 @@
 import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { fetchCountry } from "../../chatBotSlice";
+import { useSelector, useDispatch } from "react-redux";
 import TrashBasketList from "./TrashBasketList";
-import { getCountrys } from "../../../../api/api";
+
 import './TrashBasket.scss'
 
 const TrashBasket = () =>
     {
-        const {CountryList, stateTotalCount} = useSelector(state => state.bot);
-        const [asyncCountryArray, setAsyncCountryArray] = useState([])
+        const {CountryList, stateTotalCount, country} = useSelector(state => state.bot);
+        // console.log(country.Data.filter(item => item))
+        console.log(country)
+        // console.log(CountryList[0].id)
         const [selectedCountryState, setSelectedCountryState] = useState([]);
-
+        const dispatch = useDispatch();
+        useEffect(() =>
+        {
+            dispatch(fetchCountry())
+        }, [dispatch])
         useEffect(() =>
         {
             const countryId = JSON.parse(localStorage.getItem('countryId'));
-            const selectedCountry = countryId ? CountryList.filter((item) => countryId.includes(item.id)) : '';
-            setSelectedCountryState(selectedCountry)
-        }, [CountryList])
-
-        // console.log(asyncCountryArray)
-        useEffect(() =>
-        {
-            // getCountrys.then(res => setAsyncCountryArray(res.data.data))
-        }, [])
-        // console.log(selectedCountryState)
-        // console.log(asyncCountryArray)
-        // asyncCountryArray.map(item => 
-        //     {
-        //         if(!!item)
-        //             {
-        //                 console.log(item)
-        //             }
-        //     }
-        // )
-
-        // asyncCountryArray.forEach(obj =>
-        //     {
-        //         Object.keys(obj).forEach(keys =>
-        //         {
-
-        //             selectedCountryState.forEach(country =>
-        //                 {
-        //                     if(obj.Country === country.name)
-        //                         {
-        //                             if(obj[keys] > 0)
-        //                             {
-        //                                 console.log(obj[keys])
-        //                                 console.log([keys])
-        //                             }
-        //                         }
-        //                 }
-        //             )
-        //         })
-        //     }
-        // )
+            // const selectedCountry = countryId ? CountryList.filter((item) => countryId.includes(item.id)) : '';
+            // const selectedCountry = countryId ? country.Data.filter((item) => item) : '';
+            // console.log(selectedCountry)
+            // console.log(CountryList)
+            // setSelectedCountryState(selectedCountry))
+        }, [country])
 
         const handleAllDeleteClick = () => 
         {
@@ -66,8 +39,9 @@ const TrashBasket = () =>
             const updateCountryList = selectedCountryState.filter(country => country.id !== id);
             setSelectedCountryState(updateCountryList);
             const updateCountryId = updateCountryList.map(country => country.id)
-            localStorage.setItem('countryId', JSON.stringify(updateCountryId))
+            localStorage.setItem('countryId', JSON.stringify(updateCountryId));
         }
+
         return(
             <div className="trashBasket">
                 <nav className="trashBasket__menu">

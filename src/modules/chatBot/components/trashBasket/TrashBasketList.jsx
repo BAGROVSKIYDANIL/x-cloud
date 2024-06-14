@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeTotalCount } from '../../chatBotSlice';
 import './TrashBasket.scss'
 
 const TrashBasketList = ({country, handleDeleteClick}) => {
 
     const url = country.imageUrl;
+    const {countState} = useSelector(state => state.bot);
     const dispatch = useDispatch();
-    const [count, setCount] = useState(0);
+    const numberCount = countState[0] ? countState[0][0].num : null;
+    const [count, setCount] = useState(numberCount);
     const [total, setTotal] = useState(0);
+
     const  incrementCount = () =>
     {
         setCount(count => count + 1)
@@ -21,13 +24,29 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
             setCount(count - 1)
         }
     }
-
+    // console.log(countState[0][0].num)
+    const typeCount = countState[0] ? countState[0][0].TypeRoom : null;
+    
     useEffect(() =>
     {
         setTotal(count * 480);
         dispatch(changeTotalCount(total))
     }, [count, dispatch, total])
-  
+
+    // useEffect(() =>
+    // {
+    //     getCountrys.then(responce => console.log(responce))
+    // },[])
+    
+        // const hash = 'YWRtaW46YWRtaW4=';
+        // const encodeHash = btoa(hash);
+        // const headers = {
+        //     // 'Content-Type': 'application/json',
+        //     'Authorization': `Basic ${hash}`
+        // }
+        // fetch('https://pay.voicex.biz:7260/api/Countrys')
+        // .then(responce => responce.json())
+        // .then(data => console.log(data))
 
     return (
             <div className="trashBasket__selected-country">
@@ -50,7 +69,8 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                     </div>
                     <div className="trashBasket__body">
                         <div className="trashBasket__type-rooms">
-                            <div className="trashBasket__name-type">Tollfee</div>
+                            {/* <div className="trashBasket__name-type">Tollfee</div> */}
+                            <div className="trashBasket__name-type">{typeCount}</div>
                             <div className="trashBasket__right-column-body">
                                 <div className="trashBasket__counter">
                                     <div onClick={decrementCount} className="trashBasket__decrease">
