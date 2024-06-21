@@ -2,6 +2,10 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 
 
+<<<<<<< HEAD
+=======
+const id = uuidv4();
+>>>>>>> 5deb12e219a5f150a8c830c1a2ac656fa23a8ac0
 
 export const fetchCountry = createAsyncThunk(
     'chatBot/fetchCountry',
@@ -117,7 +121,7 @@ const chatBotSlice = createSlice({
                     ...action.payload,
                     Data: action.payload.Data.map((country, index) => ({
                         ...country,
-                        id: index + 1 // Добавляем уникальный идентификатор
+                        id: index + 1 
                         }))
                         };
                     // console.log(state.country)
