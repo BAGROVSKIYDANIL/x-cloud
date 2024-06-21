@@ -8,39 +8,62 @@ import './TrashBasket.scss'
 
 const TrashBasket = () =>
     {
-        const {CountryList, stateTotalCount, country} = useSelector(state => state.bot);
-        // console.log(country.Data.filter(item => item))
-        console.log(country)
-        // console.log(CountryList[0].id)
+        const {stateTotalCount, country} = useSelector(state => state.bot);
+        const countryId = JSON.parse(localStorage.getItem('countryId'));
+        const numberAndType = JSON.parse(localStorage.getItem('numberCount')) || []
         const [selectedCountryState, setSelectedCountryState] = useState([]);
         const dispatch = useDispatch();
         useEffect(() =>
         {
             dispatch(fetchCountry())
         }, [dispatch])
+
+
         useEffect(() =>
         {
-            const countryId = JSON.parse(localStorage.getItem('countryId'));
+            // const countryId = JSON.parse(localStorage.getItem('countryId'));
             // const selectedCountry = countryId ? CountryList.filter((item) => countryId.includes(item.id)) : '';
-            // const selectedCountry = countryId ? country.Data.filter((item) => item) : '';
-            // console.log(selectedCountry)
-            // console.log(CountryList)
-            // setSelectedCountryState(selectedCountry))
+            // const selectedCountry = countryId ? country.Data.filter((item) => countryId.includes(item.id)) : null;
+            if(countryId && country.length !==0)
+            {
+                const selectedCountry = country.Data.filter((item) => countryId.includes(item.id));
+                setSelectedCountryState(selectedCountry)
+            }
+            // setSelectedCountryState(selectedCountry);
         }, [country])
-
+ 
         const handleAllDeleteClick = () => 
         {
             setSelectedCountryState([])
             localStorage.removeItem('countryId');
+            localStorage.removeItem('numberCount');
         }    
 
         const handleDeleteClick = (id) => 
         {   
+            console.log(id)
+            // const  updateTypeRoom = numberAndType.filter()
+            const updateTypeRooms = numberAndType.filter((item, index) => (index + 1 !== id))
             const updateCountryList = selectedCountryState.filter(country => country.id !== id);
             setSelectedCountryState(updateCountryList);
             const updateCountryId = updateCountryList.map(country => country.id)
             localStorage.setItem('countryId', JSON.stringify(updateCountryId));
+            localStorage.setItem('numberCount', JSON.stringify(updateTypeRooms))
         }
+
+        const items = selectedCountryState.flatMap((item, index) =>
+        {
+            const tariffs = item.Tariffs.map((tariff, index) => ({country: item.Country, type: tariff.type}));
+            return (
+                <TrashBasketList 
+                    key={item.id}
+                    id={index}
+                    country={item}
+                    typeRoom={tariffs}
+                    handleDeleteClick={handleAllDeleteClick}
+                    />
+            )
+        })
 
         return(
             <div className="trashBasket">
@@ -69,14 +92,28 @@ const TrashBasket = () =>
                 <div className="trashBasket__wrapper">
                     <div className="trashBasket__wrapper-list">
                         {
-                            selectedCountryState ? selectedCountryState.map(country =>
-                                (
-                                <TrashBasketList    key={country.id} 
-                                                    country={country} 
-                                                    handleDeleteClick={handleDeleteClick} />
-                                )
-                            )
-                            : ''
+                            items
+                            // selectedCountryState ? selectedCountryState.map(country =>
+                            //     (    
+                            //         country.Tariffs.map((tariffs, index) => 
+                            //             (
+                            //                 <TrashBasketList    key={country.id} 
+                            //                                     country={country} 
+                            //                                     // typeRoom={tariffs.type}
+                            //                                     handleDeleteClick={handleDeleteClick} />
+                            //             )
+                            //         )
+                            //     )
+                            // )
+                            // : ''
+                            // items.map((item,index) => 
+                            // (
+                            //     <TrashBasketList 
+                            //         key={index}
+                            //         country={item}
+                            //         typeRoom={item.type}
+                            //         handleDeleteClick={handleAllDeleteClick}/>
+                            // ))
                         }                        
                     </div>
                 </div>

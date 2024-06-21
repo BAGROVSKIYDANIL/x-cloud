@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useEffect, useMemo} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postAllCount, postIdCounry, fetchCountry } from '../../chatBotSlice';
+import { postAllCount,fetchCountry } from '../../chatBotSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import Map from '../../../../assets/icons/Map.png'
 import PointToMap from '../../../../assets/icons/PointToMap.svg'
@@ -14,14 +14,16 @@ import TollFeeIcon from '../../../../assets/icons/TypesCall/Tollfee.svg'
 import RandomIcon from '../../../../assets/icons/TypesCall/Random.svg'
 
 const FormRooms = () => {
-    const [activeComponent, setActiveComponent] = useState(null);
-    const [oneTypeOfRoom, setOneTypeOfRoom] = useState(false);
-    const [counts, setCounts] = useState(0);
-    const [activeNumber, setActiveNumber] = useState(false);
-   
-    // const coutryArray = JSON.parse(localStorage.getItem('countryId'));
     const dispatch = useDispatch();
     const {localStorageIdCountry, country} = useSelector(state => state.bot)
+    const [activeComponent, setActiveComponent] = useState(null);
+    const [oneTypeOfRoom, setOneTypeOfRoom] = useState(false);
+    const nameCountry = country.Data ? country.Data.map(name => name.Country):'';
+    // console.log(localStorageIdCountry)
+    // console.log(nameCountry[localStorageIdCountry - 1])
+    // const countryId = JSON.parse(localStorage.getItem('countryId'));
+    const [counts, setCounts] = useState(0);
+    const [activeNumber, setActiveNumber] = useState(false);
     const navigate = useNavigate();
 
     const handleCountChange = useCallback((type, count) => {
@@ -73,16 +75,25 @@ const FormRooms = () => {
         setActiveNumber(noneZeroCount)
     }, [counts])
 
-
+           
     const handleBuyNow = () => 
-    {           
+    {   
         if(activeNumber)
-        {
-            const payloads = Object.entries(counts).filter(([type, count]) => count !== 0).map(([type, count]) => ({TypeRoom: type, num: count}));
-            dispatch(postAllCount(payloads));
-            localStorage.setItem('countryId', JSON.stringify(localStorageIdCountry))
+        {   
+            const currentStorage = JSON.parse(localStorage.getItem('numberCount')) || [];
+            const currentStorageIdCountry = JSON.parse(localStorage.getItem('countryId')) || [];
+            const storage = Object.entries(counts)
+                                .filter(([type, count]) => count !== 0)
+                                .map(([type, count]) => ({TypeRoom: type, num: count}));
+            const updateStorage = [...currentStorage, ...storage];
+            const storogeIdCountry = [...currentStorageIdCountry,...localStorageIdCountry]
+            // console.log(updateStorage)
+            dispatch(postAllCount(updateStorage));
+            localStorage.setItem('numberCount', JSON.stringify(updateStorage))
+            localStorage.setItem('countryId', JSON.stringify(storogeIdCountry))
             navigate('/chatBot');
         }
+        
     };
 
     const typeIcons = 
@@ -96,24 +107,28 @@ const FormRooms = () => {
 
 
 
-    const renderTypeRooms = (data) => 
+    const renderTypeRooms = (data, id) => 
     {
         if(!data || data.length === 0)
         {
             return null;
         }
-        const allTariffs =  data.flatMap(country => country.Tariffs);
+        const allTariffs =  data.filter(country => country.id === id[0]).flatMap(country => country.Tariffs);
         const uniqueTypes = [...new Set( allTariffs.map(tariff => tariff.type))];
-        return uniqueTypes.map(type => (
+        // console.log(uniqueTypes)
+        // console.log(id)
+        return uniqueTypes.map((type, index) => (
             <TypeRoom
-                key={type}
+                key={type[index]}
                 type={type}
                 icon={typeIcons[type]}
                 active={activeComponent === type}
                 oneType={oneTypeOfRoom}
                 onComponentClick={() => handleComponentClick(type)}
-                onCountChange={handleCountChange}/>
+                onCountChange={handleCountChange}
+                />
         ))
+        
     }
 
 
@@ -122,8 +137,9 @@ const FormRooms = () => {
 // const uniqueTypes = [...new Set(country.Data.map(tariff => tariff.Tariffs.type))];
 // console.log(uniqueTypes)
     // const numberOfRooms = countTariffTypes(country.Tariffs);
-    const nameCountry = country.Data ? country.Data.map(name => name.Country):'';
-
+   
+    // const test = country.Data ? country.Data.filter(country => country.id === countryId[0]):'';
+    // console.log(test)
     return (
         <div className='rooms'>
             <Link to='/chatBot' className={activeComponent ? 'active-component' : ''}>
@@ -142,7 +158,7 @@ const FormRooms = () => {
                 </div>
             }
             <div className="rooms__wrapper-title">
-                <h1 className="rooms__title-country">{nameCountry}</h1>
+                <h1 className="rooms__title-country">{nameCountry[localStorageIdCountry - 1]}</h1>
                 <h4 className="rooms__subtitle">Local calls only</h4>
             </div>
             <h2 className='rooms__types'>Types of rooms</h2>
@@ -174,7 +190,7 @@ const FormRooms = () => {
                                     active={activeComponent === 'RandomType'} 
                                     onComponentClick={() => handleComponentClick('RandomType')}
                                     onCountChange={handleCountChange}/> */}
-                                    {renderTypeRooms(country.Data)}
+                                    {renderTypeRooms(country.Data, localStorageIdCountry)}
                     </div>
                 </div>
             <div className="rooms__footer">

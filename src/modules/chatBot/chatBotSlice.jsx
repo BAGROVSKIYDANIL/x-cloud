@@ -1,10 +1,8 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {v4 as uuidv4} from 'uuid'
 
 
 
-const id = uuidv4();
-console.log(id)
+
 export const fetchCountry = createAsyncThunk(
     'chatBot/fetchCountry',
     async () => {
@@ -67,10 +65,6 @@ const chatBotSlice = createSlice({
     },
     
     reducers: {
-        // selectCountry(state, action)
-        // {
-        //     state.selectedCounty = action.payload;
-        // },
         changeTotalCount(state, action)
         {
             state.stateTotalCount = action.payload;
@@ -86,12 +80,16 @@ const chatBotSlice = createSlice({
                 }
                 else 
                 {
-                    const newCount = [...state.countState, action.payload];
-                    state.countState =  newCount;
+                    // const newCount = [...state.countState, action.payload];
+                    // state.countState =  newCount;
+                    state.countState = action.payload;
                 }
         },
         postIdCounry(state, action)
         {
+            if(state.localStorageIdCountry.length === 0)
+            {
+            }
             state.localStorageIdCountry = action.payload;
         }
     },
@@ -122,7 +120,7 @@ const chatBotSlice = createSlice({
                         id: index + 1 // Добавляем уникальный идентификатор
                         }))
                         };
-                    console.log(state.country)
+                    // console.log(state.country)
             })
             .addCase(fetchCountry.rejected, (state, action) =>
             {

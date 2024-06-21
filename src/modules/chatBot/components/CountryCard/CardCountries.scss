@@ -13,7 +13,7 @@
     {
         display:  grid;
         padding-top: 6px;
-        height: 745px;
+        max-height: 745px;
         overflow: auto;
         grid-template-columns: 116px 116px 116px;
         flex-wrap: wrap;

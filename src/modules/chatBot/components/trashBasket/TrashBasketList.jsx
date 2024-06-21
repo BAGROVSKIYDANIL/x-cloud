@@ -1,53 +1,84 @@
 import React, {useState, useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { changeTotalCount } from '../../chatBotSlice';
 import './TrashBasket.scss'
 
-const TrashBasketList = ({country, handleDeleteClick}) => {
 
-    const url = country.imageUrl;
-    const {countState} = useSelector(state => state.bot);
+const TrashBasketList = ({country, handleDeleteClick, typeRoom, id}) => {
+
+    const url = `${country.Country}.svg`;
+    // const {countState} = useSelector(state => state.bot);
+    console.log(typeRoom)
     const dispatch = useDispatch();
-    const numberCount = countState[0] ? countState[0][0].num : null;
+    const typeAndNumberCount = JSON.parse(localStorage.getItem('numberCount'));
+    console.log(typeAndNumberCount)
+    const test = typeRoom.map((item) => typeAndNumberCount.map((type) => ({...item, count: type.num})));
+    console.log(test)
+    // const numberCount = typeAndNumberCount.map(item => item.num);
+    // const numberCount = typeAndNumberCount.filter(item => console.log(item.TypeRoom.includes(typeRoom)))
+    //                                         .map(item => item.num);
+
+    // const numberCount = typeAndNumberCount.map(item => ({...item, TypeRoom: [item.TypeRoom]})).filter(item => item.TypeRoom.some(room => typeRoom.includes(room)))
+    //                                 .map(({ num }) => num);
+
+
+    
+    // const numberCount = typeAndNumberCount.filter(item => item.TypeRoom === 'random').map(item => item.num);
+    const numberCount = typeAndNumberCount.map(item => item.num);
+    console.log(numberCount)
+    // const typeRoom = typeAndNumberCount.map(item => item.TypeRoom)
+    // const numberCount = countState[0] ? countState[0][0].num : null;
+    // const [count, setCount] = useState(numberCount[0]);
     const [count, setCount] = useState(numberCount);
     const [total, setTotal] = useState(0);
-
-    const  incrementCount = () =>
-    {
-        setCount(count => count + 1)
+    // console.log(count)
+    // console.log(numberCount)
+    
+    // console.log(numberCount)
+    const  incrementCount = (e) =>
+    {   
+        const index = +e.currentTarget.getAttribute('count-index');
+        console.log(index)
+        const updateCount = [...count];
+        updateCount[index] += 1;
+        setCount(updateCount)
     }
-
-    const decrementCount = () =>
+    const decrementCount = (e) =>
     {
+        const index = +e.currentTarget.getAttribute('count-index');
         if(count !== 0)
         {
-            setCount(count - 1)
+            const updateCount = [...count]
+            updateCount[index] -= 1;
+            setCount(updateCount)
         }
     }
-    // console.log(countState[0][0].num)
-    const typeCount = countState[0] ? countState[0][0].TypeRoom : null;
-    
-    useEffect(() =>
-    {
-        setTotal(count * 480);
-        dispatch(changeTotalCount(total))
-    }, [count, dispatch, total])
+
+    console.log(count)
+    // const updateLocalStorage = (count) =>
+    // {   const currentStorage = JSON.parse(localStorage.getItem('numberCount')) || [];
+    //     const storage = typeAndNumberCount.filter(item => item.TypeRoom === typeRoom)
+    //                                       .map((item) => ({TypeRoom: typeRoom, num: count}))  ;
+    //      const updateStorage = [...currentStorage, ...storage];
+    //     localStorage.setItem('numberCount', JSON.stringify(storage));
+    // }
+    // useEffect(() => 
+    // {
+    //     updateLocalStorage(count)
+    // }, [count]);
 
     // useEffect(() =>
     // {
-    //     getCountrys.then(responce => console.log(responce))
-    // },[])
-    
-        // const hash = 'YWRtaW46YWRtaW4=';
-        // const encodeHash = btoa(hash);
-        // const headers = {
-        //     // 'Content-Type': 'application/json',
-        //     'Authorization': `Basic ${hash}`
-        // }
-        // fetch('https://pay.voicex.biz:7260/api/Countrys')
-        // .then(responce => responce.json())
-        // .then(data => console.log(data))
-
+    //     setTotal(count * 480);
+    //     dispatch(changeTotalCount(total))
+    // }, [count, dispatch, total])
+    // console.log(numberCount)
+    // console.log(count)
+    // const testik = typeRoom.map((item, index) =>
+    // {
+    //     return {...item, count: count[index]}
+    // })
+    console.log(id)
     return (
             <div className="trashBasket__selected-country">
                 <div className="trashBasket__item">
@@ -56,7 +87,7 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                         <div className="trashBasket__icon">
                             <img src={require(`../../../../assets/icons/trashCan-country/${url}`)} alt={`Flag of ${country.name}`} />
                         </div>
-                        <div className="trashBasket__title">{country.name}</div>
+                        <div className="trashBasket__title">{country.Country}</div>
                         </div>
                         <button onClick={() => handleDeleteClick(country.id)} className="trashBasket__trash-can">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -68,9 +99,8 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                         </button>
                     </div>
                     <div className="trashBasket__body">
-                        <div className="trashBasket__type-rooms">
-                            {/* <div className="trashBasket__name-type">Tollfee</div> */}
-                            <div className="trashBasket__name-type">{typeCount}</div>
+                        {/* <div className="trashBasket__type-rooms">
+                            <div className="trashBasket__name-type">{typeRoom}</div>
                             <div className="trashBasket__right-column-body">
                                 <div className="trashBasket__counter">
                                     <div onClick={decrementCount} className="trashBasket__decrease">
@@ -87,26 +117,33 @@ const TrashBasketList = ({country, handleDeleteClick}) => {
                                 </div>
                                 <div className="trashBasket__price">840$</div>
                             </div>
-                        </div>
-                        {/* <div className="trashBasket__type-rooms">
-                            <div className="trashBasket__name-type">Landline</div>
-                                <div className="trashBasket__right-column-body">
-                                    <div className="trashBasket__counter">
-                                        <div className="trashBasket__decrease">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23" fill="none">
-                                                <path d="M18 12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
-                                            </svg>
-                                        </div>
-                                        <div className="trashBasket__number">2</div>
-                                        <div className="trashBasket__increase">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23" fill="none">
-                                                <path d="M18 12.5H13V17.5C13 18.05 12.55 18.5 12 18.5C11.45 18.5 11 18.05 11 17.5V12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H11V5.5C11 4.95 11.45 4.5 12 4.5C12.55 4.5 13 4.95 13 5.5V10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                <div className="trashBasket__price">380$</div>
-                            </div>
                         </div> */}
+                       {typeRoom.map((item, index, Array) => (   
+
+                            <div key={index} className="trashBasket__type-rooms">
+                            <div className="trashBasket__name-type">{item.type}</div>
+                            <div className="trashBasket__right-column-body">
+                                <div className="trashBasket__counter">
+                                    <div onClick={(e) => decrementCount(e)}
+                                        count-index={id} 
+                                        className="trashBasket__decrease">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23" fill="none">
+                                            <path d="M18 12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
+                                        </svg>
+                                    </div>
+                                    <div className="trashBasket__number">{count[Array.length > 1 ? index : id]}</div>
+                                    <div onClick={(e) => incrementCount(e)} 
+                                        className="trashBasket__increase"
+                                        count-index={index}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23" fill="none">
+                                            <path d="M18 12.5H13V17.5C13 18.05 12.55 18.5 12 18.5C11.45 18.5 11 18.05 11 17.5V12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H11V5.5C11 4.95 11.45 4.5 12 4.5C12.55 4.5 13 4.95 13 5.5V10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div className="trashBasket__price">840$</div>
+                            </div>
+                        </div>
+                        ))}
                     </div>
                     <div className="trashBasket__line">
                         <hr />

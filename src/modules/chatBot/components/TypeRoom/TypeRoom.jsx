@@ -1,17 +1,18 @@
-import React, {useState, useEffect, useMemo} from 'react';
-import { useDispatch, useSelector } from 'react-redux'; 
-import { postAllCount } from '../../chatBotSlice';
+import React, {useState, useEffect} from 'react';
+// import { useDispatch, useSelector } from 'react-redux'; 
+// import { postAllCount } from '../../chatBotSlice';
 import LandLineImg from '../../../../assets/icons/TypesCall/LandLine.svg'
 import './TypeRoom.scss';
 
-const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon }) => 
+const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon}) => 
 {
     const [activeStateOpenDropDown, setactiveStateOpenDropDown] = useState(false);
-    const {countState} = useSelector(state => state.bot);
-    const [activeImage, setactiveImage] = useState(false);
+    // const {countState} = useSelector(state => state.bot);
+    // const [activeImage, setactiveImage] = useState(false);
     const [count, setCount] = useState(0);
-    const dispatch = useDispatch();
-    // console.log(countState)
+    // const dispatch = useDispatch();
+    // console.log(type)
+    // console.log(key)
     
     const  hadnlerIncrementCount = () =>
     {
@@ -60,7 +61,6 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
         onCountChange(type, count)
     }, [count, type, onCountChange])
 
-    // localStorage.setItem('NumberCounter', JSON.stringify(payload))
     return (
         <div className={`type ${activeStateOpenDropDown ? 'active-dropdown' : ''}`}>
             <div className="type__wrapper">
@@ -77,7 +77,6 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
                         <input className='type__input' type="checkbox"/>
                         <span className="type__checkbox"></span>
                     </label>
-
                 }
                 <div className="type__title-information">
                     <div className="type__title">{type}</div>

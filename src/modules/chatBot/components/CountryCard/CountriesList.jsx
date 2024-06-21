@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCountrys } from '../../../../api/api';
+// import { getCountrys } from '../../../../api/api';
 import { fetchCountry } from '../../chatBotSlice';
 import CardCountries from './CardCountries';
 
@@ -70,7 +70,7 @@ const CountriesList = () => {
                 {
                     country.Data?.length > 0 && country.Data.map(country =>
                         (
-                            <CardCountries key={country.Ptefix} country={country}/>
+                            <CardCountries key={country.id} country={country}/>
                         )
                     )
                 }

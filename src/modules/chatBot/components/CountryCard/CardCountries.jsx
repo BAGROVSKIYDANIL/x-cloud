@@ -22,10 +22,11 @@ const CardCountries = ({country}) => {
 
     const updateLocalStorage = (id) =>
     {
-        let storage = JSON.parse(localStorage.getItem('countryId')) || [];
-        if(!storage.includes(id))
+        let curentStorage = JSON.parse(localStorage.getItem('countryId')) || [];
+        const storage = []
+        if(!curentStorage.includes(id))
         {
-            storage.push(id);
+            storage.push(id)
         }
         dispatch(postIdCounry(storage))
     }
@@ -36,8 +37,8 @@ const CardCountries = ({country}) => {
         updateLocalStorage(countryId)
     }
 
-    const isSelectedCountry = coutryArray  ? coutryArray.includes(1) : '';
-    // console.log(isSelectedCountry)
+    const isSelectedCountry = coutryArray  ? coutryArray.includes(country.id) : '';
+
     return (
         <div className='country' >
             <div className="country__card">
@@ -48,7 +49,7 @@ const CardCountries = ({country}) => {
                 <div className="country__type-rooms">{`${numberOfRoomms} types rooms`}</div>
                     <Link to='/rooms'>
                         <button onClick={(e) => handleClickCountry(e)} 
-                                data-id={country.Ptefix} className="country__buy">Buy now</button>
+                                data-id={country.id} className="country__buy">Buy now</button>
                     </Link>
                 </div>
                 {
