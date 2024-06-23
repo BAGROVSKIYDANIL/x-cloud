@@ -84,7 +84,12 @@ const FormRooms = () => {
             const currentStorageIdCountry = JSON.parse(localStorage.getItem('countryId')) || [];
             const storage = Object.entries(counts)
                                 .filter(([type, count]) => count !== 0)
-                                .map(([type, count]) => ({TypeRoom: type, num: count}));
+                                .map(([type, count]) => (
+                                    {
+                                        country: nameCountry[localStorageIdCountry - 1], 
+                                        TypeRoom: type, 
+                                        num: count
+                                    }));
             const updateStorage = [...currentStorage, ...storage];
             const storogeIdCountry = [...currentStorageIdCountry,...localStorageIdCountry]
             // console.log(updateStorage)

@@ -2,11 +2,6 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
 
 
-<<<<<<< HEAD
-=======
-const id = uuidv4();
->>>>>>> 5deb12e219a5f150a8c830c1a2ac656fa23a8ac0
-
 export const fetchCountry = createAsyncThunk(
     'chatBot/fetchCountry',
     async () => {
