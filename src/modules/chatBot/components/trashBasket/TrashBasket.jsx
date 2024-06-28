@@ -10,7 +10,8 @@ const TrashBasket = () =>
     {
         const {stateTotalCount, country} = useSelector(state => state.bot);
         const countryId = JSON.parse(localStorage.getItem('countryId'));
-        const numberAndType = JSON.parse(localStorage.getItem('numberCount')) || []
+        // const numberAndType = JSON.parse(localStorage.getItem('numberCount')) || []
+        const [numberAndType, setMumberAndType] = useState(JSON.parse(localStorage.getItem('numberCount')) || [])
         const [selectedCountryState, setSelectedCountryState] = useState([]);
         const dispatch = useDispatch();
         useEffect(() =>
@@ -38,33 +39,43 @@ const TrashBasket = () =>
             localStorage.removeItem('countryId');
             localStorage.removeItem('numberCount');
         }    
-
-        const handleDeleteClick = (id) => 
+//  const updateTypeRooms = numberAndType.filter((typeRoom, index) => console.log(typeRoom.country !== selectedCountryState[index].Country))
+            // console.log(selectedCountryState)
+        const handleDeleteClick = (id, indexRoom) => 
         {   
-            console.log(id)
+            console.log('delete id', id)
+            console.log('приход', indexRoom)
             // const  updateTypeRoom = numberAndType.filter()
-            const updateTypeRooms = numberAndType.filter((item, index) => (index + 1 !== id))
+            // const updateTypeRooms = numberAndType.filter((item, index) => (index + 1 !== id))
             const updateCountryList = selectedCountryState.filter(country => country.id !== id);
             setSelectedCountryState(updateCountryList);
             const updateCountryId = updateCountryList.map(country => country.id)
             localStorage.setItem('countryId', JSON.stringify(updateCountryId));
+            
+            const updateTypeRooms = numberAndType.filter((typeRoom, index) => typeRoom.country !== selectedCountryState[indexRoom].Country)
+            setMumberAndType(updateTypeRooms)
+           console.log('room', updateTypeRooms) 
+ 
+            console.log('country', updateCountryList)
             localStorage.setItem('numberCount', JSON.stringify(updateTypeRooms))
         }
-        // console.log(selectedCountryState)
-        // console.log(numberAndType)
+
+
         const items = selectedCountryState.flatMap((item, index) =>
         {   
             const matchType = numberAndType.filter(storage => storage.country === item.Country);
             const tariffs = item.Tariffs.map((tariff, index) => ({country: item.Country, type: tariff.type}));
-            // console.log('new',matchType)
+            // console.log('match', matchType.map((item) => item.num))
             return (
                 <TrashBasketList 
                     key={index}
                     id={item}
                     numberCounter={matchType.map((item) => item.num)}
                     country={item}
+                    nameCountry={item.Country}
                     typeRoom={tariffs}
-                    handleDeleteClick={handleAllDeleteClick}
+                    indexRoom={index}
+                    handleDeleteClick={handleDeleteClick}
                     />
             )
         })

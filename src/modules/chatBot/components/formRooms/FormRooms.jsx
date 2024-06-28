@@ -18,7 +18,15 @@ const FormRooms = () => {
     const {localStorageIdCountry, country} = useSelector(state => state.bot)
     const [activeComponent, setActiveComponent] = useState(null);
     const [oneTypeOfRoom, setOneTypeOfRoom] = useState(false);
+    const [changeStorage, setChangeStorage] = useState([]);
     const nameCountry = country.Data ? country.Data.map(name => name.Country):'';
+    const localCountryId = JSON.parse(localStorage.getItem('localCountryId')) || [];
+    const countryRoomTypes = JSON.parse(localStorage.getItem('numberCount')) || [];
+    const currentNameCountry = nameCountry[localStorageIdCountry.length ? localStorageIdCountry - 1 : localCountryId -1]
+    let isChangeRoomType;
+    countryRoomTypes.some(item => item.country === currentNameCountry ? isChangeRoomType = true : isChangeRoomType = false)
+    // console.log('Изменёная страна',isChangeRoomType)
+    // console.log('Имя странны', currentNameCountry)
     // console.log(localStorageIdCountry)
     // console.log(nameCountry[localStorageIdCountry - 1])
     // const countryId = JSON.parse(localStorage.getItem('countryId'));
@@ -72,29 +80,79 @@ const FormRooms = () => {
     useEffect(() =>
     {
         const noneZeroCount = Object.values(counts).some(count => count !== 0);
+        // console.log('Что то',noneZeroCount)
         setActiveNumber(noneZeroCount)
     }, [counts])
 
-           
+        //    console.log('CHISLO', counts)
     const handleBuyNow = () => 
     {   
         if(activeNumber)
         {   
             const currentStorage = JSON.parse(localStorage.getItem('numberCount')) || [];
             const currentStorageIdCountry = JSON.parse(localStorage.getItem('countryId')) || [];
+            // const duplicateStorageboolean = Object.entries(counts).
+
+            // const storage = Object.entries(counts)
+            //                     .filter(([type, count]) => count !== 0 )
+            //                     .map(([type, count]) => (
+            //                         {
+            //                             country: nameCountry[localStorageIdCountry - 1], 
+            //                             TypeRoom: type, 
+            //                             num: count
+            //                         }));
+            console.log('arg', counts)
             const storage = Object.entries(counts)
-                                .filter(([type, count]) => count !== 0)
-                                .map(([type, count]) => (
-                                    {
-                                        country: nameCountry[localStorageIdCountry - 1], 
+                                .filter(([type, count]) => count !== 0 )
+                                .map(([type, count]) => 
+                                    {   console.log(nameCountry[localCountryId - 1])
+                                        return{
+                                        country: nameCountry[localCountryId - 1], 
                                         TypeRoom: type, 
                                         num: count
-                                    }));
+                                        }
+                                    });
+            // const duplicateStorageboolean = currentStorage.some(entry => entry.country === storage[0].country &&
+            //                                                              entry.TypeRoom === storage[0].TypeRoom)
+            // console.log('Првоерка', duplicateStorageboolean)
+            // if(duplicateStorageboolean)
+            //     {
+            //         currentStorage.find(entry => entry.country === storage[0].country && entry.TypeRoom === storage[0].TypeRoom).num = storage[0].num;
+            //     }
+            //     console.log('Првоерка 2', duplicateStorageboolean)
+
+            console.log('Изменение', storage)
+            const test = storage;
+            console.log(test)
+            storage.forEach(newEntry =>
+                {
+                    const existingIndex = currentStorage.findIndex(entry => 
+                    entry.country === newEntry.country && entry.TypeRoom === newEntry.TypeRoom);      
+                    console.log(newEntry)
+                    console.log(existingIndex)
+                    if(existingIndex !== -1)
+                    {
+                        currentStorage[existingIndex].num = newEntry.num;
+                        console.log('yes')
+                        console.log(currentStorage[existingIndex].num )
+                    }
+                    else
+                    {
+                        currentStorage.push(newEntry)
+                         console.log('no')
+                    }
+                }
+            )
+
+
             const updateStorage = [...currentStorage, ...storage];
             const storogeIdCountry = [...currentStorageIdCountry,...localStorageIdCountry]
-            // console.log(updateStorage)
-            dispatch(postAllCount(updateStorage));
-            localStorage.setItem('numberCount', JSON.stringify(updateStorage))
+            console.log('Временно', updateStorage)
+            console.log('Завершение', currentStorage)
+            // dispatch(postAllCount(updateStorage));
+            // dispatch(postAllCount(currentStorage));
+            // localStorage.setItem('numberCount', JSON.stringify(updateStorage))
+            localStorage.setItem('numberCount', JSON.stringify(currentStorage))
             localStorage.setItem('countryId', JSON.stringify(storogeIdCountry))
             navigate('/chatBot');
         }
@@ -114,6 +172,7 @@ const FormRooms = () => {
 
     const renderTypeRooms = (data, id) => 
     {
+        // console.log(id)
         if(!data || data.length === 0)
         {
             return null;
@@ -121,12 +180,13 @@ const FormRooms = () => {
         const allTariffs =  data.filter(country => country.id === id[0]).flatMap(country => country.Tariffs);
         const uniqueTypes = [...new Set( allTariffs.map(tariff => tariff.type))];
         // console.log(uniqueTypes)
-        // console.log(id)
         return uniqueTypes.map((type, index) => (
             <TypeRoom
                 key={type[index]}
+                id={index}
                 type={type}
                 icon={typeIcons[type]}
+                country={nameCountry[localStorageIdCountry.length ? localStorageIdCountry - 1 : localCountryId -1]}
                 active={activeComponent === type}
                 oneType={oneTypeOfRoom}
                 onComponentClick={() => handleComponentClick(type)}
@@ -135,16 +195,8 @@ const FormRooms = () => {
         ))
         
     }
-
-
-
-
-// const uniqueTypes = [...new Set(country.Data.map(tariff => tariff.Tariffs.type))];
-// console.log(uniqueTypes)
-    // const numberOfRooms = countTariffTypes(country.Tariffs);
-   
-    // const test = country.Data ? country.Data.filter(country => country.id === countryId[0]):'';
-    // console.log(test)
+    // console.log(localStorageIdCountry.length)
+    
     return (
         <div className='rooms'>
             <Link to='/chatBot' className={activeComponent ? 'active-component' : ''}>
@@ -163,44 +215,18 @@ const FormRooms = () => {
                 </div>
             }
             <div className="rooms__wrapper-title">
-                <h1 className="rooms__title-country">{nameCountry[localStorageIdCountry - 1]}</h1>
+                <h1 className="rooms__title-country">{nameCountry[localStorageIdCountry.length ? localStorageIdCountry - 1 : localCountryId -1]}</h1>
                 <h4 className="rooms__subtitle">Local calls only</h4>
             </div>
             <h2 className='rooms__types'>Types of rooms</h2>
                 <div className="rooms__wrapper-types">
                     <div className="rooms__wrapper-body">
-                        {/* <TypeRoom   type='Lanline'
-                                    icon={LandLineIcon} 
-                                    active={activeComponent === 'LandLine'} 
-                                    onComponentClick={() => handleComponentClick('LandLine')}
-                                    onCountChange={handleCountChange}/>
-                        <TypeRoom   type='Mobile' 
-                                    icon={MobileIcon} 
-                                    active={activeComponent === 'Mobile'} 
-                                    onComponentClick={() => handleComponentClick('Mobile')}
-                                    onCountChange={handleCountChange}/>
-                        <TypeRoom   type='NationalType' 
-                                    icon={NationalIcon} 
-                                    active={activeComponent === 'NationalType'} 
-                                    onComponentClick={() => handleComponentClick('NationalType')}
-                                    onCountChange={handleCountChange}/>
-                        <TypeRoom   type='TollfeeType' 
-                                    icon={TollFeeIcon} 
-                                    active={activeComponent === 'TollfeeType'} 
-                                    onComponentClick={() => handleComponentClick('TollfeeType')}
-                                    onCountChange={handleCountChange}/>
-                                    
-                        <TypeRoom   type='RandomType' 
-                                    icon={RandomIcon} 
-                                    active={activeComponent === 'RandomType'} 
-                                    onComponentClick={() => handleComponentClick('RandomType')}
-                                    onCountChange={handleCountChange}/> */}
-                                    {renderTypeRooms(country.Data, localStorageIdCountry)}
+                        {renderTypeRooms(country.Data, localStorageIdCountry.length ? localStorageIdCountry: [localCountryId])}
                     </div>
                 </div>
             <div className="rooms__footer">
                 <button onClick={handleBuyNow} 
-                        className={`rooms__buy-now ${activeNumber ? '': 'disabled'}`}>Buy now</button>
+                        className={`rooms__buy-now ${activeNumber ? '': 'disabled'}`}>{isChangeRoomType ? 'Save change': 'Buy now'}</button>
                 <div className={`rooms__calls-responsibility ${activeNumber ? '' : 'opacited'}`}>
                     <div className="rooms__calls-image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">

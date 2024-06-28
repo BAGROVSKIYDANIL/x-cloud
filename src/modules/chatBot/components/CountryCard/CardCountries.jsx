@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link} from 'react-router-dom';
 import {postIdCounry } from '../../chatBotSlice';
 import { useDispatch} from 'react-redux';
@@ -6,9 +6,19 @@ import { useDispatch} from 'react-redux';
 const CardCountries = ({country}) => {
 
     const url = `${country.Country}.png`;
-    // const numberOfRoomms = 
-    const dispatch = useDispatch();
+    const [isPurchased, setIsPurchased] = useState(false);
     const coutryArray = JSON.parse(localStorage.getItem('countryId'));
+    const isSelectedCountry = coutryArray  ? coutryArray.includes(country.id) : '';
+    const dispatch = useDispatch();
+    
+    useEffect(() =>
+    {
+        if(isSelectedCountry)
+        {
+            setIsPurchased(true)
+        }
+    }, [isPurchased])
+
     const countTariffTypes = (tariffs) =>
     {
         const uniqueTypes = new Set();
@@ -32,12 +42,12 @@ const CardCountries = ({country}) => {
     }
     const handleClickCountry = (e) =>
     {
-        // e.preventDefault();
         const countryId = +e.currentTarget.getAttribute('data-id');
+        localStorage.setItem('localCountryId', countryId)
         updateLocalStorage(countryId)
     }
 
-    const isSelectedCountry = coutryArray  ? coutryArray.includes(country.id) : '';
+    
 
     return (
         <div className='country' >
@@ -49,7 +59,8 @@ const CardCountries = ({country}) => {
                 <div className="country__type-rooms">{`${numberOfRoomms} types rooms`}</div>
                     <Link to='/rooms'>
                         <button onClick={(e) => handleClickCountry(e)} 
-                                data-id={country.id} className="country__buy">Buy now</button>
+                                data-id={country.id} className="country__buy">{isPurchased ? 'Change' : 'Buy now'}
+                        </button>
                     </Link>
                 </div>
                 {
