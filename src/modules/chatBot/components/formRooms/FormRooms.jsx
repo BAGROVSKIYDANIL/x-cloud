@@ -84,26 +84,16 @@ const FormRooms = () => {
         setActiveNumber(noneZeroCount)
     }, [counts])
 
-        //    console.log('CHISLO', counts)
+           console.log('CHISLO', counts)
     const handleBuyNow = () => 
     {   
         if(activeNumber)
         {   
             const currentStorage = JSON.parse(localStorage.getItem('numberCount')) || [];
             const currentStorageIdCountry = JSON.parse(localStorage.getItem('countryId')) || [];
-            // const duplicateStorageboolean = Object.entries(counts).
-
-            // const storage = Object.entries(counts)
-            //                     .filter(([type, count]) => count !== 0 )
-            //                     .map(([type, count]) => (
-            //                         {
-            //                             country: nameCountry[localStorageIdCountry - 1], 
-            //                             TypeRoom: type, 
-            //                             num: count
-            //                         }));
             console.log('arg', counts)
             const storage = Object.entries(counts)
-                                .filter(([type, count]) => count !== 0 )
+                                // .filter(([type, count]) => count !== 0 )
                                 .map(([type, count]) => 
                                     {   console.log(nameCountry[localCountryId - 1])
                                         return{
@@ -112,18 +102,9 @@ const FormRooms = () => {
                                         num: count
                                         }
                                     });
-            // const duplicateStorageboolean = currentStorage.some(entry => entry.country === storage[0].country &&
-            //                                                              entry.TypeRoom === storage[0].TypeRoom)
-            // console.log('Првоерка', duplicateStorageboolean)
-            // if(duplicateStorageboolean)
-            //     {
-            //         currentStorage.find(entry => entry.country === storage[0].country && entry.TypeRoom === storage[0].TypeRoom).num = storage[0].num;
-            //     }
-            //     console.log('Првоерка 2', duplicateStorageboolean)
-
             console.log('Изменение', storage)
-            const test = storage;
-            console.log(test)
+            const changeStorage = [...currentStorage, storage];
+            console.log(changeStorage)
             storage.forEach(newEntry =>
                 {
                     const existingIndex = currentStorage.findIndex(entry => 
@@ -143,15 +124,23 @@ const FormRooms = () => {
                     }
                 }
             )
-
-
-            const updateStorage = [...currentStorage, ...storage];
+            // const updatedStorage = storage.reduce((acc, entry) => {
+            //     if (entry.num > 0) {
+            //         acc.push(entry);
+            //     }
+            //     return acc;
+            // }, []);
+        //    const updatedStorage = 
+        console.log(storage)
+            // console.log(storage.filter(entry => entry.num > 0))
+            // console.log(currentStorage.filter(entry => entry.num > 0))
+            // const updateStorage = [...currentStorage, ...storage];
             const storogeIdCountry = [...currentStorageIdCountry,...localStorageIdCountry]
-            console.log('Временно', updateStorage)
+            // console.log('Временно', updatedStorage)
             console.log('Завершение', currentStorage)
             // dispatch(postAllCount(updateStorage));
             // dispatch(postAllCount(currentStorage));
-            // localStorage.setItem('numberCount', JSON.stringify(updateStorage))
+            // localStorage.setItem('numberCount', JSON.stringify(updatedStorage))
             localStorage.setItem('numberCount', JSON.stringify(currentStorage))
             localStorage.setItem('countryId', JSON.stringify(storogeIdCountry))
             navigate('/chatBot');
@@ -179,7 +168,7 @@ const FormRooms = () => {
         }
         const allTariffs =  data.filter(country => country.id === id[0]).flatMap(country => country.Tariffs);
         const uniqueTypes = [...new Set( allTariffs.map(tariff => tariff.type))];
-        // console.log(uniqueTypes)
+        console.log('uniqueTypes', uniqueTypes)
         return uniqueTypes.map((type, index) => (
             <TypeRoom
                 key={type[index]}

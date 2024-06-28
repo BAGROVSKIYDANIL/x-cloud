@@ -60,12 +60,12 @@ const TrashBasket = () =>
             localStorage.setItem('numberCount', JSON.stringify(updateTypeRooms))
         }
 
-
+        console.log(selectedCountryState)
         const items = selectedCountryState.flatMap((item, index) =>
         {   
             const matchType = numberAndType.filter(storage => storage.country === item.Country);
             const tariffs = item.Tariffs.map((tariff, index) => ({country: item.Country, type: tariff.type}));
-            // console.log('match', matchType.map((item) => item.num))
+            // console.log('match', matchType)
             return (
                 <TrashBasketList 
                     key={index}

@@ -11,11 +11,14 @@ const TrashBasketList = ({country, handleDeleteClick, typeRoom, numberCounter,  
     const dispatch = useDispatch();
     const [count, setCount] = useState(numberCounter);
     const [total, setTotal] = useState(0);
+    console.log('vac', count)
     console.log('Props', typeRoom)
+    console.log('Props2', numberCounter)
 
     const  incrementCount = (e) =>
     {   
         const index = +e.currentTarget.getAttribute('count-index');
+        console.log("индекс",index)
         const updateCount = [...count];
         updateCount[index] += 1;
         setCount(updateCount);
@@ -31,6 +34,7 @@ const TrashBasketList = ({country, handleDeleteClick, typeRoom, numberCounter,  
             setCount(updateCount)
         }
     }
+
     useEffect(() =>
     {
         setCount(numberCounter)
@@ -64,7 +68,21 @@ const TrashBasketList = ({country, handleDeleteClick, typeRoom, numberCounter,  
     //     setTotal(count * 480);
     //     dispatch(changeTotalCount(total))
     // }, [count, dispatch, total])
+    // console.log(total)
 
+    
+    // const filteredResults = typeRoom.filter(item => {
+    //     const matchingCountry = typeAndNumberCount.find(country => country.TypeRoom === item.type && country.country === nameCountry);
+    //     return matchingCountry && matchingCountry.num !== 0;
+    // });
+    const filteredResults = typeRoom.map((item, index) => {
+        const matchingCountry = typeAndNumberCount.find(country => country.TypeRoom === item.type && country.country === nameCountry);
+        if (matchingCountry && matchingCountry.num !== 0) {
+            return { ...item, countIndex: index, num: matchingCountry.num };
+        }
+        return null;
+    }).filter(item => item !== null);
+    // console.log('filteredResults', filteredResults);
     return (
             <div className="trashBasket__selected-country">
                 <div className="trashBasket__item">
@@ -87,7 +105,7 @@ const TrashBasketList = ({country, handleDeleteClick, typeRoom, numberCounter,  
                         </button>
                     </div>
                     <div className="trashBasket__body">
-                       {typeRoom.map((item, index) => (   
+                       {filteredResults.map((item, index) => (   
 
                             <div key={index} className="trashBasket__type-rooms">
                             <div className="trashBasket__name-type">{item.type}</div>
@@ -100,11 +118,14 @@ const TrashBasketList = ({country, handleDeleteClick, typeRoom, numberCounter,  
                                             <path d="M18 12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
                                         </svg>
                                     </div>
-                                    <div className="trashBasket__number">{count[index]}
+                                    {/* <div className="trashBasket__number">{count[index]} */}
+                                    <div className="trashBasket__number">{count[item.countIndex]}
                                     </div>
                                     <div onClick={(e) => incrementCount(e)} 
                                         className="trashBasket__increase"
-                                        count-index={index}>
+                                        // count-index={index}
+                                        count-index={item.countIndex}
+                                        >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="23" viewBox="0 0 24 23" fill="none">
                                             <path d="M18 12.5H13V17.5C13 18.05 12.55 18.5 12 18.5C11.45 18.5 11 18.05 11 17.5V12.5H6C5.45 12.5 5 12.05 5 11.5C5 10.95 5.45 10.5 6 10.5H11V5.5C11 4.95 11.45 4.5 12 4.5C12.55 4.5 13 4.95 13 5.5V10.5H18C18.55 10.5 19 10.95 19 11.5C19 12.05 18.55 12.5 18 12.5Z" fill="#ADABFF"/>
                                         </svg>

@@ -20,6 +20,9 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
     // console.log('текущие данные', countryRoomTypes)
     // console.log('Верная страна',hasCountry)
     // console.log('Изменёная страна',isChangeRoomType)
+    console.log('typeRoom', number)
+    console.log('type',type)
+
     useEffect(() =>
     {
         const test = [];
@@ -30,10 +33,9 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
                 test.push(item.num)
             }
         });
-       
        setNumber(test)
     }, [])
-    console.log('Число', number)
+    // console.log('Число', count)
 
     const  hadnlerIncrementCount = (e) =>
     {
@@ -55,7 +57,7 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
     {   
         const index = +e.currentTarget.getAttribute('count-index')
          console.log('index', index)
-         console.log(number[id])
+         console.log('dec', number[id])
         if(number[id] !== 0)
         {
             console.log('change-dec')
@@ -128,10 +130,12 @@ const TypeRoom = ({ type, active, onComponentClick, onCountChange, oneType, icon
                     <div className="type__number">
                         {
         
-                            countryRoomTypes.length && hasCountry ? 
-                            number[id] 
+                            countryRoomTypes.length && hasCountry 
+                            ? 
+                            number[id]
                             :
                             count
+                            // number
                         }
                         </div>
                     <div onClick={(e) => hadnlerIncrementCount(e)} 
